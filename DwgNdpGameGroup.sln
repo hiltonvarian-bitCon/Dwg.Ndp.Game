@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.1169
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dwg.Ndp.Game", "Dwg.Ndp.Game\Dwg.Ndp.Game.csproj", "{8440D030-02FA-4CB5-86A6-692A8467D11A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dwg.Ndp.Dll", "Dwg.Ndp.Dll", "{572E3AE7-491C-4F18-8201-251CC4111F82}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
