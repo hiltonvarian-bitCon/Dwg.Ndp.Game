@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dwg.Ndp.Game", "Dwg.Ndp.Gam
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dwg.Ndp.Dll", "Dwg.Ndp.Dll", "{572E3AE7-491C-4F18-8201-251CC4111F82}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dwg.Ndp.Data.Games", "Dwg.Ndp.Data.Games\Dwg.Ndp.Data.Games.csproj", "{9CFC9B8B-CA0B-4569-9C69-F600C7564BEC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,9 +19,16 @@ Global
 		{8440D030-02FA-4CB5-86A6-692A8467D11A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8440D030-02FA-4CB5-86A6-692A8467D11A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8440D030-02FA-4CB5-86A6-692A8467D11A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CFC9B8B-CA0B-4569-9C69-F600C7564BEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CFC9B8B-CA0B-4569-9C69-F600C7564BEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CFC9B8B-CA0B-4569-9C69-F600C7564BEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CFC9B8B-CA0B-4569-9C69-F600C7564BEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9CFC9B8B-CA0B-4569-9C69-F600C7564BEC} = {572E3AE7-491C-4F18-8201-251CC4111F82}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F5246C8C-922D-44D6-BF78-6F81249B2465}

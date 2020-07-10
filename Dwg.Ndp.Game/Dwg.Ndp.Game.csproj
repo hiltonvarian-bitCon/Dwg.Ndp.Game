@@ -79,5 +79,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dwg.Ndp.Data.Games\Dwg.Ndp.Data.Games.csproj">
+      <Project>{9cfc9b8b-ca0b-4569-9c69-f600c7564bec}</Project>
+      <Name>Dwg.Ndp.Data.Games</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

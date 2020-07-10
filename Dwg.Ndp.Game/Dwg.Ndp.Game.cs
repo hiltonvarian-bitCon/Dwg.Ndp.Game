@@ -19,7 +19,6 @@
 
       private void OnDwgNdpLoad(object sender, EventArgs e)
       {
-
       }
       }
       }
