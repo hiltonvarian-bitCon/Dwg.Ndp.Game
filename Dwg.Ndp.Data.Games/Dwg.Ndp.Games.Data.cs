@@ -29,7 +29,12 @@
     }
     public void InitAllData()
     {
-    
+    SetAllDataValues();
+    }
+    protected void SetAllDataValues()
+    {
+    TheNatElemDataSet = NatureElementsFlags.AirElem;
+   
     }
     private string[] thelemArr = { "Earth Elemental", "Air Elemental", "Fire Elemental", "Water Elemental", "Darc Elemntal" };
 
@@ -45,7 +50,7 @@
     {
     throw new ArgumentNullException(nameof(theData));
     }
-    switch (theData.TheNatElements)
+    switch (theData.TheNatElemDataSet)
     {
     case NatureElementsFlags.EarthElem:
          elements = NatureElementsFlags.EarthElem;
@@ -63,10 +68,15 @@
          elements = NatureElementsFlags.DarcElem;
     break;
  default:
-     theData.TheNatElements = NatureElementsFlags.NoElemFlagsValue;
+     theData.TheNatElementsFlags = NatureElementsFlags.NoElemFlagsValue;
    break;
     }
-    return theData.TheNatElements;
+    return theData.TheNatElementsFlags;
+    }
+    public NatureElementsFlags TheNatElemDataSet
+    {
+  get => elements;
+  set => elements = value;
     }
     public TDwgNdpGamesData(NatureElementsFlags natureElements)
     {
@@ -79,7 +89,7 @@
     //Default Value
     }
 
-    public NatureElementsFlags TheNatElements
+    internal NatureElementsFlags TheNatElementsFlags
     {
   get => elements;
   set => elements = value; 
@@ -103,6 +113,7 @@
 
     public override NatureElementsFlags GetNameElements(TDwgGameDats theData)
     {
+
     return base.GetNameElements(theData);
     }
     }
