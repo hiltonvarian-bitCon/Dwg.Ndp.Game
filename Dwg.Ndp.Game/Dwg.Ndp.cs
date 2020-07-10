@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace Dwg.Ndp.Game
 {
-    static class Program
+    static class TDwgNdpGameEngin
     {
         /// <summary>
         /// The main entry point for the application.
