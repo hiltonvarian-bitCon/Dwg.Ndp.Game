@@ -1,21 +1,28 @@
-﻿namespace Dwg.Ndp.Data.Games
-{
-    public  enum NatureElements:int
+﻿   namespace Dwg.Ndp.Data.Games
+   {
+    using System;
+    using System.Windows.Forms;
+
+   [Flags]
+    public  enum NatureElementsFlags:int
     {
     EarthElem=0,AirElem=1,FireElem=2,
-    WaterElem =3,DarcElem=4,NoElem=-1
+    WaterElem =3,DarcElem=4,NoElemFlagsValue=-1
     }
 
-    public  enum NatElementsGF:int
+   [Flags]
+    public  enum NatElementsFlagsGF:int
     {
     EarthElemGF=0,AirElemGF=1,FireElemGF=2,
     WaterGF =3,DarcElemGF=4,NoElemGF=-1
     }
+
     public class TDwgNdpGamesData
     {
 
-    private static NatureElements elements = NatureElements.NoElem;
-    private static NatElementsGF elementsGF = NatElementsGF.NoElemGF;
+    private static NatureElementsFlags elements = NatureElementsFlags.NoElemFlagsValue;
+    private static NatElementsFlagsGF  elementsGF = NatElementsFlagsGF.NoElemGF;
+
     public TDwgNdpGamesData():this(elements)
     {
     //Default Constructor
@@ -24,16 +31,44 @@
     {
     
     }
-    private string[] thelemArr = { "Earth Elemental", "Air Elemental", "Fire Elemental", "Water Elementa", "Darc Elemnta" };
+    private string[] thelemArr = { "Earth Elemental", "Air Elemental", "Fire Elemental", "Water Elemental", "Darc Elemntal" };
 
-    private ref NatureElements GetNameElements(string[]value)
+    private ref NatureElementsFlags GetNameElements(string[]value)
     {
     thelemArr = value;
 
     return ref elements;
     }
-
-    public TDwgNdpGamesData(NatureElements natureElements)
+    public virtual  NatureElementsFlags GetNameElements(TDwgGameDats theData)
+    {
+    if (theData == null)
+    {
+    throw new ArgumentNullException(nameof(theData));
+    }
+    switch (theData.TheNatElements)
+    {
+    case NatureElementsFlags.EarthElem:
+         elements = NatureElementsFlags.EarthElem;
+    break;
+    case NatureElementsFlags.AirElem:
+         elements = NatureElementsFlags.AirElem;
+    break;
+    case NatureElementsFlags.FireElem:
+         elements = NatureElementsFlags.FireElem;
+    break;
+    case NatureElementsFlags.WaterElem:
+         elements = NatureElementsFlags.WaterElem; 
+    break;
+    case NatureElementsFlags.DarcElem:
+         elements = NatureElementsFlags.DarcElem;
+    break;
+ default:
+     theData.TheNatElements = NatureElementsFlags.NoElemFlagsValue;
+   break;
+    }
+    return theData.TheNatElements;
+    }
+    public TDwgNdpGamesData(NatureElementsFlags natureElements)
     {
    
     }
@@ -44,7 +79,7 @@
     //Default Value
     }
 
-    public NatureElements TheNatElements
+    public NatureElementsFlags TheNatElements
     {
   get => elements;
   set => elements = value; 
@@ -56,14 +91,19 @@
   set => thelemArr = value;
     }
 
-    public NatElementsGF TheElementsGF
+    public NatElementsFlagsGF TheElementsGF
     {
   get => elementsGF;
   set => elementsGF = value;
     }
-    public TDwgGameDats(NatureElements theNatureElements)
+    public TDwgGameDats(NatureElementsFlags theNatureElements)
     {
     elements = theNatureElements;
+    }
+
+    public override NatureElementsFlags GetNameElements(TDwgGameDats theData)
+    {
+    return base.GetNameElements(theData);
     }
     }
     }
