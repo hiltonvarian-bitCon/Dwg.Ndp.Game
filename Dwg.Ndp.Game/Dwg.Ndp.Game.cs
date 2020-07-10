@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Dwg.Ndp.Game
 {
-    public partial class Form1 : Form
+    public partial class TDwgNdpGame : Form
     {
-        public Form1()
+        public TDwgNdpGame()
         {
             InitializeComponent();
         }
