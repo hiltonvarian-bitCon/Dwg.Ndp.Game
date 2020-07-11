@@ -30,10 +30,11 @@
     public class TDwgNdpGamesData
     {
 
-    private static NatureElementsFlags elements = NatureElementsFlags.NoElemFlagsValue;
-    private static NatElementsFlagsGF  elementsGF = NatElementsFlagsGF.NoElemGF;
-    private static TheKeys theKeys = TheKeys.NoKeys;
-    public TDwgNdpGamesData():this(elements)
+     private static NatureElementsFlags elements = NatureElementsFlags.NoElemFlagsValue;
+     private static NatElementsFlagsGF  elementsGF = NatElementsFlagsGF.NoElemGF;
+     private static TheKeys theKeys = TheKeys.NoKeys;
+     private static  Thread gameThreadsValue;
+     public TDwgNdpGamesData():this(elements)
     {
     //Default Constructor
     }
@@ -173,15 +174,25 @@
   set => theKeys = value;
     }
 
+    public Thread TheGameThreadSet
+    {
+  get => gameThreadsValue;
+  set => gameThreadsValue = value;
+    }
     public TDwgNdpGamesData(NatureElementsFlags natureElements)
     {
    
     }
     public class TDwgGameDats: TDwgNdpGamesData
-        {
+    {
     public TDwgGameDats():this(elements)
     {
     //Default Value
+    }
+    internal Thread GameThreadsGet
+    {
+  get => gameThreadsValue;
+  set => gameThreadsValue = value;
     }
 
     internal NatureElementsFlags TheNatElementsGetFlags
@@ -202,16 +213,21 @@
   set => elementsGF = value;
     }
 
-    public TheKeys TheGameKeysGet
+    internal TheKeys TheGameKeysGet
     {
   get => theKeys;
   set => theKeys = value;
     }
-
-    public TDwgGameDats(NatureElementsFlags theNatureElements)
+    public TDwgGameDats(NatureElementsFlags theNatureElements):this(gameThreadsValue)
     {
     elements = theNatureElements;
     }
+
+    public TDwgGameDats(Thread thread)
+    {
+    gameThreadsValue = thread;
+    }
+    
 
     protected override NatureElementsFlags GetNameElements(TDwgGameDats theData)
     {

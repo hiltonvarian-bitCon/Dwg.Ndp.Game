@@ -9,82 +9,90 @@
      using System.Threading.Tasks;
      using System.Windows.Forms;
 
-     namespace Dwg.Ndp.Game
-     {
-     using Dwg.Ndp.Data.Games;
-     using Dwg.Ndp.Person;
+    namespace Dwg.Ndp.Game
+    {
+    using Dwg.Ndp.Data.Games;
+    using Dwg.Ndp.Person;
 
-     public partial class TDwgNdpGame : Form
-     {
-     public TDwgNdpGame()
-     {
-     InitializeComponent();
-     }
-     private void InitThreadsStarts()
-     {
-     Thread AllThreads = new Thread(new ThreadStart(TDwgNdpGameThreads.ThreadProc));
-    try
-     {
-     AllThreads.Start();
-     }
-  finally
-     {
-     AllThreads.Abort();
-     }
-     }
-     public class TDwgNdpPLayersChar : TDwgNdpGamesData, IDwgNdpPerson
-     {
-     public NatureElementsFlags TheNatCharPersonElem
-     {
-   get
-     {
-     return this.TheNatFlagsSet;
-     }
-     }
+    public partial class TDwgNdpGame : Form
+    {
+        public TDwgNdpGame()
+        {
+        InitializeComponent();
+        }
+        private void InitThreadsStarts()
+        {
+        Thread AllThreads = new Thread(new ThreadStart(TDwgNdpGameThreads.ThreadProc));
+      try
+        {
+        AllThreads.Start();
+        }
+      finally
+        {
+        AllThreads.Abort();
+        }
+        }
+        public class TDwgNdpPLayersChar : TDwgNdpGamesData, IDwgNdpPerson
+        {
+        public NatureElementsFlags TheNatCharPersonElem
+        {
+      get
+        {
+        return this.TheNatFlagsSet;
+        }
+        }
 
-     public NatElementsFlagsGF TheNatCharPersonElemGF
-     {
-   get
-     {
-     return this.NatElementsFlagsSetGF;
-     }
-     }
+        public NatElementsFlagsGF TheNatCharPersonElemGF
+        {
+      get
+        {
+        return this.NatElementsFlagsSetGF;
+        }
+        }
 
-     public NatElementsFlagsGF InitAllPerson(NatureElementsFlags nature, NatElementsFlagsGF elementsFlagsGF)
-     {
-     throw  new NotImplementedException();
-     }
+        public TheKeys TheGamesKeys
+        {
+      get
+        {
+        return this.AllTheKeysSet;
+        }
+        }
 
-     public NatureElementsFlags InitAllPersons(NatureElementsFlags nature, NatElementsFlagsGF elementsFlagsGF)
-     {
-     throw new NotImplementedException();
-     }
+        public NatElementsFlagsGF InitAllPerson(NatureElementsFlags nature, NatElementsFlagsGF elementsFlagsGF)
+        {
+        
+        throw  new NotImplementedException();
+        }
 
-     public void InitSetAllPersons()
-     {
-     throw new NotImplementedException();
-     }
+        public NatureElementsFlags InitAllPersons(NatureElementsFlags nature, NatElementsFlagsGF elementsFlagsGF)
+        {
+        throw new NotImplementedException();
+        }
 
-     public void InitSetAllPersons(NatureElementsFlags natureElementsFlags, in string[] vsArr)
-     {
+        public void InitSetAllPersons()
+        {
+        throw new NotImplementedException();
+        }
+
+        public void InitSetAllPersons(NatureElementsFlags natureElementsFlags, in string[] vsArr)
+        {
      
-     throw new NotImplementedException();
-     }
-     }
-    
-     private void OnDwgNdpLoad(object sender, EventArgs e)
-     {
-     InitThreadsStarts();
-     }
-     public  class TDwgNdpGameThreads
-     {
-     public static void ThreadProc()
-     {
-     for (int ThreadLoop = 0; ThreadLoop < 1000; ThreadLoop++)
-     {
-     Thread.Sleep(2000);
-     } 
-     }
-     }
-     }
-     }
+        throw new NotImplementedException();
+        }
+        }
+        private void OnDwgNdpLoad(object sender, EventArgs e)
+        {
+        InitThreadsStarts();
+        }
+        public  class TDwgNdpGameThreads
+        {
+        public static void ThreadProc()
+        {
+        for (int ThreadLoop = 0; ThreadLoop < 1000; ThreadLoop++)
+        {
+        Thread.Sleep(2000);
+        } 
+        }
+        }
+        }
+        }

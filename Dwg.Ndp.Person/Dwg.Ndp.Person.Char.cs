@@ -14,7 +14,8 @@
      NatureElementsFlags InitAllPersons(NatureElementsFlags nature,NatElementsFlagsGF elementsFlagsGF);
      NatElementsFlagsGF InitAllPerson(NatureElementsFlags nature, NatElementsFlagsGF elementsFlagsGF);
 
-    NatureElementsFlags TheNatCharPersonElem  { get; }
-    NatElementsFlagsGF TheNatCharPersonElemGF { get;}
+    NatureElementsFlags TheNatCharPersonElem   { get; }
+    NatElementsFlagsGF TheNatCharPersonElemGF  { get;}
+    TheKeys TheGamesKeys                       { get;}
     }
     }
