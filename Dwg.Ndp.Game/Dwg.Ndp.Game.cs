@@ -66,8 +66,8 @@
 
         public NatElementsFlagsGF InitAllPerson(NatureElementsFlags nature, NatElementsFlagsGF elementsFlagsGF)
         {
-        
-        throw  new NotImplementedException();
+        TheNatFlagsSet        = nature; NatElementsFlagsSetGF = elementsFlagsGF;
+        return TheNatCharPersonElemGF;
         }
 
         public NatureElementsFlags InitAllPersons(NatureElementsFlags nature, NatElementsFlagsGF elementsFlagsGF)
@@ -82,7 +82,7 @@
 
         public void InitSetAllPersons(NatureElementsFlags natureElementsFlags, in string[] vsArr)
         {
-     
+        
         throw new NotImplementedException();
         }
         }
