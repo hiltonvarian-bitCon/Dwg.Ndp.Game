@@ -56,7 +56,7 @@
         }
         }
 
-        public TheKeys TheGamesKeys
+        public TheKeysFlags TheGamesKeys
         {
       get
         {

@@ -16,6 +16,6 @@
 
     NatureElementsFlags TheNatCharPersonElem   { get; }
     NatElementsFlagsGF TheNatCharPersonElemGF  { get;}
-    TheKeys TheGamesKeys                       { get;}
+    TheKeysFlags TheGamesKeys                       { get;}
     }
     }

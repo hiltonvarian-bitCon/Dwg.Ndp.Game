@@ -21,7 +21,7 @@
     NoElemGF =-1
     }
     [Flags]
-    public enum TheKeys:int
+    public enum TheKeysFlags:int
     {
     IronKey=0,MetalKey  =2,RusterdKey   =3,
     CopperKey =4,GoldKey=5,MoonMetalKeys=6,
@@ -31,9 +31,9 @@
     {
     private TDwgGameDats dwgGameDats;
 
-    private static  NatureElementsFlags elements   = NatureElementsFlags.NoElemFlagsValue;
-    private static  NatElementsFlagsGF  elementsGF = NatElementsFlagsGF.NoElemGF;
-    private static  TheKeys             theKeys    = TheKeys.NoKeys;
+    private static  NatureElementsFlags elements        = NatureElementsFlags.NoElemFlagsValue;
+    private static  NatElementsFlagsGF  elementsGF      = NatElementsFlagsGF.NoElemGF;
+    private static  TheKeysFlags             theKeys    = TheKeysFlags.NoKeys;
 
     private static  Thread gameThreadsValue;
 
@@ -142,7 +142,7 @@
     return gameDats.TheElementsGetGF;
     }
 
-    protected virtual  TheKeys GetTheKeysFlags(TDwgGameDats gameDats)
+    protected virtual  TheKeysFlags GetTheKeysFlags(TDwgGameDats gameDats)
     {
     if (gameDats == null)
     {
@@ -151,25 +151,25 @@
     switch (gameDats.AllTheKeysSet)
     {
     
-    case TheKeys.IronKey:
-         theKeys = TheKeys.IronKey;
+    case TheKeysFlags.IronKey:
+         theKeys = TheKeysFlags.IronKey;
     break;
-    case TheKeys.MetalKey:
-          theKeys = TheKeys.MetalKey;
+    case TheKeysFlags.MetalKey:
+          theKeys = TheKeysFlags.MetalKey;
      break;
-     case TheKeys.RusterdKey:
-          theKeys = TheKeys.RusterdKey;
+     case TheKeysFlags.RusterdKey:
+          theKeys = TheKeysFlags.RusterdKey;
      break;
-     case TheKeys.CopperKey:
+     case TheKeysFlags.CopperKey:
      break;
-     case TheKeys.GoldKey:
-          theKeys = TheKeys.GoldKey;
+     case TheKeysFlags.GoldKey:
+          theKeys = TheKeysFlags.GoldKey;
      break;
-     case TheKeys.MoonMetalKeys:
-          theKeys = TheKeys.MoonMetalKeys;
+     case TheKeysFlags.MoonMetalKeys:
+          theKeys = TheKeysFlags.MoonMetalKeys;
     break;
   default:
-     gameDats.AllTheKeysSet = TheKeys.NoKeys;
+     gameDats.AllTheKeysSet = TheKeysFlags.NoKeys;
     break;
     }
     return gameDats.TheGameKeysGet;
@@ -185,7 +185,7 @@
   get => elementsGF;
   set => elementsGF = value;
     }
-    public TheKeys AllTheKeysSet
+    public TheKeysFlags AllTheKeysSet
     {
   get => theKeys;
   set => theKeys = value;
@@ -236,7 +236,7 @@
   set => elementsGF = value;
     }
 
-    internal TheKeys TheGameKeysGet
+    internal TheKeysFlags TheGameKeysGet
     {
   get => theKeys;
   set => theKeys = value;
@@ -264,7 +264,7 @@
     return base.GetElementsFlagsGF(gameDats);
     }
 
-    protected override TheKeys GetTheKeysFlags(TDwgGameDats gameDats)
+    protected override TheKeysFlags GetTheKeysFlags(TDwgGameDats gameDats)
     {
     return base.GetTheKeysFlags(gameDats);
     }
