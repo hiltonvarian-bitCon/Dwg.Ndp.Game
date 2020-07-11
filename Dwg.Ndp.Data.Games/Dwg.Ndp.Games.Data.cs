@@ -29,12 +29,20 @@
     }
     public class TDwgNdpGamesData
     {
+    private TDwgGameDats dwgGameDats;
 
-     private static NatureElementsFlags elements = NatureElementsFlags.NoElemFlagsValue;
-     private static NatElementsFlagsGF  elementsGF = NatElementsFlagsGF.NoElemGF;
-     private static TheKeys theKeys = TheKeys.NoKeys;
-     private static  Thread gameThreadsValue;
-     public TDwgNdpGamesData():this(elements)
+    private static  NatureElementsFlags elements = NatureElementsFlags.NoElemFlagsValue;
+    private static  NatElementsFlagsGF  elementsGF = NatElementsFlagsGF.NoElemGF;
+    private static  TheKeys theKeys = TheKeys.NoKeys;
+
+    private static  Thread gameThreadsValue;
+
+    private  void SetAllFlags(TDwgNdpGamesData dwgNdpGame, NatureElementsFlags theNatFlagsSet, NatElementsFlagsGF natElementsFlagsSetGF)
+    {
+
+    }
+
+    public TDwgNdpGamesData():this(elements)
     {
     //Default Constructor
     }
@@ -42,11 +50,19 @@
     {
     SetAllDataValues();
     }
+
     protected void SetAllDataValues()
     {
-
-    TheNatFlagsSet        = NatureElementsFlags.AirElem;
-    NatElementsFlagsSetGF = NatElementsFlagsGF.AirElemGF;
+    dwgGameDats = new TDwgGameDats();
+  try
+   {
+   dwgGameDats.TheNatFlagsSet = NatureElementsFlags.EarthElem;
+   dwgGameDats.NatElementsFlagsSetGF = NatElementsFlagsGF.EarthElemGF;
+    }
+  finally
+    {
+    dwgGameDats.SetAllFlags(dwgGameDats,dwgGameDats.TheNatFlagsSet,dwgGameDats.NatElementsFlagsSetGF,dwgGameDats.TheNatFlagsSet  );
+    }
     }
     private string[] thelemArr = { "Earth Elemental", "Air Elemental", "Fire Elemental", "Water Elemental", "Darc Elemntal" };
 
@@ -54,7 +70,7 @@
     public  void SetAllFlags(TDwgGameDats theval, NatureElementsFlags nature, NatElementsFlagsGF flagsGF ,in  NatureElementsFlags allTheFlags)
     {
     theval.TheNatFlagsSet         = nature;
-    theval.TheElementsGetGF    = flagsGF;
+    theval.TheElementsGetGF       = flagsGF;
 
     TheNatFlagsSet = GetNameElements(theval);
     }
@@ -172,13 +188,19 @@
     {
   get => theKeys;
   set => theKeys = value;
-    }
+   }
 
-    public Thread TheGameThreadSet
-    {
+   public Thread TheGameThreadSet
+   {
   get => gameThreadsValue;
   set => gameThreadsValue = value;
+   }
+   public TDwgGameDats TdwgGameDatsSet
+   {
+  get => dwgGameDats;
+  set => dwgGameDats = value;
     }
+
     public TDwgNdpGamesData(NatureElementsFlags natureElements)
     {
    

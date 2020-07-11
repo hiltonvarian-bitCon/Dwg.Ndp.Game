@@ -6,13 +6,13 @@
      using System.Linq;
      using System.Text;
      using System.Threading;
-     using System.Threading.Tasks;
+     using System.Threading.Tasks;                               
      using System.Windows.Forms;
 
-    namespace Dwg.Ndp.Game
-    {
-    using Dwg.Ndp.Data.Games;
-    using Dwg.Ndp.Person;
+     namespace Dwg.Ndp.Game
+     {
+     using Dwg.Ndp.Data.Games;
+     using Dwg.Ndp.Person;
 
     public partial class TDwgNdpGame : Form
     {
@@ -22,16 +22,22 @@
         }
         private void InitThreadsStarts()
         {
-        Thread AllThreads = new Thread(new ThreadStart(TDwgNdpGameThreads.ThreadProc));
-      try
+        Thread AllThreads01 = new Thread(new ThreadStart(TDwgNdpGameThreads.ThreadProc));
+
+        TDwgNdpGamesData dwgNdpGame = new TDwgNdpGamesData();
+       try
         {
-        AllThreads.Start();
+        dwgNdpGame.InitAllData();
+
+        AllThreads01.Start();
+
         }
       finally
         {
-        AllThreads.Abort();
+        AllThreads01.Abort();
         }
         }
+
         public class TDwgNdpPLayersChar : TDwgNdpGamesData, IDwgNdpPerson
         {
         public NatureElementsFlags TheNatCharPersonElem
