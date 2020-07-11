@@ -31,9 +31,9 @@
     {
     private TDwgGameDats dwgGameDats;
 
-    private static  NatureElementsFlags elements = NatureElementsFlags.NoElemFlagsValue;
+    private static  NatureElementsFlags elements   = NatureElementsFlags.NoElemFlagsValue;
     private static  NatElementsFlagsGF  elementsGF = NatElementsFlagsGF.NoElemGF;
-    private static  TheKeys theKeys = TheKeys.NoKeys;
+    private static  TheKeys             theKeys    = TheKeys.NoKeys;
 
     private static  Thread gameThreadsValue;
 
@@ -62,6 +62,7 @@
   finally
     {
     dwgGameDats.SetAllFlags(dwgGameDats,dwgGameDats.TheNatFlagsSet,dwgGameDats.NatElementsFlagsSetGF,dwgGameDats.TheNatFlagsSet  );
+    
     }
     }
     private string[] thelemArr = { "Earth Elemental", "Air Elemental", "Fire Elemental", "Water Elemental", "Darc Elemntal" };
@@ -243,6 +244,7 @@
     public TDwgGameDats(NatureElementsFlags theNatureElements):this(gameThreadsValue)
     {
     elements = theNatureElements;
+  
     }
 
     public TDwgGameDats(Thread thread)
