@@ -2,8 +2,11 @@
    {
     using System;
     using System.Windows.Forms;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Timers;
 
-   [Flags]
+    [Flags]
     public  enum NatureElementsFlags:int
     {
     EarthElem=0,AirElem=1,FireElem=2,
@@ -14,15 +17,22 @@
     public  enum NatElementsFlagsGF:int
     {
     EarthElemGF=0,AirElemGF=1,FireElemGF=2,
-    WaterGF =3,DarcElemGF=4,NoElemGF=-1
+    WaterGF =3,DarcElemGF=4,
+    NoElemGF =-1
     }
-
+    [Flags]
+    public enum TheKeys:int
+    {
+    IronKey=0,MetalKey  =2,RusterdKey   =3,
+    CopperKey =4,GoldKey=5,MoonMetalKeys=6,
+    NoKeys =-1
+    }
     public class TDwgNdpGamesData
     {
 
     private static NatureElementsFlags elements = NatureElementsFlags.NoElemFlagsValue;
     private static NatElementsFlagsGF  elementsGF = NatElementsFlagsGF.NoElemGF;
-
+    private static TheKeys theKeys = TheKeys.NoKeys;
     public TDwgNdpGamesData():this(elements)
     {
     //Default Constructor
@@ -34,7 +44,7 @@
     protected void SetAllDataValues()
     {
 
-    TheFlags = NatureElementsFlags.AirElem;
+    TheNatFlagsSet        = NatureElementsFlags.AirElem;
     NatElementsFlagsSetGF = NatElementsFlagsGF.AirElemGF;
     }
     private string[] thelemArr = { "Earth Elemental", "Air Elemental", "Fire Elemental", "Water Elemental", "Darc Elemntal" };
@@ -42,10 +52,10 @@
 
     public  void SetAllFlags(TDwgGameDats theval, NatureElementsFlags nature, NatElementsFlagsGF flagsGF ,in  NatureElementsFlags allTheFlags)
     {
-    theval.TheFlags         = nature;
-    theval.TheElementsGF    = flagsGF;
+    theval.TheNatFlagsSet         = nature;
+    theval.TheElementsGetGF    = flagsGF;
 
-    TheFlags = GetNameElements(theval);
+    TheNatFlagsSet = GetNameElements(theval);
     }
 
     private ref NatureElementsFlags GetNameElements(string[]value)
@@ -61,7 +71,7 @@
     {
     throw new ArgumentNullException(nameof(theData));
     }
-    switch (theData.TheFlags)
+    switch (theData.TheNatFlagsSet)
     {
     case NatureElementsFlags.EarthElem:
          elements = NatureElementsFlags.EarthElem;
@@ -79,10 +89,10 @@
          elements = NatureElementsFlags.DarcElem;
     break;
  default:
-     theData.TheNatElementsFlags = NatureElementsFlags.NoElemFlagsValue;
+     theData.TheNatElementsGetFlags = NatureElementsFlags.NoElemFlagsValue;
    break;
     }
-    return theData.TheNatElementsFlags;
+    return theData.TheNatElementsGetFlags;
     }
     protected virtual  NatElementsFlagsGF  GetElementsFlagsGF(TDwgGameDats gameDats)
     {
@@ -107,14 +117,46 @@
     case NatElementsFlagsGF.DarcElemGF:
          elementsGF = NatElementsFlagsGF.DarcElemGF; 
     break;
-   default:
+    default:
     gameDats.NatElementsFlagsSetGF = NatElementsFlagsGF.NoElemGF;
    break; 
     }
-    return gameDats.TheElementsGF;
+    return gameDats.TheElementsGetGF;
     }
-   
-    public NatureElementsFlags TheFlags
+
+    protected virtual  TheKeys GetTheKeysFlags(TDwgGameDats gameDats)
+    {
+    if (gameDats == null)
+    {
+    throw new ArgumentException(nameof(gameDats));
+    }
+    switch (gameDats.AllTheKeysSet)
+    {
+    
+    case TheKeys.IronKey:
+         theKeys = TheKeys.IronKey;
+    break;
+    case TheKeys.MetalKey:
+          theKeys = TheKeys.MetalKey;
+     break;
+     case TheKeys.RusterdKey:
+          theKeys = TheKeys.RusterdKey;
+     break;
+     case TheKeys.CopperKey:
+     break;
+     case TheKeys.GoldKey:
+          theKeys = TheKeys.GoldKey;
+     break;
+     case TheKeys.MoonMetalKeys:
+          theKeys = TheKeys.MoonMetalKeys;
+    break;
+  default:
+     gameDats.AllTheKeysSet = TheKeys.NoKeys;
+    break;
+    }
+    return gameDats.TheGameKeysGet;
+    }
+    public NatureElementsFlags TheNatFlagsSet
     {
   get => elements;
   set => elements = value;
@@ -125,6 +167,12 @@
   get => elementsGF;
   set => elementsGF = value;
     }
+    public TheKeys AllTheKeysSet
+    {
+  get => theKeys;
+  set => theKeys = value;
+    }
+
     public TDwgNdpGamesData(NatureElementsFlags natureElements)
     {
    
@@ -136,7 +184,7 @@
     //Default Value
     }
 
-    internal NatureElementsFlags TheNatElementsFlags
+    internal NatureElementsFlags TheNatElementsGetFlags
     {
   get => elements;
   set => elements = value; 
@@ -148,11 +196,18 @@
   set => thelemArr = value;
     }
 
-    internal NatElementsFlagsGF TheElementsGF
+    internal NatElementsFlagsGF TheElementsGetGF
     {
   get => elementsGF;
   set => elementsGF = value;
     }
+
+    public TheKeys TheGameKeysGet
+    {
+  get => theKeys;
+  set => theKeys = value;
+    }
+
     public TDwgGameDats(NatureElementsFlags theNatureElements)
     {
     elements = theNatureElements;
@@ -163,9 +218,15 @@
 
     return base.GetNameElements(theData);
     }
+
     protected override NatElementsFlagsGF GetElementsFlagsGF(TDwgGameDats gameDats)
     {
     return base.GetElementsFlagsGF(gameDats);
+    }
+
+    protected override TheKeys GetTheKeysFlags(TDwgGameDats gameDats)
+    {
+    return base.GetTheKeysFlags(gameDats);
     }
     }
     }
