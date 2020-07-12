@@ -5,6 +5,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using System.Timers;
+    using Dwg.Game.AI;
 
     [Flags]
     public  enum NatureElementsFlags:int

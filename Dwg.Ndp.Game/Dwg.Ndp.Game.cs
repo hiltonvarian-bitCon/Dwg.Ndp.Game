@@ -11,9 +11,10 @@
 
      namespace Dwg.Ndp.Game
      {
-     using Dwg.Ndp.Data.Games;
-     using Dwg.Ndp.Person;
+    using Dwg.Ndp.Data.Games;
+    using Dwg.Ndp.Person;
     using Dwg.Ndp.Game.Char;
+    using Dwg.Game.AI;
     public partial class TDwgNdpGame : Form
     {
         public TDwgNdpGame()
