@@ -39,13 +39,14 @@
 
     private  void SetAllFlags(TDwgNdpGamesData dwgNdpGame, NatureElementsFlags theNatFlagsSet, NatElementsFlagsGF natElementsFlagsSetGF)
     {
-
+    
     }
 
     public TDwgNdpGamesData():this(elements)
     {
     //Default Constructor
     }
+
     public void InitAllData()
     {
     SetAllDataValues();
@@ -56,9 +57,9 @@
     dwgGameDats = new TDwgGameDats();
   try
    {
-   dwgGameDats.TheNatFlagsSet = NatureElementsFlags.EarthElem;
+   dwgGameDats.TheNatFlagsSet        = NatureElementsFlags.EarthElem;
    dwgGameDats.NatElementsFlagsSetGF = NatElementsFlagsGF.EarthElemGF;
-    }
+   }
   finally
     {
     dwgGameDats.SetAllFlags(dwgGameDats,dwgGameDats.TheNatFlagsSet,dwgGameDats.NatElementsFlagsSetGF,dwgGameDats.TheNatFlagsSet  );
@@ -202,12 +203,17 @@
   set => dwgGameDats = value;
     }
 
-    public TDwgNdpGamesData(NatureElementsFlags natureElements)
+    public TDwgNdpGamesData(NatureElementsFlags natureElements):this(gameThreadsValue)
     {
-   
+     
+    }
+     public TDwgNdpGamesData(Thread threads)
+    {
+    gameThreadsValue = threads;
     }
     public class TDwgGameDats: TDwgNdpGamesData
     {
+
     public TDwgGameDats():this(elements)
     {
     //Default Value
@@ -224,7 +230,7 @@
   set => elements = value; 
     }
 
-    public string[] ElementalArr
+    public string[] ElementalArrGet
     {
   get => thelemArr;
   set => thelemArr = value;
