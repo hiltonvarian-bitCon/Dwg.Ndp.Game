@@ -13,7 +13,7 @@
      {
      using Dwg.Ndp.Data.Games;
      using Dwg.Ndp.Person;
-
+    using Dwg.Ndp.Game.Char;
     public partial class TDwgNdpGame : Form
     {
         public TDwgNdpGame()
@@ -128,14 +128,25 @@
         
         public  class TDwgNdpGameThreads
         {
+        private        readonly Int32   loopcoun1  = -1;
+        private        readonly  Int32  loopCount2  = 0;
+
         public static void ThreadProc1()
         {
         for (int ThreadLoop01 = 0; ThreadLoop01 < 1000; ThreadLoop01++)
         {
+   
         Thread.Sleep(2000);
         }
         
         }
+        public Int32 ThreadCounSet1
+        {
+      get
+        {
+        return loopcoun1;
+        }
+        } 
         public static void  ThreadProc2()
         {
 
@@ -144,8 +155,14 @@
         Thread.Sleep(3000);
         }
         }
+        public Int32 ThreadCounSet2
+        {
+      get
+        {
+        return  loopCount2;
         }
-        
+        }
+        }
         }
         }
         
