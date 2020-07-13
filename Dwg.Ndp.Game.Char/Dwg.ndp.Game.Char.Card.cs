@@ -7,23 +7,30 @@
 
     namespace Dwg.Ndp.Game.Char
     {
+    using Dwg.Game.AI;
     public class TDwgNdpCharCard:Form
     {
         private void InitializeComponent()
         {
-        this.SuspendLayout();
-        // 
-        // TDwgNdpCharCard
-        // 
-        this.ClientSize = new System.Drawing.Size(338, 651);
-        this.Name = "TDwgNdpCharCard";
-        this.Text = "Game Charitors Card";
-        this.ResumeLayout(false);
+            this.SuspendLayout();
+            // 
+            // TDwgNdpCharCard
+            // 
+            this.ClientSize = new System.Drawing.Size(331, 651);
+            this.Name = "TDwgNdpCharCard";
+            this.Text = "Game Charitors Card";
+            this.Load += new System.EventHandler(this.OnGameCharictorsCard);
+            this.ResumeLayout(false);
+
         }
-        public  class TDwgNdpGameCharCard
+        public  class TDwgNdpGameCharCardThread
+        {
+
+        }
+
+        private void OnGameCharictorsCard(object sender, EventArgs e)
         {
 
         }
         }
-
         }

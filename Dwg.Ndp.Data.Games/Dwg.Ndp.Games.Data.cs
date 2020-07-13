@@ -251,7 +251,6 @@
     public TDwgGameDats(NatureElementsFlags theNatureElements):this(gameThreadsValue)
     {
     elements = theNatureElements;
-  
     }
 
     public TDwgGameDats(Thread thread)

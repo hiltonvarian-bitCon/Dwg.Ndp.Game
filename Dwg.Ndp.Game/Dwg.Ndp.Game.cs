@@ -27,11 +27,15 @@
 
         Thread AllThreads02 = new Thread(new ThreadStart(TDwgNdpGameThreads.ThreadProc2));
 
-        TDwgNdpGamesData dwgNdpGame = new TDwgNdpGamesData(AllThreads01);
-       try
-        {
-        dwgNdpGame.InitAllData();
+        TDwgNdpGamesData AllThreads03 = new TDwgNdpGamesData(AllThreads01);
 
+        
+        try
+        {
+        TDwgGameAI dwgGameAI = new TDwgGameAI(AllThreads02);
+
+        AllThreads03.InitAllData();
+        
         AllThreads01.Start();
         AllThreads02.Start();
         }
@@ -40,9 +44,22 @@
         AllThreads01.Abort(); 
         AllThreads02.Abort();
         }
-         
+        IniThreadsStart02(); 
         }
-
+        private void IniThreadsStart02()
+        {
+        TDwgNdpPLayersChar pLayersChar = new TDwgNdpPLayersChar();
+       try
+        {
+        pLayersChar.TdwgGameDatsSet = new TDwgNdpGamesData.TDwgGameDats();
+        
+        
+        }
+       finally
+        {
+        pLayersChar.TheGameThreadSet.Abort();            
+        }
+        } 
         public class TDwgNdpPLayersChar : TDwgNdpGamesData, IDwgNdpPerson
         {
         private IDwgNdpPerson person;
@@ -53,7 +70,15 @@
         }
         private void DwgNdpersonInit()
         {
+        TDwgGameAI ThegameAI = new TDwgGameAI();
+       try
+        {
         
+        }
+       finally
+        {
+        ThegameAI.InitAllGameAI();
+        }    
         }
         public TDwgNdpPLayersChar(IDwgNdpPerson dwgNdpPerson, TheKeysFlags theKeysFlags):this(dwgNdpPerson.TheNatCharPersonElem,dwgNdpPerson.TheNatCharPersonElemGF)
         {
@@ -137,7 +162,7 @@
         for (int ThreadLoop01 = 0; ThreadLoop01 < 1000; ThreadLoop01++)
         {
    
-        Thread.Sleep(2000);
+         Thread.Sleep(2000);
         }
         
         }
