@@ -139,7 +139,7 @@
     break;
     default:
     gameDats.NatElementsFlagsSetGF = NatElementsFlagsGF.NoElemGF;
-   break; 
+    break; 
     }
     return gameDats.TheElementsGetGF;
     }

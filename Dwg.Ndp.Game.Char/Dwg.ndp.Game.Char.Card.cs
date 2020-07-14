@@ -16,10 +16,9 @@
             // 
             // TDwgNdpCharCard
             // 
-            this.ClientSize = new System.Drawing.Size(331, 651);
+            this.ClientSize = new System.Drawing.Size(305, 673);
             this.Name = "TDwgNdpCharCard";
             this.Text = "Game Charitors Card";
-            this.Load += new System.EventHandler(this.OnGameCharictorsCard);
             this.ResumeLayout(false);
 
         }
@@ -28,9 +27,5 @@
 
         }
 
-        private void OnGameCharictorsCard(object sender, EventArgs e)
-        {
-
-        }
-        }
+       }
         }

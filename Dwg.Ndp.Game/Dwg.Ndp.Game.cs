@@ -28,9 +28,7 @@
         Thread AllThreads02 = new Thread(new ThreadStart(TDwgNdpGameThreads.ThreadProc2));
 
         TDwgNdpGamesData AllThreads03 = new TDwgNdpGamesData(AllThreads01);
-
-        
-        try
+      try
         {
         TDwgGameAI dwgGameAI = new TDwgGameAI(AllThreads02);
 
@@ -162,7 +160,7 @@
         for (int ThreadLoop01 = 0; ThreadLoop01 < 1000; ThreadLoop01++)
         {
    
-         Thread.Sleep(2000);
+        Thread.Sleep(2000);
         }
         
         }
@@ -187,6 +185,22 @@
         {
         return  loopCount2;
         }
+        }
+        }
+        private void OnFormClick(object sender, EventArgs e)
+        {
+        InitCharictors();
+        }
+        private void InitCharictors()
+        {
+        TDwgNdpCharCard ndpCharCard = new TDwgNdpCharCard();
+       try
+        {
+        ndpCharCard.ShowDialog();
+        }
+      finally
+        {
+        ndpCharCard.ShowDialog();
         }
         }
         }

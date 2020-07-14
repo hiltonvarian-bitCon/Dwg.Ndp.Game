@@ -38,6 +38,7 @@
             this.Name = "TDwgNdpGame";
             this.Text = "                                                ";
             this.Load += new System.EventHandler(this.OnDwgNdpLoad);
+            this.Click += new System.EventHandler(this.OnFormClick);
             this.ResumeLayout(false);
 
         }
