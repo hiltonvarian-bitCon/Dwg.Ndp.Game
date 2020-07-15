@@ -28,16 +28,17 @@ using System.Threading.Tasks;
  private static Random randomValue = new Random();
 
  private static Thread  theThreads;
-
+                                                        
  public void InitAllGameAI()
  {
  TDwgGameDatAI datAI = new TDwgGameDatAI(gameAI);
 try
  {
-  
+
+                    
  for (int GameAILoop = 0; GameAILoop < gameAI.LongLength; GameAILoop++)
  {
- gameAI[GameAILoop] = randomValue.Next() * 1;
+ gameAI[GameAILoop] =    randomValue.Next() * 1;
  }
  }
 finally
@@ -48,7 +49,7 @@ finally
   }
   public virtual void InitGameDatAI()
   {
-
+  
   }
   public TDwgGameAI():this(theThreads)
   {
@@ -86,7 +87,7 @@ set => dwgGameDatAI = value;
   public TDwgGameDatAI():this(TDwgGameAI.TheRandomValue)
   {
  
-
+   
   }
    public TDwgGameDatAI(Random randomn)
    {
