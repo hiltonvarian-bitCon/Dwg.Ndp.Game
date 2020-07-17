@@ -26,24 +26,27 @@ using System.Threading.Tasks;
 
  private TDwgGameDatAI dwgGameDatAI;
  private static Random randomValue = new Random();
-
+ private Int32 theCounters = 0;
  private static Thread  theThreads;
                                                         
  public void InitAllGameAI()
  {
+ TDwgGameDatAI gameDatAI = new TDwgGameDatAI();
+
  TDwgGameDatAI datAI = new TDwgGameDatAI(gameAI);
 try
  {
-
-                    
+ TDwgGameAI dwgGameAI = new TDwgGameAI();
  for (int GameAILoop = 0; GameAILoop < gameAI.LongLength; GameAILoop++)
  {
- gameAI[GameAILoop] =    randomValue.Next() * 1;
+ theCounters++;
+ gameAI[GameAILoop]           =    randomValue.Next() * 1;
+ dwgGameAI.gameAI[GameAILoop] =    gameAI[GameAILoop];
  }
  }
 finally
-  {
-
+ {
+ datAI.InitSetUpRndNumAI(ref theCounters, TDwgGameDatAI.TheRandomValue);
  datAI.InitGameDatAI();
   }
   }
@@ -76,6 +79,11 @@ set => randomValue = value;
 get => dwgGameDatAI;
 set => dwgGameDatAI = value;
   }
+  public int TheCountersValue
+  {
+get => theCounters;
+set => theCounters = value;
+  }
 
   public TDwgGameAI(Thread thread)
   {
@@ -86,23 +94,34 @@ set => dwgGameDatAI = value;
   private Int32 rndNums = 0;
   public TDwgGameDatAI():this(TDwgGameAI.TheRandomValue)
   {
- 
-   
+  //defaul constrctor  
   }
-   public TDwgGameDatAI(Random randomn)
-   {
-
-   }
+  public TDwgGameDatAI(Random randomn)
+  {
+  InitSetUpRndNumAI(randomn);
+  }
   public override void InitGameDatAI()
   {
 
   base.InitGameDatAI();
   }
-  public Int32 TheRndNums
+  public void InitSetUpRndNumAI(ref Int32 rndCou,Random random)
   {
+  rndCou = InitGetRndValues(rndCou, random);
+  }
+  protected Int32 InitGetRndValues(in Int32 rndCou,Random random)
+  {
+  return random.Next(rndCou);
+  }
+  protected void InitSetUpRndNumAI(Random random)
+  {
+  TheRandomValue = random;
+  }
+   public Int32 TheRndNums
+   {
 get => rndNums;
 set => rndNums = value;
-  }
+   }
   public TDwgGameDatAI(Int32[] VsArr)
   {
   gameAI = VsArr;
