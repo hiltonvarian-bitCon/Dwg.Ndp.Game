@@ -46,13 +46,23 @@ try
  }
 finally
  {
- datAI.InitSetUpRndNumAI(ref theCounters, TDwgGameDatAI.TheRandomValue);
+ 
+ datAI.InitSetUpRndNumAI(ref theCounters, TheRandomValue);
  datAI.InitGameDatAI();
   }
   }
   public virtual void InitGameDatAI()
   {
+  dwgGameDatAI = new TDwgGameDatAI(TheRandomValue);
+ try
+  {
+  dwgGameDatAI.TheGameSetAI[0] = randomValue.Next() * 1;
+  }
+ finally
+  {
   
+  dwgGameDatAI.InitSetUpRndNumAI(ref theCounters, randomValue);                  
+  }
   }
   public TDwgGameAI():this(theThreads)
   {

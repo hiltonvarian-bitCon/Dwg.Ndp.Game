@@ -159,7 +159,7 @@
         {
         for (int ThreadLoop01 = 0; ThreadLoop01 < 1000; ThreadLoop01++)
         {
-   
+       
         Thread.Sleep(2000);
         }
         
@@ -176,6 +176,7 @@
 
         for (int ThreadLoop02 = 0; ThreadLoop02 < 2000; ThreadLoop02++)
         {
+        
         Thread.Sleep(3000);
         }
         }
@@ -200,7 +201,7 @@
         }
       finally
         {
-        ndpCharCard.ShowDialog();
+        ndpCharCard.Close();
         }
         }
         }
