@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dwg.Ndp.Game.Char", "Dwg.Nd
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dwg.Game.AI", "Dwg.Game.AI\Dwg.Game.AI.csproj", "{87465786-5B71-4EE9-ABAD-106E2D830B53}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dwg.Ndp.Attrib", "Dwg.Ndp.Attrib\Dwg.Ndp.Attrib.csproj", "{FDC253E7-51CC-4F36-884B-8486722E9092}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{87465786-5B71-4EE9-ABAD-106E2D830B53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87465786-5B71-4EE9-ABAD-106E2D830B53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87465786-5B71-4EE9-ABAD-106E2D830B53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDC253E7-51CC-4F36-884B-8486722E9092}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDC253E7-51CC-4F36-884B-8486722E9092}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDC253E7-51CC-4F36-884B-8486722E9092}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDC253E7-51CC-4F36-884B-8486722E9092}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,6 +58,7 @@ Global
 		{52D8C37C-FCB4-4A2D-B6E0-BA0F8C5D0F87} = {572E3AE7-491C-4F18-8201-251CC4111F82}
 		{1ECD5096-339E-43D2-9D0F-294DECAEFBFF} = {572E3AE7-491C-4F18-8201-251CC4111F82}
 		{87465786-5B71-4EE9-ABAD-106E2D830B53} = {D47C8EC4-D622-4A9B-951C-CBB08E0B322D}
+		{FDC253E7-51CC-4F36-884B-8486722E9092} = {572E3AE7-491C-4F18-8201-251CC4111F82}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F5246C8C-922D-44D6-BF78-6F81249B2465}

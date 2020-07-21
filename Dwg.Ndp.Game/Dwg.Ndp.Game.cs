@@ -8,8 +8,9 @@
      using System.Threading;
      using System.Threading.Tasks;                               
      using System.Windows.Forms;
-
-     namespace Dwg.Ndp.Game
+     using System.Reflection;
+       
+    namespace Dwg.Ndp.Game
      {
     using Dwg.Ndp.Data.Games;
     using Dwg.Ndp.Person;
@@ -57,7 +58,8 @@
         {
         pLayersChar.TheGameThreadSet.Abort();            
         }
-        } 
+        }
+      
         public class TDwgNdpPLayersChar : TDwgNdpGamesData, IDwgNdpPerson
         {
         private IDwgNdpPerson person;
