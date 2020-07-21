@@ -28,7 +28,7 @@ using System.Threading.Tasks;
  private static Random randomValue = new Random();
  private Int32 theCounters = 0;
  private static Thread  theThreads;
-                                                        
+                                                    
  public void InitAllGameAI()
  {
  TDwgGameDatAI gameDatAI = new TDwgGameDatAI();
@@ -42,12 +42,14 @@ try
  theCounters++;
  gameAI[GameAILoop]           =    randomValue.Next() * 1;
  dwgGameAI.gameAI[GameAILoop] =    gameAI[GameAILoop];
+ 
  }
  }
 finally
  {
- 
+           
  datAI.InitSetUpRndNumAI(ref theCounters, TheRandomValue);
+ datAI.SetUpDic(datAI.TheKeyValuePairs);     
  datAI.InitGameDatAI();
   }
   }
@@ -56,6 +58,7 @@ finally
   dwgGameDatAI = new TDwgGameDatAI(TheRandomValue);
  try
   {
+  
   dwgGameDatAI.TheGameSetAI[0] = randomValue.Next() * 1;
   }
  finally
@@ -63,6 +66,12 @@ finally
   
   dwgGameDatAI.InitSetUpRndNumAI(ref theCounters, randomValue);                  
   }
+
+  }
+ 
+  public virtual void  SetUpDic(Dictionary<byte,TDwgGameAI> valuePairs)
+  {
+  
   }
   public TDwgGameAI():this(theThreads)
   {
@@ -112,9 +121,11 @@ set => theCounters = value;
   }
   public override void InitGameDatAI()
   {
-
+  
   base.InitGameDatAI();
   }
+  private  Dictionary<byte, TDwgGameAI> keyValuePairs = new Dictionary<byte, TDwgGameAI>(); 
+
   public void InitSetUpRndNumAI(ref Int32 rndCou,Random random)
   {
   rndCou = InitGetRndValues(rndCou, random);
@@ -132,9 +143,25 @@ set => theCounters = value;
 get => rndNums;
 set => rndNums = value;
    }
-  public TDwgGameDatAI(Int32[] VsArr)
+  public Dictionary<byte, TDwgGameAI> TheKeyValuePairs
+  {                                                                            
+get => keyValuePairs; 
+set => keyValuePairs = value;
+  }
+
+   public override void SetUpDic(Dictionary<byte, TDwgGameAI> valuePairs)
+   {
+    keyValuePairs = valuePairs;
+   base.SetUpDic(valuePairs);
+   }
+   public TDwgGameDatAI(Int32[] VsArr)
   {
   gameAI = VsArr;
+  }
+  protected void SetUpDic(Dictionary<byte,TDwgGameAI> valuePairs, Int32[] VsArr)
+  {
+  TheGameSetAI[0] = VsArr[0];  
+
   }
   }
   }
