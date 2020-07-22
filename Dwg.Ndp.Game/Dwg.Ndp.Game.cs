@@ -54,7 +54,7 @@
         try                                                                                           
         {
         pLayersChar.TdwgGameDatsSet = new TDwgNdpGamesData.TDwgGameDats ();
-       
+        
         }
        finally
         {
