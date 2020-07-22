@@ -48,15 +48,17 @@
         }
         private void IniThreadsStart02()
         {
-        TDwgNdpPLayersChar pLayersChar  = new TDwgNdpPLayersChar();
+        TDwgNdpPLayersChar     pLayersChar  = new TDwgNdpPLayersChar    ();
 
-        TDwgNdpGameAttrib      dwgNdpAttrib = new TDwgNdpGameAttrib();
+        TDwgNdpGameAttrib      dwgNdpAttrib = new TDwgNdpGameAttrib     ();
         try                                                                                           
         {
-        pLayersChar.TdwgGameDatsSet = new TDwgNdpGamesData.TDwgGameDats();
+        pLayersChar.TdwgGameDatsSet = new TDwgNdpGamesData.TDwgGameDats ();
+       
         }
        finally
         {
+        
         pLayersChar.TheGameThreadSet.Abort();            
         }
         }
