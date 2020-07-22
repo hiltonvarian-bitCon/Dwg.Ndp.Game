@@ -16,6 +16,7 @@
     using Dwg.Ndp.Person;
     using Dwg.Ndp.Game.Char;
     using Dwg.Game.AI;
+    using Dwg.Ndp.Attrib;
     public partial class TDwgNdpGame : Form
     {
         public TDwgNdpGame()
@@ -47,19 +48,20 @@
         }
         private void IniThreadsStart02()
         {
-        TDwgNdpPLayersChar pLayersChar = new TDwgNdpPLayersChar();
-       try
+        TDwgNdpPLayersChar pLayersChar  = new TDwgNdpPLayersChar();
+
+        TDwgNdpGameAttrib      dwgNdpAttrib = new TDwgNdpGameAttrib();
+        try                                                                                           
         {
         pLayersChar.TdwgGameDatsSet = new TDwgNdpGamesData.TDwgGameDats();
-        
-        
         }
        finally
         {
         pLayersChar.TheGameThreadSet.Abort();            
         }
         }
-      
+
+        [TDwgNdpGameAttrib]
         public class TDwgNdpPLayersChar : TDwgNdpGamesData, IDwgNdpPerson
         {
         private IDwgNdpPerson person;

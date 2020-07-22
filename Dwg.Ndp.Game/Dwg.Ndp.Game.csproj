@@ -86,6 +86,10 @@
       <Project>{87465786-5b71-4ee9-abad-106e2d830b53}</Project>
       <Name>Dwg.Game.AI</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Dwg.Ndp.Attrib\Dwg.Ndp.Attrib.csproj">
+      <Project>{fdc253e7-51cc-4f36-884b-8486722e9092}</Project>
+      <Name>Dwg.Ndp.Attrib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dwg.Ndp.Data.Games\Dwg.Ndp.Data.Games.csproj">
       <Project>{9cfc9b8b-ca0b-4569-9c69-f600c7564bec}</Project>
       <Name>Dwg.Ndp.Data.Games</Name>
