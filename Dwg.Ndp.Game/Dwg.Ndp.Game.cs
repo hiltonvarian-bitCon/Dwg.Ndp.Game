@@ -58,7 +58,6 @@
         }
        finally
         {
-        
         pLayersChar.TheGameThreadSet.Abort();            
         }
         }
