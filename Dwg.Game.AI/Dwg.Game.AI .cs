@@ -24,33 +24,50 @@ using System.Threading.Tasks;
                            ,6,12,23,20,-20,-7,1,10,11,6,7,9,2,4,0,0,0, 
                           };
 
- private TDwgGameDatAI dwgGameDatAI;
+ 
  private static Random randomValue = new Random();
+
+ private TDwgGameDatAI dwgGameDatAI;
  private Int32 theCounters = 0;
  private static Thread  theThreads;
-                                                    
+
+ private Int32[] theGameArrAI;                                                    
  public void InitAllGameAI()
  {
- TDwgGameDatAI gameDatAI = new TDwgGameDatAI();
+ TDwgGameDatAI GameDatAI = new TDwgGameDatAI();
 
- TDwgGameDatAI datAI = new TDwgGameDatAI(gameAI);
+ TDwgGameDatAI DatAI = new TDwgGameDatAI(gameAI);
 try
- {
- TDwgGameAI dwgGameAI = new TDwgGameAI();
- for (int GameAILoop = 0; GameAILoop < gameAI.LongLength; GameAILoop++)
+   {
+ TDwgGameAI DwgGameAI = new TDwgGameAI();
+ for (Int32 GameAILoop = 0; GameAILoop < gameAI.LongLength; GameAILoop++)
  {
  theCounters++;
  gameAI[GameAILoop]           =    randomValue.Next() * 1;
- dwgGameAI.gameAI[GameAILoop] =    gameAI[GameAILoop];
- 
+ DwgGameAI.gameAI[GameAILoop] =    gameAI[GameAILoop];
  }
  }
 finally
+  {
+  DatAI.InitSetUpRndNumAI(ref theCounters, TheRandomValue);
+  DatAI.SetUpDic(DatAI.TheKeyValuePairs);
+
+  DatAI.InitGameDatAI();
+  DatAI.InitAllArr();
+  }
+  }
+  public void InitAllArr()
+  {
+ theGameArrAI= new Int32[gameAI.LongLength];
+try
  {
-           
- datAI.InitSetUpRndNumAI(ref theCounters, TheRandomValue);
- datAI.SetUpDic(datAI.TheKeyValuePairs);     
- datAI.InitGameDatAI();
+ theGameArrAI[0] = 1;
+ theGameArrAI[1] = 2;
+ theGameArrAI[2] = 3;
+ }
+finally
+  {
+  
   }
   }
   public virtual void InitGameDatAI()
@@ -58,12 +75,12 @@ finally
   dwgGameDatAI = new TDwgGameDatAI(TheRandomValue);
  try
   {
-  
   dwgGameDatAI.TheGameSetAI[0] = randomValue.Next() * 1;
+  dwgGameDatAI.TheKeyValuePairs.Add(0, dwgGameDatAI);
   }
  finally
   {
-  
+  dwgGameDatAI.theCounters++; 
   dwgGameDatAI.InitSetUpRndNumAI(ref theCounters, randomValue);                  
   }
 
@@ -102,6 +119,11 @@ set => dwgGameDatAI = value;
   {
 get => theCounters;
 set => theCounters = value;
+  }
+  public Int32[] TheGamseArrAI
+  {
+ get => theGameArrAI;
+ set => theGameArrAI = value;
   }
 
   public TDwgGameAI(Thread thread)

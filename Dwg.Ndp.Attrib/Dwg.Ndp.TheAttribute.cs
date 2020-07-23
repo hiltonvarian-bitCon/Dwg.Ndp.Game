@@ -10,12 +10,13 @@ namespace Dwg.Ndp.Attrib
     using Dwg.Ndp.Person;
     using Dwg.Ndp.Data.Games;
     using Dwg.Ndp.Game.Char;
-
+    
     public class TDwgNdpGameAttrib : Attribute
     {
     protected NatureElementsFlags elementsFlags;
     protected NatElementsFlagsGF FlagsGF;
     protected TheKeysFlags keysFlags;
+    protected GameDirections directions;
 
     public TDwgNdpGameAttrib()
     {
@@ -48,11 +49,22 @@ namespace Dwg.Ndp.Attrib
     {
     keysFlags = theKeys;
     }
+    public GameDirections  TheGameDirections
+    {
+  get => directions;
+  set => directions = value;
     }
-    
-    public class TDwgNdpAttributs
+    public  TDwgNdpGameAttrib(GameDirections thegameDir )
+    {
+    directions = thegameDir;
+    }
+    public override bool Match(object obj)
     {
 
+    return base.Match(obj);
+    }
+    public class TDwgNdpAttributs
+    {
     [TDwgNdpGameAttrib(NatureElementsFlags.AirElem)]
     public void TheElamNature() { }
 
@@ -64,6 +76,10 @@ namespace Dwg.Ndp.Attrib
 
     [TDwgNdpGameAttrib]
     public void InitallAtributes() { }
+    }
+
+    [TDwgNdpGameAttrib(GameDirections.North )]
+    public void TheGameKeys() { }
     }
     }
     

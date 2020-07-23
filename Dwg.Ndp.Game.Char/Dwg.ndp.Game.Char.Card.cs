@@ -20,11 +20,11 @@
         this.Name = "TDwgNdpCharCard";
         this.Text = "Game Charitors Card";
         this.ResumeLayout(false);
-
         }
+
         public  class TDwgNdpGameCharCardThread
         {
-
+       
         }
 
         }

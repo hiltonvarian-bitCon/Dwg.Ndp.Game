@@ -21,6 +21,7 @@
     WaterGF =3,DarcElemGF=4,
     NoElemGF =-1
     }
+
     [Flags]
     public enum TheKeysFlags:int
     {
@@ -28,15 +29,23 @@
     CopperKey =4,GoldKey=5,MoonMetalKeys=6,
     NoKeys =-1
     }
+
+    [Flags]
+    public  enum GameDirections:int
+    {
+    North=0,South=1,West=2,East=3,
+    NorthEast=4,SouthEaast=4,
+    SouthWest=5,NoDirection=-1
+    }
     public class TDwgNdpGamesData
     {
     private TDwgGameDats dwgGameDats;
 
     private static  NatureElementsFlags elements        = NatureElementsFlags.NoElemFlagsValue;
     private static  NatElementsFlagsGF  elementsGF      = NatElementsFlagsGF.NoElemGF;
-    private static  TheKeysFlags             theKeys    = TheKeysFlags.NoKeys;
-
-    private static  Thread gameThreadsValue;
+    private static  TheKeysFlags        theKeys         = TheKeysFlags.NoKeys;
+    private static  GameDirections      gameDirections  = GameDirections.NoDirection;
+    private static  Thread              gameThreadsValue;
 
     private  void SetAllFlags(TDwgNdpGamesData dwgNdpGame, NatureElementsFlags theNatFlagsSet, NatElementsFlagsGF natElementsFlagsSetGF)
     {
@@ -60,11 +69,12 @@
    {
    dwgGameDats.TheNatFlagsSet        = NatureElementsFlags.EarthElem;
    dwgGameDats.NatElementsFlagsSetGF = NatElementsFlagsGF.EarthElemGF;
-   }
+   dwgGameDats.TheGameDirectionSet   = GameDirections.North;
+    }
   finally
     {
     dwgGameDats.SetAllFlags(dwgGameDats,dwgGameDats.TheNatFlagsSet,dwgGameDats.NatElementsFlagsSetGF,dwgGameDats.TheNatFlagsSet  );
-    
+    dwgGameDats.SetAllFlags(dwgGameDats, dwgGameDats.TheNatFlagsSet, dwgGameDats.NatElementsFlagsSetGF, dwgGameDats.TheGameDirectionSet, dwgGameDats.TheNatFlagsSet); 
     }
     }
     private string[] thelemArr = { "Earth Elemental", "Air Elemental", "Fire Elemental", "Water Elemental", "Darc Elemntal" };
@@ -78,6 +88,13 @@
     TheNatFlagsSet = GetNameElements(theval);
     }
 
+    public void SetAllFlags(TDwgGameDats theVal,NatureElementsFlags nature,NatElementsFlagsGF flagsGF,GameDirections directions,in NatureElementsFlags allTheFlags)
+    {
+    theVal.TheGameDirectionSet = directions;
+    theVal.TheNatFlagsSet      = allTheFlags;
+
+    TheGameDirectionSet = TheGameDirections(theVal); 
+    }
     private ref NatureElementsFlags GetNameElements(string[]value)
     {
     thelemArr = value;
@@ -138,7 +155,7 @@
          elementsGF = NatElementsFlagsGF.DarcElemGF; 
     break;
     default:
-    gameDats.NatElementsFlagsSetGF = NatElementsFlagsGF.NoElemGF;
+     gameDats.NatElementsFlagsSetGF = NatElementsFlagsGF.NoElemGF;
     break; 
     }
     return gameDats.TheElementsGetGF;
@@ -152,7 +169,6 @@
     }
     switch (gameDats.AllTheKeysSet)
     {
-    
     case TheKeysFlags.IronKey:
          theKeys = TheKeysFlags.IronKey;
     break;
@@ -161,28 +177,56 @@
      break;
      case TheKeysFlags.RusterdKey:
           theKeys = TheKeysFlags.RusterdKey;
-     break;
+    break;
      case TheKeysFlags.CopperKey:
+          theKeys = TheKeysFlags.CopperKey; 
      break;
      case TheKeysFlags.GoldKey:
           theKeys = TheKeysFlags.GoldKey;
      break;
-     case TheKeysFlags.MoonMetalKeys:
-          theKeys = TheKeysFlags.MoonMetalKeys;
-    break;
-  default:
-     gameDats.AllTheKeysSet = TheKeysFlags.NoKeys;
+    default:
+      gameDats.AllTheKeysSet = TheKeysFlags.NoKeys;
     break;
     }
     return gameDats.TheGameKeysGet;
     }
+    protected virtual GameDirections TheGameDirections(TDwgGameDats dwgGameDats)
+    {
+    if (dwgGameDats == null)
+    {
+    throw new AggregateException(nameof(dwgGameDats));
+    }
+    switch (dwgGameDats.TheGameDirectionSet)
+    {
+    case GameDirections.North:
+         gameDirections = GameDirections.North;
+    break;
+    case GameDirections.South:
+         gameDirections = GameDirections.South;
+    break;
+    case GameDirections.West:
+         gameDirections = GameDirections.West;
+    break;
+    case GameDirections.East:
+         gameDirections = GameDirections.East;
+    break;
+    case GameDirections.NorthEast:
+         gameDirections = GameDirections.NorthEast;
+    break; 
+    default:
+      dwgGameDats.GameDirectionsGet = GameDirections.NoDirection;
+    break;
+    }
+    return dwgGameDats.GameDirectionsGet;
+    }
+
     public NatureElementsFlags TheNatFlagsSet
     {
   get => elements;
   set => elements = value;
     }
 
-    public NatElementsFlagsGF NatElementsFlagsSetGF
+   public NatElementsFlagsGF NatElementsFlagsSetGF
     {
   get => elementsGF;
   set => elementsGF = value;
@@ -204,9 +248,14 @@
   set => dwgGameDats = value;
     }
 
+   public GameDirections TheGameDirectionSet
+    {
+  get => gameDirections;
+  set => gameDirections = value;
+    }
     public TDwgNdpGamesData(NatureElementsFlags natureElements):this(gameThreadsValue)
     {
-     
+    
     }
      public TDwgNdpGamesData(Thread threads)
     {
@@ -219,12 +268,14 @@
     {
     //Default Value
     }
+
     internal Thread GameThreadsGet
     {
   get => gameThreadsValue;
   set => gameThreadsValue = value;
     }
-
+   
+    //Internal Getter TheElementsGetFlags
     internal NatureElementsFlags TheNatElementsGetFlags
     {
   get => elements;
@@ -236,17 +287,26 @@
   get => thelemArr;
   set => thelemArr = value;
     }
-
+    
+    //Internal Getter TheElementsGetGF
     internal NatElementsFlagsGF TheElementsGetGF
     {
   get => elementsGF;
   set => elementsGF = value;
     }
-
+    
+    //Internal Getter TheGameKeysGet
     internal TheKeysFlags TheGameKeysGet
     {
   get => theKeys;
   set => theKeys = value;
+    }
+    
+    //Internal Getter GameDirectionsGet
+    internal GameDirections GameDirectionsGet
+   {
+  get => gameDirections;
+  set => gameDirections = value;
     }
     public TDwgGameDats(NatureElementsFlags theNatureElements):this(gameThreadsValue)
     {
@@ -272,8 +332,15 @@
 
     protected override TheKeysFlags GetTheKeysFlags(TDwgGameDats gameDats)
     {
+
     return base.GetTheKeysFlags(gameDats);
     }
+
+
+    protected override GameDirections TheGameDirections(TDwgGameDats dwgGameDats)
+    {
+    return base.TheGameDirections(dwgGameDats);
     }
     }
     }
+}

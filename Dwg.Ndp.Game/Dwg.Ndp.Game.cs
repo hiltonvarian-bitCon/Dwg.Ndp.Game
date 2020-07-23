@@ -34,7 +34,7 @@
         {
         TDwgGameAI dwgGameAI = new TDwgGameAI(AllThreads02);
 
-        AllThreads03.InitAllData();
+        AllThreads03.InitAllData();                                                       
         
         AllThreads01.Start();
         AllThreads02.Start();
@@ -51,13 +51,16 @@
         TDwgNdpPLayersChar     pLayersChar  = new TDwgNdpPLayersChar    ();
 
         TDwgNdpGameAttrib      dwgNdpAttrib = new TDwgNdpGameAttrib     ();
-        try                                                                                           
+       try                                                                                           
         {
-        pLayersChar.TdwgGameDatsSet = new TDwgNdpGamesData.TDwgGameDats ();
-        
+        TDwgNdpGamesData.TDwgGameDats dwgGameDats = new TDwgNdpGamesData.TDwgGameDats();
+        pLayersChar.TdwgGameDatsSet = dwgGameDats;
+        pLayersChar.TdwgGameDatsSet.AllTheKeysSet = TheKeysFlags.GoldKey;
         }
        finally
         {
+        pLayersChar.ThePersons = new TDwgNdpPLayersChar();
+       
         pLayersChar.TheGameThreadSet.Abort();            
         }
         }
@@ -73,10 +76,16 @@
         }
         private void DwgNdpersonInit()
         {
-        TDwgGameAI ThegameAI = new TDwgGameAI();
+        TDwgGameAI        ThegameAI = new TDwgGameAI();
+
+        TDwgNdpGameAttrib GameAttrib = new TDwgNdpGameAttrib();
        try
         {
-        
+       if (GameAttrib.Match(GameAttrib.TheElementalFlags))
+        {
+       
+        }
+        GameAttrib.TheGameDirections = GameDirections.West;
         }
        finally
         {
@@ -120,7 +129,7 @@
 
         public TDwgNdpPLayersChar(NatureElementsFlags elementsFlags,NatElementsFlagsGF natElementsFlagsGF) 
         {
-
+         
         }
         public NatElementsFlagsGF InitAllPerson(NatureElementsFlags nature, NatElementsFlagsGF elementsFlagsGF)
         {
@@ -135,7 +144,7 @@
 
         public void InitSetAllPersons()
         {
-        throw new NotImplementedException();
+        
         }
 
         public void InitSetAllPersons(NatureElementsFlags natureElementsFlags, in string[] vsArr)
