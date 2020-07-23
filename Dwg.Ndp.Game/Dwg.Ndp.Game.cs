@@ -81,9 +81,9 @@
         TDwgNdpGameAttrib GameAttrib = new TDwgNdpGameAttrib();
        try
         {
-       if (GameAttrib.Match(GameAttrib.TheElementalFlags))
+        if (GameAttrib.Match(GameAttrib.TheElementalFlags))
         {
-       
+        
         }
         GameAttrib.TheGameDirections = GameDirections.West;
         }
