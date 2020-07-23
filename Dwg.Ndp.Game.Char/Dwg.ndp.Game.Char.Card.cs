@@ -12,14 +12,16 @@
     {
         private void InitializeComponent()
         {
-        this.SuspendLayout();
-         // 
-        // TDwgNdpCharCard
-       // 
-        this.ClientSize = new System.Drawing.Size(305, 652);
-        this.Name = "TDwgNdpCharCard";
-        this.Text = "Game Charitors Card";
-        this.ResumeLayout(false);
+            this.SuspendLayout();
+            // 
+            // TDwgNdpCharCard
+            // 
+            this.ClientSize = new System.Drawing.Size(305, 652);
+            this.Name = "TDwgNdpCharCard";
+            this.Text = "Game Charitors Card";
+            this.Load += new System.EventHandler(this.TDwgNdpCharCard_Load);
+            this.ResumeLayout(false);
+
         }
 
         public  class TDwgNdpGameCharCardThread
@@ -27,5 +29,9 @@
        
         }
 
+        private void TDwgNdpCharCard_Load(object sender, EventArgs e)
+        {
+
         }
+    }
         }

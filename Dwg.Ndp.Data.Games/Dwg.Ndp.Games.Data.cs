@@ -49,7 +49,7 @@
 
     private  void SetAllFlags(TDwgNdpGamesData dwgNdpGame, NatureElementsFlags theNatFlagsSet, NatElementsFlagsGF natElementsFlagsSetGF)
     {
-    
+    dwgGameDats.SetAllFlags(dwgGameDats, theNatFlagsSet, natElementsFlagsSetGF, theNatFlagsSet);
     }
 
     public TDwgNdpGamesData():this(elements)
@@ -66,11 +66,11 @@
     {
     dwgGameDats = new TDwgGameDats();
   try
-   {
-   dwgGameDats.TheNatFlagsSet        = NatureElementsFlags.EarthElem;
-   dwgGameDats.NatElementsFlagsSetGF = NatElementsFlagsGF.EarthElemGF;
-   dwgGameDats.TheGameDirectionSet   = GameDirections.North;
-    }
+    {
+    dwgGameDats.TheNatFlagsSet        = NatureElementsFlags.EarthElem;
+    dwgGameDats.NatElementsFlagsSetGF = NatElementsFlagsGF.EarthElemGF;
+    dwgGameDats.TheGameDirectionSet   = GameDirections.North;
+     }
   finally
     {
     dwgGameDats.SetAllFlags(dwgGameDats,dwgGameDats.TheNatFlagsSet,dwgGameDats.NatElementsFlagsSetGF,dwgGameDats.TheNatFlagsSet  );
