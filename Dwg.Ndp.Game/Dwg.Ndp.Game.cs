@@ -83,7 +83,7 @@
         {
         if (GameAttrib.Match(GameAttrib.TheElementalFlags))
         {
-        
+       
         }
         GameAttrib.TheGameDirections = GameDirections.West;
         }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
+using System.Runtime.InteropServices;
  namespace Dwg.Game.AI
  {
  public class TDwgGameAI
@@ -70,8 +70,9 @@ try
   }                                                                                               
 finally
   {
-   
+  
   }
+
   }
   public virtual void InitGameDatAI()
   {
