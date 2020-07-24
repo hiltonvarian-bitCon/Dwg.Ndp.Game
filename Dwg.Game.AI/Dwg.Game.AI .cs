@@ -27,9 +27,12 @@ using System.Threading.Tasks;
  
  private static Random randomValue = new Random();
 
- private TDwgGameDatAI dwgGameDatAI;
+  private static Thread  theThreads;
+
+  private TDwgGameDatAI dwgGameDatAI;
  private Int32 theCounters = 0;
- private static Thread  theThreads;
+
+
 
  private Int32[] theGameArrAI;                                                    
  public void InitAllGameAI()
@@ -64,10 +67,10 @@ try
  theGameArrAI[0] = 1;
  theGameArrAI[1] = 2;
  theGameArrAI[2] = 3;
- }
+  }                                                                                               
 finally
   {
-  
+   
   }
   }
   public virtual void InitGameDatAI()
@@ -139,7 +142,8 @@ set => theCounters = value;
   }
   public TDwgGameDatAI(Random randomn)
   {
-  InitSetUpRndNumAI(randomn);
+
+                InitSetUpRndNumAI(randomn);
   }
   public override void InitGameDatAI()
   {
