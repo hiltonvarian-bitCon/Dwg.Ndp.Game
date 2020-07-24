@@ -59,8 +59,7 @@
         }
        finally
         {
-        pLayersChar.ThePersons = new TDwgNdpPLayersChar();
-       
+              ;
         pLayersChar.TheGameThreadSet.Abort();            
         }
         }
@@ -81,6 +80,7 @@
         TDwgNdpGameAttrib GameAttrib = new TDwgNdpGameAttrib();
        try
         {
+        
         if (GameAttrib.Match(GameAttrib.TheElementalFlags))
         {
        

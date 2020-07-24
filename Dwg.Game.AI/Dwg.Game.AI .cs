@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
- namespace Dwg.Game.AI
+
+namespace Dwg.Game.AI
  {
  public class TDwgGameAI
  {
@@ -70,7 +71,8 @@ try
   }                                                                                               
 finally
   {
-  
+   
+                   
   }
 
   }
@@ -87,12 +89,11 @@ finally
   dwgGameDatAI.theCounters++; 
   dwgGameDatAI.InitSetUpRndNumAI(ref theCounters, randomValue);                  
   }
-
   }
  
   public virtual void  SetUpDic(Dictionary<byte,TDwgGameAI> valuePairs)
   {
-  
+     
   }
   public TDwgGameAI():this(theThreads)
   {
@@ -144,7 +145,7 @@ set => theCounters = value;
   public TDwgGameDatAI(Random randomn)
   {
 
-                InitSetUpRndNumAI(randomn);
+  InitSetUpRndNumAI(randomn);
   }
   public override void InitGameDatAI()
   {

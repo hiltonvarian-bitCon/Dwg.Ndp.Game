@@ -76,6 +76,7 @@
     dwgGameDats.SetAllFlags(dwgGameDats,dwgGameDats.TheNatFlagsSet,dwgGameDats.NatElementsFlagsSetGF,dwgGameDats.TheNatFlagsSet  );
     dwgGameDats.SetAllFlags(dwgGameDats, dwgGameDats.TheNatFlagsSet, dwgGameDats.NatElementsFlagsSetGF, dwgGameDats.TheGameDirectionSet, dwgGameDats.TheNatFlagsSet); 
     }
+    
     }
     private string[] thelemArr = { "Earth Elemental", "Air Elemental", "Fire Elemental", "Water Elemental", "Darc Elemntal" };
 
@@ -95,9 +96,9 @@
 
     TheGameDirectionSet = TheGameDirections(theVal); 
     }
-    private ref NatureElementsFlags GetNameElements(string[]value)
+    private ref NatureElementsFlags GetNameElements(string[]value,NatureElementsFlags elementsFlags)
     {
-    thelemArr = value;
+    thelemArr = value;  elements = elementsFlags;
 
     return ref elements;
     }
