@@ -54,18 +54,18 @@
     }
     private void InitializeComponent()
 
-        {
-            this.SuspendLayout();
-            // 
-            // TDwgNdpCharCard
-            // 
-            this.ClientSize = new System.Drawing.Size(305, 652);
-            this.Name = "TDwgNdpCharCard";
-            this.Text = "Game Charitors Card";
-            this.Activated += new System.EventHandler(this.OnGameCharictorsCardActivate);
-            this.ResumeLayout(false);
+    {
+    this.SuspendLayout();
+    // 
+    // TDwgNdpCharCard
+    // 
+    this.ClientSize = new System.Drawing.Size(305, 652);
+    this.Name = "TDwgNdpCharCard";
+    this.Text = "Game Charitors Card";
+    this.Activated += new System.EventHandler(this.OnGameCharictorsCardActivate);
+    this.ResumeLayout(false);
 
-        }
+    }
     public void InitArraysVal()
     {
         
