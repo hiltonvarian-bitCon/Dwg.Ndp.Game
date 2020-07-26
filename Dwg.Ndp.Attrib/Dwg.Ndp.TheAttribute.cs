@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
 
 namespace Dwg.Ndp.Attrib
 {
@@ -10,7 +11,7 @@ namespace Dwg.Ndp.Attrib
     using Dwg.Ndp.Person;
     using Dwg.Ndp.Data.Games;
     using Dwg.Ndp.Game.Char;
-
+    
     public class TDwgNdpGameAttrib : Attribute
     {
         protected NatureElementsFlags elementsFlags;
@@ -20,9 +21,23 @@ namespace Dwg.Ndp.Attrib
 
         public TDwgNdpGameAttrib()
         {
+       
         keysFlags = TheKeysFlags.RusterdKey;
-        }
 
+        InitAsemblyNameAttrIB();
+        }
+        private void InitAsemblyNameAttrIB()
+        {
+        Assembly assembly = typeof(TDwgNdpCharCard).Assembly;
+       try
+        {
+        
+        }
+     finally
+        {
+        
+        }
+        }
         public TDwgNdpGameAttrib(NatureElementsFlags natureElements)
         {
         elementsFlags = natureElements;
@@ -48,7 +63,7 @@ namespace Dwg.Ndp.Attrib
         FlagsGF = theflagsGF;
         }
 
-        public TDwgNdpGameAttrib(TheKeysFlags theKeys)
+        public TDwgNdpGameAttrib(TheKeysFlags theKeys)                                                     
         {
         keysFlags = theKeys;
         }
@@ -85,8 +100,9 @@ namespace Dwg.Ndp.Attrib
         public void TheGameKeys() { }
      }
      [AttributeUsage(AttributeTargets.Constructor|AttributeTargets.Method)]
-     public  class TcharAtribute:TDwgNdpGameAttrib
+     public  class TDwcharAtribute:TDwgNdpGameAttrib
      {
+     [TDwgNdpGameAttrib]
      public void TheCharAttributes()
      {
      
@@ -98,20 +114,27 @@ namespace Dwg.Ndp.Attrib
      return TheElementalFlags;
      }
      }
-     public NatElementsFlagsGF ThNatElementalFlagsSetGF
+     public NatElementsFlagsGF ThNatElementalFlagsGetGF
      {
    get
      {
      return TheFlagsGF;
       }
       }
-
+     public GameDirections ThGameDirectionsFlagsGet
+     {
+  get
+     {
+     return TheGameDirections;
+     }
+     } 
      [TDwgNdpGameAttrib(NatureElementsFlags.NoElemFlagsValue)]
-     public TcharAtribute()
+     public TDwcharAtribute()
      {
      //default constructor
      }
-     public TcharAtribute(NatureElementsFlags elementsFlags)
+
+     public TDwcharAtribute(NatureElementsFlags elementsFlags):base(elementsFlags)
      {
      TheElementalFlags = elementsFlags;
      }

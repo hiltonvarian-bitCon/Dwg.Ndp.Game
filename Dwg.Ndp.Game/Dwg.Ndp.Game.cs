@@ -59,7 +59,8 @@
         }
        finally
         {
-              ;
+        TDwcharAtribute dwcharAtribute=new TDwcharAtribute(dwgNdpAttrib.TheElementalFlags);
+        
         pLayersChar.TheGameThreadSet.Abort();            
         }
         }

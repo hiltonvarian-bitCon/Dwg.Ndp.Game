@@ -46,5 +46,11 @@
     <Compile Include="Dwg.Game.AI .cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dwg.Ndp.Game.Con\Dwg.Ndp.Game.Con.csproj">
+      <Project>{8f48a589-4bde-4a5a-9bfc-435727903215}</Project>
+      <Name>Dwg.Ndp.Game.Con</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
