@@ -12,10 +12,12 @@
     public class TDwgNdpCharCard:Form
     {
        
-    private float hitpoints   = TDwgNdpGameConVal.C_Hitpointrs;
-    private float dexterity   = TDwgNdpGameConVal.C_TheDexterity;
-    private float oritory     = TDwgNdpGameConVal.C_TheOritory;
-    private float attacPoints = TDwgNdpGameConVal.C_TheAttackPoints;
+    private float hitpoints     = TDwgNdpGameConVal.C_Hitpointrs;
+    private float dexterity     = TDwgNdpGameConVal.C_TheDexterity;
+    private float oritory       = TDwgNdpGameConVal.C_TheOritory;
+    private float attacPoints   = TDwgNdpGameConVal.C_TheAttackPoints;
+    private float stanimaPoints = TDwgNdpGameConVal.C_TheStanimaPoints;
+    private float strengthPoints = TDwgNdpGameConVal.C_TheStrengthPoints; 
 
     private TDCharictorsCardItems[] charictorsCardItems;
        
@@ -41,12 +43,22 @@
      }
     public TDwgNdpCharCard()
     {
-
+    
     }
     public TDCharictorsCardItems[] CharictorsItems
     {
   get => charictorsCardItems;
   set => charictorsCardItems = value;
+    }
+     public float StanimaPointsSet
+    {
+   get => stanimaPoints;
+   set => stanimaPoints = value;
+     }
+    public float StrengthPointSet
+    {
+  get => strengthPoints;
+  set => strengthPoints = value;
     }
     public TDwgNdpCharCard(TDCharictorsCardItems[] tDCharictors)
     {
@@ -96,11 +108,20 @@
     }
 
     internal float AttacPointsGet
-    {
+     {
   get => attacPoints;
   set => attacPoints = value;
     }
-       
+     internal  float StanimaPointsGet
+    {
+  get => stanimaPoints;
+  set => stanimaPoints = value;
+    }
+    internal  float StrengthPointGet
+    {
+  get => strengthPoints;
+  set => strengthPoints = value;
+    }
 
     public  class TDwgNdpGameCharCardThread
     {

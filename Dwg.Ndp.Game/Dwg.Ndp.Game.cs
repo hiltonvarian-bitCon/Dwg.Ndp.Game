@@ -76,7 +76,7 @@
         }
         private void DwgNdpersonInit()
         {
-        TDwgGameAI        ThegameAI = new TDwgGameAI();
+        TDwgGameAI ThegameAI = new TDwgGameAI();
 
         TDwgNdpGameAttrib GameAttrib = new TDwgNdpGameAttrib();
        try
