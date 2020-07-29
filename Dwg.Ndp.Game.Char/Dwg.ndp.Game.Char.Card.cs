@@ -56,7 +56,7 @@
    set => stanimaPoints = value;
      }
     public float StrengthPointSet
-    {
+    {                                                                                                                       
   get => strengthPoints;
   set => strengthPoints = value;
     }
