@@ -21,21 +21,18 @@ namespace Dwg.Ndp.Attrib
 
         public TDwgNdpGameAttrib()
         {
-       
-        keysFlags = TheKeysFlags.RusterdKey;
-
-        InitAsemblyNameAttrIB();
+        InitAsemblyNameAttrib();
         }
-        private void InitAsemblyNameAttrIB()
+        private void InitAsemblyNameAttrib()
         {
-        Assembly assembly = typeof(TDwgNdpCharCard).Assembly;
+        Assembly assembly = typeof(TDwgNdpCharCardInfo).Assembly;
        try
         {
-        
+        keysFlags = TheKeysFlags.RusterdKey;
         }
      finally
         {
-        
+       
         }
         }
         public TDwgNdpGameAttrib(NatureElementsFlags natureElements)
@@ -123,7 +120,7 @@ namespace Dwg.Ndp.Attrib
       }
      public GameDirections ThGameDirectionsFlagsGet
      {
-  get
+   get
      {
      return TheGameDirections;
      }

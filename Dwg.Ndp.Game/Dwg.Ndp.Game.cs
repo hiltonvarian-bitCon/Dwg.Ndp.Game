@@ -51,6 +51,7 @@
         TDwgNdpPLayersChar     pLayersChar  = new TDwgNdpPLayersChar    ();
 
         TDwgNdpGameAttrib      dwgNdpAttrib = new TDwgNdpGameAttrib     ();
+      
        try                                                                                           
         {
         TDwgNdpGamesData.TDwgGameDats dwgGameDats = new TDwgNdpGamesData.TDwgGameDats();
@@ -209,7 +210,7 @@
         }
         private void InitCharictors()
         {
-        TDwgNdpCharCard ndpCharCard = new TDwgNdpCharCard();
+        TDwgNdpCharCardInfo ndpCharCard = new TDwgNdpCharCardInfo();
        try
         {
         ndpCharCard.ShowDialog();

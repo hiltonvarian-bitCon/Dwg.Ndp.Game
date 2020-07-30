@@ -4,12 +4,15 @@
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows.Forms;
+    using System.Threading;
 
     namespace Dwg.Ndp.Game.Char
     {
     using Dwg.Game.AI;
     using Dwg.Ndp.Game.Con;
-    public class TDwgNdpCharCard:Form
+   
+
+    public class TDwgNdpCharCardInfo:Form
     {
        
     private float hitpoints     = TDwgNdpGameConVal.C_Hitpointrs;
@@ -17,9 +20,10 @@
     private float oritory       = TDwgNdpGameConVal.C_TheOritory;
     private float attacPoints   = TDwgNdpGameConVal.C_TheAttackPoints;
     private float stanimaPoints = TDwgNdpGameConVal.C_TheStanimaPoints;
-    private float strengthPoints = TDwgNdpGameConVal.C_TheStrengthPoints; 
+    private float strengthPoints = TDwgNdpGameConVal.C_TheStrengthPoints;
 
-    private TDCharictorsCardItems[] charictorsCardItems;
+    private TDwgNdpGameCharCardThread charCardThread;
+    private TDCharictorsTheItems[] charictorsCardItems;
        
     public float HitpointsSet
     {
@@ -41,11 +45,12 @@
    get => attacPoints;
    set => attacPoints = value;
      }
-    public TDwgNdpCharCard()
+    public TDwgNdpCharCardInfo()
     {
-    
+    InitArraysVal();
     }
-    public TDCharictorsCardItems[] CharictorsItems
+
+    public TDCharictorsTheItems[] CharictorsItems
     {
   get => charictorsCardItems;
   set => charictorsCardItems = value;
@@ -54,41 +59,104 @@
     {
    get => stanimaPoints;
    set => stanimaPoints = value;
-     }
+    }
     public float StrengthPointSet
     {                                                                                                                       
   get => strengthPoints;
   set => strengthPoints = value;
     }
-    public TDwgNdpCharCard(TDCharictorsCardItems[] tDCharictors)
+
+    public TDwgNdpCharCardInfo(TDCharictorsTheItems[] tDCharictors)
     {
     charictorsCardItems = tDCharictors;
     }
+
     private void InitializeComponent()
 
     {
-    this.SuspendLayout();
-    // 
-    // TDwgNdpCharCard
-    // 
-    this.ClientSize = new System.Drawing.Size(305, 652);
-    this.Name = "TDwgNdpCharCard";
-    this.Text = "Game Charitors Card";
-    this.Activated += new System.EventHandler(this.OnGameCharictorsCardActivate);
-    this.ResumeLayout(false);
+            this.SuspendLayout();
+            // 
+            // TDwgNdpCharCard
+            // 
+            this.ClientSize = new System.Drawing.Size(305, 652);
+            this.Name = "TDwgNdpCharCard";
+            this.Text = "Game Charitors Card";
+            this.ResumeLayout(false);
 
     }
+   
     public void InitArraysVal()
     {
-        
-    }
-        
-    public  class TDCharictorsCardItems
+    charictorsCardItems = new TDCharictorsTheItems[TDwgNdpGameConVal.C_TheAmountWepons];
+
+    TDwgNdpCharCardInfo ndpCharCard = new TDwgNdpCharCardInfo(charictorsCardItems);
+   try
     {
-    public string namewepons;
-    public string nameItems;
+    ndpCharCard.CharictorsItems[0] = new TDCharictorsTheItems(charictorsCardItems.Length);
+    {
+    ndpCharCard.CharictorsItems[0].TheNameItems = "Iron Sword";
+    }
+    }
+   finally
+    {
+    TDwgNdpGameCharCardThread charCardThread = new TDwgNdpGameCharCardThread(new TDCharictorsTheItems( ));
+    
+    InitArraysVal(charictorsCardItems);
+    }
     }
 
+    protected void InitArraysVal(TDCharictorsTheItems[] tDCharictorsCardItems)
+    {
+    CharictorsItems = tDCharictorsCardItems;
+    }
+    public  class TDCharictorsTheItems
+    {
+    public TDCharictorsTheItems() :this(TheTotalVal=TDwgNdpGameConVal.C_TheAmountWepons)
+    {
+   //default Constructor
+    }
+   
+    public TDCharictorsTheItems(Int32 value)
+    {
+    TheTotalVal = value;
+    }
+    private string namewepons = TDwgNdpGameConVal.C_StringsName;
+    private string nameItems = TDwgNdpGameConVal.C_StringsName;
+    private string nameSpells = TDwgNdpGameConVal.C_StringsName;
+
+    public Int32 TheTotalValues
+    {
+  get => TheTotalVal;
+  set => TheTotalVal = value;
+    }
+
+    public string TheNamewepons
+    {
+  get => namewepons;
+  set => namewepons = value;
+    }
+
+    public string TheNameItems
+    {
+  get => nameItems;
+  set => nameItems = value;
+    }
+
+    public string TheNameSpells
+    {
+  get => nameSpells;
+  set => nameSpells = value;
+    }
+
+    public static Int32 TheTotalVal
+    {
+  get => theTotalVal;
+  set => theTotalVal = value;
+    }
+    private static Int32  theTotalVal=TDwgNdpGameConVal.C_TheAmountWepons;
+
+    }
+   
     internal float HitpointGet
     {
   get => hitpoints;
@@ -112,25 +180,53 @@
   get => attacPoints;
   set => attacPoints = value;
     }
-     internal  float StanimaPointsGet
+
+    internal  float StanimaPointsGet
     {
   get => stanimaPoints;
   set => stanimaPoints = value;
     }
+
     internal  float StrengthPointGet
     {
-  get => strengthPoints;
+  get => strengthPoints;                                                    
   set => strengthPoints = value;
+    }
+
+    public TDwgNdpGameCharCardThread TheCharCardThread
+    {
+  get => charCardThread;
+  set => charCardThread = value;
     }
 
     public  class TDwgNdpGameCharCardThread
     {
-       
+    public TDwgNdpGameCharCardThread(TDCharictorsTheItems theItems )
+    {
+    InitThreadsSet();
     }
 
-    private void OnGameCharictorsCardActivate(object sender, EventArgs e)
+    protected void InitThreadsSet()
     {
-        
+    Thread Threads = new Thread(new ThreadStart(InitThReads));
+   try
+    {
+    Threads.Start();
     }
+  finally                                                                                    
+    {
+    Threads.Abort();               
+    }
+    }
+    }
+    protected static void InitThReads()
+    {
+    for (int ThreadLoop01 = 0; ThreadLoop01 < 3000; ThreadLoop01++)
+    {
+    Thread.Sleep(400);
+
+    }
+    }
+
     }
     }
