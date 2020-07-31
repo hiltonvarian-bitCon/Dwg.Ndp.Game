@@ -75,7 +75,7 @@ namespace Dwg.Ndp.Attrib
         }
         public override bool Match(object obj)
         {
-       
+
         return base.Match(obj);
         }
         public class TDwgNdpAttributs

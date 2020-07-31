@@ -31,18 +31,17 @@ namespace Dwg.Game.AI
   private static Thread  theThreads;
 
   private TDwgGameDatAI dwgGameDatAI;
- private Int32 theCounters = 0;
+  private Int32 theCounters = 0;
 
+ private Int32[] theGameArrAI;
 
-
- private Int32[] theGameArrAI;                                                    
  public void InitAllGameAI()
  {
  TDwgGameDatAI GameDatAI = new TDwgGameDatAI();
 
  TDwgGameDatAI DatAI = new TDwgGameDatAI(gameAI);
 try
-   {
+ {
  TDwgGameAI DwgGameAI = new TDwgGameAI();
  for (Int32 GameAILoop = 0; GameAILoop < gameAI.LongLength; GameAILoop++)
  {
@@ -62,19 +61,22 @@ finally
   }
   public void InitAllArr()
   {
- theGameArrAI= new Int32[gameAI.LongLength];
+  theGameArrAI= new Int32[gameAI.LongLength];
 try
  {
- theGameArrAI[0] = 1;
- theGameArrAI[1] = 2;
- theGameArrAI[2] = 3;
-  }                                                                                               
+ theGameArrAI[0] = TDwgGameAI.TheRandomValue.Next()*1;
+ theGameArrAI[1] = TDwgGameAI.TheRandomValue.Next()*2;
+ theGameArrAI[2] = TDwgGameAI.TheRandomValue.Next()*3;
+ }                                                                                               
 finally
   {
  
-  
+  InitAllArr(theGameArrAI);
   }
-
+  }
+  protected void InitAllArr(Int32[] val)
+  {
+  theGameArrAI = val; 
   }
   public virtual void InitGameDatAI()
   {
@@ -93,7 +95,7 @@ finally
  
   public virtual void  SetUpDic(Dictionary<byte,TDwgGameAI> valuePairs)
   {
-     
+           
   }
   public TDwgGameAI():this(theThreads)
   {
@@ -179,7 +181,7 @@ set => keyValuePairs = value;
 
    public override void SetUpDic(Dictionary<byte, TDwgGameAI> valuePairs)
    {
-    keyValuePairs = valuePairs;
+   
    base.SetUpDic(valuePairs);
    }
    public TDwgGameDatAI(Int32[] VsArr)

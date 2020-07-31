@@ -100,7 +100,6 @@
    finally
     {
     TDwgNdpGameCharCardThread charCardThread = new TDwgNdpGameCharCardThread(new TDCharictorsTheItems( ));
-    
     InitArraysVal(charictorsCardItems);
     }
     }
