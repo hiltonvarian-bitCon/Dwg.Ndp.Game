@@ -60,7 +60,7 @@
         }
        finally
         {
-        TDwcharAtribute dwcharAtribute=new TDwcharAtribute(dwgNdpAttrib.TheElementalFlags);
+        TDwcharAtribute dwcharAtribute=new TDwcharAtribute(dwgNdpAttrib.TheElementalFlagsSet);
         pLayersChar.TheGameThreadSet.Abort();            
         }
         }
@@ -81,11 +81,11 @@
         TDwgNdpGameAttrib GameAttrib = new TDwgNdpGameAttrib();
        try
         {
-        if (GameAttrib.Match(GameAttrib.TheElementalFlags))
+        if (GameAttrib.Match(GameAttrib.TheElementalFlagsSet))
         {
         
         }
-        GameAttrib.TheGameDirections = GameDirections.West;
+        GameAttrib.TheGameDirectionsSet = GameDirections.West;
         }
        finally
         {

@@ -154,7 +154,6 @@
   set => theTotalVal = value;
     }
     private static Int32  theTotalVal=TDwgNdpGameConVal.C_TheAmountWepons;
-
     }
    
     internal float HitpointGet

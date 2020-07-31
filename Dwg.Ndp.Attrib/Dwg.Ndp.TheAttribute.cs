@@ -37,17 +37,18 @@ namespace Dwg.Ndp.Attrib
         {
         elementsFlags = natureElements;
         }
-        public NatureElementsFlags TheElementalFlags
+        public NatureElementsFlags TheElementalFlagsSet
         {
    get => elementsFlags;
    set => elementsFlags = value;
         }
-        public NatElementsFlagsGF TheFlagsGF
+        public NatElementsFlagsGF TheFlagsGFSet
+   
         {
    get => FlagsGF;
    set => FlagsGF = value;
         }
-        public TheKeysFlags ThekeyFlags
+        public TheKeysFlags ThekeyFlagsSet
         {
    get => keysFlags;
    set => keysFlags = value;
@@ -62,7 +63,7 @@ namespace Dwg.Ndp.Attrib
         {
         keysFlags = theKeys;
         }
-        public GameDirections TheGameDirections
+        public GameDirections TheGameDirectionsSet
         {
    get => directions;
    set => directions = value;
@@ -105,33 +106,33 @@ namespace Dwg.Ndp.Attrib
 
      [TDwgNdpGameAttrib(NatureElementsFlags.NoElemFlagsValue)]
      public TDwcharAtribute()
-      {
+     {
       //default constructor
-      }
+     }
       public NatureElementsFlags ThNatElementalFlagsGet
-     {
-   get
-     {
-     return TheElementalFlags;
-     }
-     }
-     public NatElementsFlagsGF ThNatElementalFlagsGetGF
-     {
-   get
-     {
-     return TheFlagsGF;
+      {
+    get
+      {
+      return TheElementalFlagsSet;
+      }
+      }
+      public NatElementsFlagsGF ThNatElementalFlagsGetGF
+      { 
+    get
+      {
+      return TheFlagsGFSet;
       }
       }
      public GameDirections ThGameDirectionsFlagsGet
      {
    get
      {
-     return TheGameDirections;
+     return TheGameDirectionsSet;
      }
      } 
     public TDwcharAtribute(NatureElementsFlags elementsFlags):base(elementsFlags)
      {
-     TheElementalFlags = elementsFlags;
+     TheElementalFlagsSet = elementsFlags;
      }
      }
      }
