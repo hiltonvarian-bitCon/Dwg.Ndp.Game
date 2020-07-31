@@ -48,20 +48,19 @@
         }
         private void IniThreadsStart02()
         {
-        TDwgNdpPLayersChar     pLayersChar  = new TDwgNdpPLayersChar    ();
+        TDwgNdpPLayersChar            pLayersChar  = new TDwgNdpPLayersChar    ();
 
-        TDwgNdpGameAttrib      dwgNdpAttrib = new TDwgNdpGameAttrib     ();
-      
+        TDwgNdpGameAttrib             dwgNdpAttrib = new TDwgNdpGameAttrib     ();
+
+        TDwgNdpGamesData.TDwgGameDats dwgGameDats = new TDwgNdpGamesData.TDwgGameDats();
        try                                                                                           
         {
-        TDwgNdpGamesData.TDwgGameDats dwgGameDats = new TDwgNdpGamesData.TDwgGameDats();
         pLayersChar.TdwgGameDatsSet = dwgGameDats;
         pLayersChar.TdwgGameDatsSet.AllTheKeysSet = TheKeysFlags.GoldKey;
         }
        finally
         {
         TDwcharAtribute dwcharAtribute=new TDwcharAtribute(dwgNdpAttrib.TheElementalFlags);
-        
         pLayersChar.TheGameThreadSet.Abort();            
         }
         }
@@ -77,15 +76,14 @@
         }
         private void DwgNdpersonInit()
         {
-        TDwgGameAI ThegameAI = new TDwgGameAI();
+        TDwgGameAI       ThegameAI  = new TDwgGameAI();
 
         TDwgNdpGameAttrib GameAttrib = new TDwgNdpGameAttrib();
        try
         {
-        
         if (GameAttrib.Match(GameAttrib.TheElementalFlags))
         {
-       
+        
         }
         GameAttrib.TheGameDirections = GameDirections.West;
         }

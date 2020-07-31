@@ -25,14 +25,12 @@ namespace Dwg.Ndp.Attrib
         }
         private void InitAsemblyNameAttrib()
         {
-        Assembly assembly = typeof(TDwgNdpCharCardInfo).Assembly;
        try
         {
         keysFlags = TheKeysFlags.RusterdKey;
         }
      finally
         {
-       
         }
         }
         public TDwgNdpGameAttrib(NatureElementsFlags natureElements)
@@ -88,7 +86,7 @@ namespace Dwg.Ndp.Attrib
         public void TheElemNatGF() { }
 
         [TDwgNdpGameAttrib(TheKeysFlags.CopperKey)]
-        public void TheGameKeys() { }
+        public void TheGameKeys() { }                                                                                                                 
 
         [TDwgNdpGameAttrib]
         public void InitallAtributes() { }
@@ -102,9 +100,15 @@ namespace Dwg.Ndp.Attrib
      [TDwgNdpGameAttrib]
      public void TheCharAttributes()
      {
-     
+     //dwfault constructure
      }
-     public NatureElementsFlags ThNatElementalFlagsGet
+
+     [TDwgNdpGameAttrib(NatureElementsFlags.NoElemFlagsValue)]
+     public TDwcharAtribute()
+      {
+      //default constructor
+      }
+      public NatureElementsFlags ThNatElementalFlagsGet
      {
    get
      {
@@ -125,13 +129,7 @@ namespace Dwg.Ndp.Attrib
      return TheGameDirections;
      }
      } 
-     [TDwgNdpGameAttrib(NatureElementsFlags.NoElemFlagsValue)]
-     public TDwcharAtribute()
-     {
-     //default constructor
-     }
-
-     public TDwcharAtribute(NatureElementsFlags elementsFlags):base(elementsFlags)
+    public TDwcharAtribute(NatureElementsFlags elementsFlags):base(elementsFlags)
      {
      TheElementalFlags = elementsFlags;
      }
