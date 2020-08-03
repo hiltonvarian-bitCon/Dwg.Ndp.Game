@@ -57,6 +57,10 @@
       <Project>{1ecd5096-339e-43d2-9d0f-294decaefbff}</Project>
       <Name>Dwg.Ndp.Game.Char</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Dwg.Ndp.Game.Con\Dwg.Ndp.Game.Con.csproj">
+      <Project>{8f48a589-4bde-4a5a-9bfc-435727903215}</Project>
+      <Name>Dwg.Ndp.Game.Con</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dwg.Ndp.Person\Dwg.Ndp.Person.csproj">
       <Project>{52d8c37c-fcb4-4a2d-b6e0-ba0f8c5d0f87}</Project>
       <Name>Dwg.Ndp.Person</Name>

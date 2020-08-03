@@ -15,11 +15,11 @@
     public class TDwgNdpCharCardInfo:Form
     {
        
-    private float hitpoints     = TDwgNdpGameConVal.C_Hitpointrs;
-    private float dexterity     = TDwgNdpGameConVal.C_TheDexterity;
-    private float oritory       = TDwgNdpGameConVal.C_TheOritory;
-    private float attacPoints   = TDwgNdpGameConVal.C_TheAttackPoints;
-    private float stanimaPoints = TDwgNdpGameConVal.C_TheStanimaPoints;
+    private float hitpoints      = TDwgNdpGameConVal.C_Hitpointrs;
+    private float dexterity      = TDwgNdpGameConVal.C_TheDexterity;
+    private float oritory        = TDwgNdpGameConVal.C_TheOritory;
+    private float attacPoints    = TDwgNdpGameConVal.C_TheAttackPoints;
+    private float stanimaPoints  = TDwgNdpGameConVal.C_TheStanimaPoints;
     private float strengthPoints = TDwgNdpGameConVal.C_TheStrengthPoints;
 
     private TDwgNdpGameCharCardThread charCardThread;
@@ -40,7 +40,7 @@
   get => oritory;
   set => oritory = value;
     }
-     public float AttacPointsSet
+     public float AttackPointsSet
      {
    get => attacPoints;
    set => attacPoints = value;
@@ -55,11 +55,13 @@
   get => charictorsCardItems;
   set => charictorsCardItems = value;
     }
-     public float StanimaPointsSet
+
+    public float StanimaPointsSet
     {
    get => stanimaPoints;
    set => stanimaPoints = value;
     }
+
     public float StrengthPointSet
     {                                                                                                                       
   get => strengthPoints;
@@ -93,8 +95,10 @@
    try
     {
     ndpCharCard.CharictorsItems[0] = new TDCharictorsTheItems(charictorsCardItems.Length);
+    ndpCharCard.CharictorsItems[1] = new TDCharictorsTheItems(charictorsCardItems.Length); 
     {
     ndpCharCard.CharictorsItems[0].TheNameItems = "Iron Sword";
+    ndpCharCard.CharictorsItems[1].TheNameItems = "Metal Sword";
     }
     }
    finally
@@ -103,11 +107,14 @@
     InitArraysVal(charictorsCardItems);
     }
     }
-
+    protected void InitArraysVal(TDCharictorsTheItems[] tDCharictors,Int32 valcount)
+    {
+    }
     protected void InitArraysVal(TDCharictorsTheItems[] tDCharictorsCardItems)
     {
     CharictorsItems = tDCharictorsCardItems;
     }
+
     public  class TDCharictorsTheItems
     {
     public TDCharictorsTheItems() :this(TheTotalVal=TDwgNdpGameConVal.C_TheAmountWepons)

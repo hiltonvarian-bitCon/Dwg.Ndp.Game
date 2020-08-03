@@ -17,8 +17,17 @@
     using Dwg.Ndp.Game.Char;
     using Dwg.Game.AI;
     using Dwg.Ndp.Attrib;
+    using Dwg.Ndp.Game.Con;
     public partial class TDwgNdpGame : Form
     {
+        private IDwgNdpPerson thperson = null;
+
+        public IDwgNdpPerson Thperson
+        {
+      get => thperson;
+      set => thperson = value;
+        }
+
         public TDwgNdpGame()
         {
         InitializeComponent();
@@ -55,8 +64,11 @@
         TDwgNdpGamesData.TDwgGameDats dwgGameDats = new TDwgNdpGamesData.TDwgGameDats();
        try                                                                                           
         {
+       
+       
         pLayersChar.TdwgGameDatsSet = dwgGameDats;
         pLayersChar.TdwgGameDatsSet.AllTheKeysSet = TheKeysFlags.GoldKey;
+       
         }
        finally
         {
@@ -70,28 +82,35 @@
         {
         private IDwgNdpPerson person;
 
+        private float theAxisX = TDwgNdpGameConVal.C_AxisX;
+        private float theAxisY =TDwgNdpGameConVal.C_AxisY;
+        private float theAxisZ = TDwgNdpGameConVal.C_AxisZ;
+     
         public TDwgNdpPLayersChar() 
         {
         DwgNdpersonInit();
         }
         private void DwgNdpersonInit()
         {
-        TDwgGameAI       ThegameAI  = new TDwgGameAI();
+        TDwgGameAI       ThegameAI  = new TDwgGameAI         ();
 
-        TDwgNdpGameAttrib GameAttrib = new TDwgNdpGameAttrib();
+        TDwgNdpGameAttrib GameAttrib = new TDwgNdpGameAttrib ();
        try
         {
+        person = new TDwgNdpPLayersChar(GameAttrib.TheElementalFlagsSet, GameAttrib.TheFlagsGFSet);
         if (GameAttrib.Match(GameAttrib.TheElementalFlagsSet))
         {
-        
-        }
         GameAttrib.TheGameDirectionsSet = GameDirections.West;
+        }
+        theAxisX = person.CalculateValues();
         }
        finally
         {
+        theAxisY = person.CalculateValues();
         ThegameAI.InitAllGameAI();
         }    
         }
+        
         public TDwgNdpPLayersChar(IDwgNdpPerson dwgNdpPerson, TheKeysFlags theKeysFlags):this(dwgNdpPerson.TheNatCharPersonElem,dwgNdpPerson.TheNatCharPersonElemGF)
         {
         AllTheKeysSet = dwgNdpPerson.TheGamesKeys;
@@ -127,6 +146,30 @@
       set => person = value;
         }
 
+        public float TheAxisValueX
+        {
+      get
+        {
+        return theAxisX;
+        }
+        }
+
+        public float TheAxisValueY
+        {
+      get
+        {
+        return theAxisY;
+        }
+        }
+
+        public float TheAxisValueZ
+        {
+      get
+        {
+        return theAxisZ;
+        }
+        }
+
         public TDwgNdpPLayersChar(NatureElementsFlags elementsFlags,NatElementsFlagsGF natElementsFlagsGF) 
         {
          
@@ -144,7 +187,7 @@
 
         public void InitSetAllPersons()
         {
-        
+       
         }
 
         public void InitSetAllPersons(NatureElementsFlags natureElementsFlags, in string[] vsArr)
@@ -157,10 +200,47 @@
         {
         throw new NotImplementedException();
         }
+
+        public float CalculateValues()
+        {
+        return  CalculateValues(theAxisX*theAxisX)+(theAxisY*theAxisY);
         }
+
+        public float CalculateValues(float value)
+        {
+        return  value;    
+        }
+        
+        public double CalculateValue(double axisX, double axisY)
+        {                                                                    
+
+        return Math.Sqrt((axisX * axisX) + (axisY * axisY)); 
+        }
+
+        public void SetTheSumOfAxis(float axisValueX, double axisValueY)
+        {
+        theAxisX = axisValueX;         
+        }
+
+        public void SetTheSumOfAxis(float axisValueX, float axisValueY)
+        {
+        theAxisY = axisValueY; 
+        }
+
+        public double CalculateValue(float axisX, double axisY, float axisZ)
+        {
+        return Math.Cos(axisX + axisY) * Math.Sin(axisX + axisZ);       
+        }
+        }
+        protected double CalculateValue(float axisValueX,double axisValueY)
+        {
+        return (axisValueX*axisValueX)+(axisValueY * axisValueY);
+        }
+
         private void OnDwgNdpLoad(object sender, EventArgs e)
         {
         KeyPreview = true;
+
         InitThreadsStarts();
         }
         
@@ -209,7 +289,7 @@
         private void InitCharictors()
         {
         TDwgNdpCharCardInfo ndpCharCard = new TDwgNdpCharCardInfo();
-       try
+      try
         {
         ndpCharCard.ShowDialog();
         }

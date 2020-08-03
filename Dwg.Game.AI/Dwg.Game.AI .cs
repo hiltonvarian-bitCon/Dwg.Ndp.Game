@@ -28,10 +28,10 @@ namespace Dwg.Game.AI
  
  private static Random randomValue = new Random();
 
-  private static Thread  theThreads;
+ private static Thread  theThreads;
 
-  private TDwgGameDatAI dwgGameDatAI;
-  private Int32 theCounters = 0;
+ private TDwgGameDatAI dwgGameDatAI;
+ private Int32 theCounters = 0;
 
  private Int32[] theGameArrAI;
 
@@ -42,7 +42,7 @@ namespace Dwg.Game.AI
  TDwgGameDatAI DatAI = new TDwgGameDatAI(gameAI);
 try
  {
- TDwgGameAI DwgGameAI = new TDwgGameAI();
+TDwgGameAI DwgGameAI = new TDwgGameAI();
  for (Int32 GameAILoop = 0; GameAILoop < gameAI.LongLength; GameAILoop++)
  {
  theCounters++;
@@ -64,13 +64,13 @@ finally
   theGameArrAI= new Int32[gameAI.LongLength];
 try
  {
- theGameArrAI[0] = TDwgGameAI.TheRandomValue.Next()*1;
- theGameArrAI[1] = TDwgGameAI.TheRandomValue.Next()*2;
- theGameArrAI[2] = TDwgGameAI.TheRandomValue.Next()*3;
- }                                                                                               
+  theGameArrAI[0] = TheRandomValue.Next()*1;
+  theGameArrAI[1] = TheRandomValue.Next()*2;
+  theGameArrAI[2] = TheRandomValue.Next()*3;
+  }                                                                                               
 finally
   {
- 
+   
   InitAllArr(theGameArrAI);
   }
   }
@@ -91,11 +91,11 @@ finally
   dwgGameDatAI.theCounters++; 
   dwgGameDatAI.InitSetUpRndNumAI(ref theCounters, randomValue);                  
   }
-  }
+  } 
  
   public virtual void  SetUpDic(Dictionary<byte,TDwgGameAI> valuePairs)
   {
-           
+             
   }
   public TDwgGameAI():this(theThreads)
   {
@@ -109,8 +109,8 @@ finally
 
   public Thread Thread
   {
-  get => theThreads;
-  set => theThreads = value;
+get => theThreads;
+set => theThreads = value;
   }
   public static Random TheRandomValue
   {
