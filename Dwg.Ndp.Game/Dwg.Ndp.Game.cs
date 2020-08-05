@@ -18,6 +18,8 @@
     using Dwg.Game.AI;
     using Dwg.Ndp.Attrib;
     using Dwg.Ndp.Game.Con;
+    using Dwg.Ndp.Char.Counters;
+
     public partial class TDwgNdpGame : Form
     {
         private IDwgNdpPerson thperson = null;
@@ -39,10 +41,12 @@
         Thread AllThreads02 = new Thread(new ThreadStart(TDwgNdpGameThreads.ThreadProc2));
 
         TDwgNdpGamesData AllThreads03 = new TDwgNdpGamesData(AllThreads01);
-      try
+
+      
+        try
         {
         TDwgGameAI dwgGameAI = new TDwgGameAI(AllThreads02);
-
+         
         AllThreads03.InitAllData();                                                       
         
         AllThreads01.Start();
@@ -50,6 +54,8 @@
         }
       finally
         {
+        
+
         AllThreads01.Abort(); 
         AllThreads02.Abort();
         }
@@ -64,8 +70,7 @@
         TDwgNdpGamesData.TDwgGameDats dwgGameDats = new TDwgNdpGamesData.TDwgGameDats();
        try                                                                                           
         {
-       
-       
+
         pLayersChar.TdwgGameDatsSet = dwgGameDats;
         pLayersChar.TdwgGameDatsSet.AllTheKeysSet = TheKeysFlags.GoldKey;
        
@@ -83,9 +88,12 @@
         private IDwgNdpPerson person;
 
         private float theAxisX = TDwgNdpGameConVal.C_AxisX;
-        private float theAxisY =TDwgNdpGameConVal.C_AxisY;
+        private float theAxisY = TDwgNdpGameConVal.C_AxisY;
         private float theAxisZ = TDwgNdpGameConVal.C_AxisZ;
-     
+
+        private double allTheTotal;
+        private float theTrajectory;
+
         public TDwgNdpPLayersChar() 
         {
         DwgNdpersonInit();
@@ -95,18 +103,24 @@
         TDwgGameAI       ThegameAI  = new TDwgGameAI         ();
 
         TDwgNdpGameAttrib GameAttrib = new TDwgNdpGameAttrib ();
+
+        
        try
         {
         person = new TDwgNdpPLayersChar(GameAttrib.TheElementalFlagsSet, GameAttrib.TheFlagsGFSet);
         if (GameAttrib.Match(GameAttrib.TheElementalFlagsSet))
         {
         GameAttrib.TheGameDirectionsSet = GameDirections.West;
+        GameAttrib.ThekeyFlagsSet       = TheKeysFlags.MoonMetalKeys;
         }
         theAxisX = person.CalculateValues();
+      
         }
        finally
         {
+        person = new TDwgNdpPLayersChar(person, GameAttrib.ThekeyFlagsSet);
         theAxisY = person.CalculateValues();
+        
         ThegameAI.InitAllGameAI();
         }    
         }
@@ -138,7 +152,6 @@
         {
         return AllTheKeysSet;
         }
-       
         }
         public IDwgNdpPerson ThePersons
         {
@@ -162,6 +175,7 @@
         }
         }
 
+        
         public float TheAxisValueZ
         {
       get
@@ -170,13 +184,31 @@
         }
         }
 
+        public double TheTotal
+        {
+      get
+        {
+        return allTheTotal;
+        }
+        }
+
+        public float ItemTrajectory
+        {
+      get
+        {
+        return theTrajectory;
+        }
+        }
+
         public TDwgNdpPLayersChar(NatureElementsFlags elementsFlags,NatElementsFlagsGF natElementsFlagsGF) 
         {
          
         }
+
         public NatElementsFlagsGF InitAllPerson(NatureElementsFlags nature, NatElementsFlagsGF elementsFlagsGF)
         {
         TheNatFlagsSet        = nature; NatElementsFlagsSetGF = elementsFlagsGF;
+
         return TheNatCharPersonElemGF;
         }
 
@@ -221,9 +253,13 @@
         {
         theAxisX = axisValueX;         
         }
-
+        protected void  SetTheSumOfAxis(float axisValueX,float axisValueY,float axisValueZ)
+        {
+         theAxisZ = axisValueZ;
+        }
         public void SetTheSumOfAxis(float axisValueX, float axisValueY)
         {
+        
         theAxisY = axisValueY; 
         }
 
@@ -231,19 +267,44 @@
         {
         return Math.Cos(axisX + axisY) * Math.Sin(axisX + axisZ);       
         }
-        }
-        protected double CalculateValue(float axisValueX,double axisValueY)
+
+        public double CalculateValues(ref double total, double graverty, float trajectury, float angle, double speed)
         {
-        return (axisValueX*axisValueX)+(axisValueY * axisValueY);
+
+        return CalculateValues(ref total, graverty, graverty, angle/trajectury,speed); 
         }
 
+        public double CalculateValues(ref double total, in double graverty, double force, float angle, double speed)
+        {
+        allTheTotal = total+force/ Math.Sqrt(graverty*graverty)/angle*theTrajectory+speed;
+
+        return allTheTotal; 
+        }
+
+        public double CalculateValue(in float angle, float axisValueX, double axisValueY, double gravity, double force)
+        {
+        theTrajectory = angle + axisValueX;
+
+        return CalculateValueTrajValue(axisValueX, axisValueY, ref theTrajectory,angle);
+        }
+
+        public double CalculateValueTrajValue(float axisValueX, double axisValueY, ref float trajectoryPercent, float angle)
+        {
+        theTrajectory = trajectoryPercent/angle;
+
+        return theTrajectory;
+        }
+        }
         private void OnDwgNdpLoad(object sender, EventArgs e)
         {
         KeyPreview = true;
-
+        
         InitThreadsStarts();
         }
-        
+        protected double CalculateValue(float axisValueX, double axisValueY)
+        {
+        return (axisValueX * axisValueX) + (axisValueY * axisValueY);
+        }
         public  class TDwgNdpGameThreads
         {
         private        readonly Int32   loopcoun1  = -1;
@@ -253,7 +314,7 @@
         {
         for (int ThreadLoop01 = 0; ThreadLoop01 < 1000; ThreadLoop01++)
         {
-       
+        
         Thread.Sleep(2000);
         }
         
@@ -286,6 +347,16 @@
         {
         InitCharictors();
         }
+
+        private void OnPaintMainGame(object sender, PaintEventArgs e)
+        {
+        InitPaintGameScreen();
+        }
+
+        protected void InitPaintGameScreen()
+        {
+       
+        }
         private void InitCharictors()
         {
         TDwgNdpCharCardInfo ndpCharCard = new TDwgNdpCharCardInfo();
@@ -298,6 +369,8 @@
         ndpCharCard.Close();
         }
         }
+
+       
         }
         }
         

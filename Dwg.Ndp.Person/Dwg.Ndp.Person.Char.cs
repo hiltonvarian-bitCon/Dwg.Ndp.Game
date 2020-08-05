@@ -16,8 +16,11 @@
     float CalculateValues();
     float CalculateValues(float value);
     double CalculateValue(double axisX, double axisY);
-    double CalculateValue(float axisX, double axisY, float axisZ);
-
+    double CalculateValue (float axisX, double axisY, float axisZ);
+    double CalculateValues(ref double total,double graverty, float trajectury,float angle,double speed);
+    double CalculateValues(ref double total, in double graverty, double force, float angle, double speed);
+    double CalculateValue(in float angle, float axisValueX, double axisValueY, double gravity, double force);
+    double CalculateValueTrajValue(float axisValueX, double axisValueY, ref float trajectoryPercent, float angle);
     NatureElementsFlags InitAllPersons(NatureElementsFlags nature,NatElementsFlagsGF elementsFlagsGF);
     NatElementsFlagsGF InitAllPerson(NatureElementsFlags nature, NatElementsFlagsGF elementsFlagsGF);
     
@@ -27,6 +30,8 @@
     TheKeysFlags TheGamesKeys                   { get;}
     float  TheAxisValueX                        { get;}
     float  TheAxisValueY                        { get;}
-    float  TheAxisValueZ                         { get;}
+    float  TheAxisValueZ                        { get;}
+    double  TheTotal                            { get;}
+    float  ItemTrajectory                       { get;}
     }
     }

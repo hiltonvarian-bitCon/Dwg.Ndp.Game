@@ -39,6 +39,7 @@
             this.Text = "                                                ";
             this.Load += new System.EventHandler(this.OnDwgNdpLoad);
             this.Click += new System.EventHandler(this.OnFormClick);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.OnPaintMainGame);
             this.ResumeLayout(false);
 
         }

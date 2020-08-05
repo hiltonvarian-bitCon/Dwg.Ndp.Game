@@ -90,6 +90,10 @@
       <Project>{fdc253e7-51cc-4f36-884b-8486722e9092}</Project>
       <Name>Dwg.Ndp.Attrib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Dwg.Ndp.Char.Counters\Dwg.Ndp.Char.Counters.csproj">
+      <Project>{0439615c-94dc-4a83-af11-a4d922f1e6b0}</Project>
+      <Name>Dwg.Ndp.Char.Counters</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dwg.Ndp.Data.Games\Dwg.Ndp.Data.Games.csproj">
       <Project>{9CFC9B8B-CA0B-4569-9C69-F600C7564BEC}</Project>
       <Name>Dwg.Ndp.Data.Games</Name>

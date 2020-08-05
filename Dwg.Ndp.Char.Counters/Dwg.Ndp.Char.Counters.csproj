@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FDC253E7-51CC-4F36-884B-8486722E9092}</ProjectGuid>
+    <ProjectGuid>{0439615C-94DC-4A83-AF11-A4D922F1E6B0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Dwg.Ndp.Attrib</RootNamespace>
-    <AssemblyName>Dwg.Ndp.Attrib</AssemblyName>
+    <RootNamespace>Dwg.Ndp.Char.Counters</RootNamespace>
+    <AssemblyName>Dwg.Ndp.Char.Counters</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,33 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dwg.Ndp.TheAttribute.cs" />
+    <Compile Include="Dwg.Ndp.Char.Counters.Value.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Dwg.Game.AI\Dwg.Game.AI.csproj">
-      <Project>{87465786-5b71-4ee9-abad-106e2d830b53}</Project>
-      <Name>Dwg.Game.AI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Dwg.Ndp.Char.Counters\Dwg.Ndp.Char.Counters.csproj">
-      <Project>{0439615c-94dc-4a83-af11-a4d922f1e6b0}</Project>
-      <Name>Dwg.Ndp.Char.Counters</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Dwg.Ndp.Data.Games\Dwg.Ndp.Data.Games.csproj">
-      <Project>{9cfc9b8b-ca0b-4569-9c69-f600c7564bec}</Project>
-      <Name>Dwg.Ndp.Data.Games</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Dwg.Ndp.Game.Char\Dwg.Ndp.Game.Char.csproj">
-      <Project>{1ecd5096-339e-43d2-9d0f-294decaefbff}</Project>
-      <Name>Dwg.Ndp.Game.Char</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Dwg.Ndp.Game.Con\Dwg.Ndp.Game.Con.csproj">
       <Project>{8f48a589-4bde-4a5a-9bfc-435727903215}</Project>
       <Name>Dwg.Ndp.Game.Con</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Dwg.Ndp.Person\Dwg.Ndp.Person.csproj">
-      <Project>{52d8c37c-fcb4-4a2d-b6e0-ba0f8c5d0f87}</Project>
-      <Name>Dwg.Ndp.Person</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
