@@ -60,6 +60,10 @@
       <Project>{87465786-5b71-4ee9-abad-106e2d830b53}</Project>
       <Name>Dwg.Game.AI</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Dwg.Ndp.Char.Counters\Dwg.Ndp.Char.Counters.csproj">
+      <Project>{0439615c-94dc-4a83-af11-a4d922f1e6b0}</Project>
+      <Name>Dwg.Ndp.Char.Counters</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dwg.Ndp.Data.Games\Dwg.Ndp.Data.Games.csproj">
       <Project>{9cfc9b8b-ca0b-4569-9c69-f600c7564bec}</Project>
       <Name>Dwg.Ndp.Data.Games</Name>

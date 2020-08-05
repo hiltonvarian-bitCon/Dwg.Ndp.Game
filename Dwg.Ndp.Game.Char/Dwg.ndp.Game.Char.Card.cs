@@ -5,13 +5,14 @@
     using System.Threading.Tasks;
     using System.Windows.Forms;
     using System.Threading;
-   
+    using System.Drawing; 
     namespace Dwg.Ndp.Game.Char
     {
     using Dwg.Game.AI;
     using Dwg.Ndp.Game.Con;
-
-    public class TDwgNdpCharCardInfo : Form
+    using Dwg.Ndp.Char.Counters;
+                                 
+        public class TDwgNdpCharCardInfo : Form
     {
 
         private float hitpoints       = TDwgNdpGameConVal.C_Hitpoints;
@@ -19,11 +20,11 @@
         private float oritoryPoints   = TDwgNdpGameConVal.C_TheOritoryPoints;
         private float attacPoints     = TDwgNdpGameConVal.C_TheAttackPoints;
         private float stanimaPoints   = TDwgNdpGameConVal.C_TheStanimaPoints;
-        private float strengthPoints = TDwgNdpGameConVal.C_TheStrengthPoints;
-        private float karmaPoints =    TDwgNdpGameConVal.C_TheKarmaPoints;
+        private float strengthPoints  = TDwgNdpGameConVal.C_TheStrengthPoints;
+        private float karmaPoints     = TDwgNdpGameConVal.C_TheKarmaPoints;
             
         private Int32 charCounter1 = 0;
-        private Int32 charCounterItems2 =-1;
+        private Int32 charCounter2 =-1;
 
         private Int32 theHeights = TDwgNdpGameConVal.C_Height;
         private Int32 theWidths  = TDwgNdpGameConVal.C_Width;
@@ -43,9 +44,10 @@
                                               {-1,20},{1,-21}, {1,22 }, {1,20  },
                                               {-1,23},{1,27},  {1,30 }, {-1,33 },
                                               {1,100},{1,300}, {1,500}, {1,700 },
-                                              {1,99}, {1,-100},{1,200}, {1,300 },
+                                              {1,99}, {1,-100},{1,200}, {1,400 },
                                               {-1,9 },{-1,700},{-1,200},{-1,300}
         };
+        
     public float HitpointsSet
     {
   get => hitpoints;
@@ -69,14 +71,14 @@
    set => attacPoints = value;
     }
     public Int32 CharCounterOneSet
-    {
+    {                                                                  
    get => charCounter1;
    set => charCounter1 = value;
     }
-    public Int32 CharCounterSet
+    public Int32 CharCounterTwoSet
     {
-  get => charCounterItems2;
-  set => charCounterItems2 = value;
+  get => charCounter2;
+  set => charCounter2 = value;
     }
     public TDwgNdpCharCardInfo()
     {
@@ -125,33 +127,31 @@
     }
     protected override void OnLoad(EventArgs e)
     {
-    ClientSize = new System.Drawing.Size(TDwgNdpGameConVal.C_Width, TDwgNdpGameConVal.C_Height) ;
-   try
-    {
-    theWidths  = ClientSize.Width;
-    theHeights = ClientSize.Height;
-    }
-   finally
-    {
-    SetUpSize(theHeights, theWidths);
-    }
+    InitCharForClientSize();
+
     base.OnLoad(e);
+    }
+
+    public void SetUpSize( Int32 theWidth,Int32 theHeigh, Size thesize)
+    {
+    thesize.Width = theWidth;
+    thesize.Height = theHeigh;
     }
 
     protected void  SetUpSize(Int32 theWith,Int32 theHight)
     {
-    theWidths  = theWith;
+    theWidths = theWith;
     theHeights = theHight;
     }
-
+    
     public void InitArraysVal()
     {
-    charCounterItems2 = 0;
+    charCounter2 = 0;
     charictorsCardItems = new TDCharictorsTheItems[TDwgNdpGameConVal.C_TheAmountWepons];
    do
     {
     TDwgNdpCharCardInfo ndpCharCard = new TDwgNdpCharCardInfo(charictorsCardItems);
-   try
+  try
     {
     ndpCharCard.CharictorsItems[0]  = new  TDCharictorsTheItems(charictorsCardItems.Length);
     ndpCharCard.CharictorsItems[1]  = new  TDCharictorsTheItems(charictorsCardItems.Length);
@@ -160,7 +160,8 @@
     ndpCharCard.CharictorsItems[4]  = new  TDCharictorsTheItems(charictorsCardItems.Length);
     ndpCharCard.CharictorsItems[5]  = new  TDCharictorsTheItems(charictorsCardItems.Length);
     ndpCharCard.CharictorsItems[6]  = new  TDCharictorsTheItems(charictorsCardItems.Length);
-    ndpCharCard.CharictorsItems[7]  = new  TDCharictorsTheItems(charictorsCardItems.Length);     
+    ndpCharCard.CharictorsItems[7]  = new  TDCharictorsTheItems(charictorsCardItems.Length);
+    ndpCharCard.CharictorsItems[8]  = new TDCharictorsTheItems (charictorsCardItems.Length);
     {
     ndpCharCard.CharictorsItems[0].TheNameItems = "Iron Sword";
     ndpCharCard.CharictorsItems[1].TheNameItems = "Metal Sword";
@@ -169,17 +170,20 @@
     ndpCharCard.CharictorsItems[4].TheNameItems = "Silver Sword";
     ndpCharCard.CharictorsItems[5].TheNameItems = "Copper Sword";
     ndpCharCard.CharictorsItems[6].TheNameItems = "Nickle Sword";
-    ndpCharCard.CharictorsItems[7].TheNameItems = "MoonMetal Sword";
-                            
-    charCounterItems2++;
+    ndpCharCard.CharictorsItems[7].TheNameItems = "Steel sword";   
+    ndpCharCard.CharictorsItems[8].TheNameItems = "Star Metal Sword";
+
+    charCounter2++;
     }
     }
    finally
     {
     TDwgNdpGameCharCardThread charCardThread = new TDwgNdpGameCharCardThread(new TDCharictorsTheItems(charictorsCardItems.Rank));
+    
     charCounter1++;
     
     InitArraysVal(charictorsCardItems,charCounter1);
+    
     }
     }
     while (charCounter1<TDwgNdpGameConVal.C_TheAmountWepons);
@@ -196,6 +200,22 @@
     }     
     }
 
+    protected void InitCharForClientSize()
+    {
+    ClientSize = new System.Drawing.Size(TDwgNdpGameConVal.C_Width, TDwgNdpGameConVal.C_Height);
+   try
+    {
+    theWidths = ClientSize.Width;
+    theHeights = ClientSize.Height;
+
+    SetUpSize(theHeights, theWidths);
+    }
+  finally
+    {
+
+    SetUpSize(TheScreenHeights, TheScreenWidths, ClientSize);
+    }
+    }
     protected void InitArraysVal(TDCharictorsTheItems[] tDCharictorsCardItems)
     {
     CharictorsItems = tDCharictorsCardItems;
@@ -208,8 +228,9 @@
     }
     
     
-     public  class TDCharictorsTheItems
+    public  class TDCharictorsTheItems
     {
+    
     public TDCharictorsTheItems() :this(TheTotalVal=TDwgNdpGameConVal.C_TheAmountWepons)
     {
    //default Constructor
@@ -252,6 +273,8 @@
   get => theTotalVal;
   set => theTotalVal = value;
     }
+    
+
     private static Int32  theTotalVal=TDwgNdpGameConVal.C_TheAmountWepons;
     }
    
@@ -274,7 +297,7 @@
     }
 
     internal float AttacPointsGet
-     {
+    {
   get => attacPoints;
   set => attacPoints = value;
     }
@@ -284,11 +307,13 @@
   get => stanimaPoints;
   set => stanimaPoints = value;
     }
-    public float KarmaPointsGet 
+
+    internal float KarmaPointsGet 
     {
   get => karmaPoints;
   set => karmaPoints = value;
     }
+
     internal  float StrengthPointGet
     {
   get => strengthPoints;                                                    
@@ -300,15 +325,16 @@
   get => charCardThread;
   set => charCardThread = value;
     }
+
     internal Int32 CharCounterOneGet
     {
   get => charCounter1;
   set => charCounter1 = value;
     }
-    public Int32 CharCounterGet
+    internal Int32 CharCounterTwoGet
     {
-  get => charCounterItems2;
-  set => charCounterItems2 = value;
+  get => charCounter2;
+  set => charCounter2 = value;
     }
     public Int32[,] TheCharictorsArr2D
     {
@@ -360,7 +386,6 @@
     for (int ThreadLoop01 = 0; ThreadLoop01 < 3000; ThreadLoop01++)
     {
     Thread.Sleep(400);
-
     }
     }
     }
