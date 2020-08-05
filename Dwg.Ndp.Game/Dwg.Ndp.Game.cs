@@ -63,17 +63,17 @@
         }
         private void IniThreadsStart02()
         {
-        TDwgNdpPLayersChar            pLayersChar  = new TDwgNdpPLayersChar    ();
+        TDwgNdpPLayersChar            pLayersChar  = new TDwgNdpPLayersChar           ();
 
-        TDwgNdpGameAttrib             dwgNdpAttrib = new TDwgNdpGameAttrib     ();
+        TDwgNdpGameAttrib             dwgNdpAttrib = new TDwgNdpGameAttrib            ();
 
-        TDwgNdpGamesData.TDwgGameDats dwgGameDats = new TDwgNdpGamesData.TDwgGameDats();
+        TDwgNdpGamesData.TDwgGameDats dwgGameDats = new TDwgNdpGamesData.TDwgGameDats ();
        try                                                                                           
         {
 
         pLayersChar.TdwgGameDatsSet = dwgGameDats;
         pLayersChar.TdwgGameDatsSet.AllTheKeysSet = TheKeysFlags.GoldKey;
-       
+         
         }
        finally
         {
@@ -114,12 +114,15 @@
         GameAttrib.ThekeyFlagsSet       = TheKeysFlags.MoonMetalKeys;
         }
         theAxisX = person.CalculateValues();
-      
+        
         }
        finally
         {
         person = new TDwgNdpPLayersChar(person, GameAttrib.ThekeyFlagsSet);
+
         theAxisY = person.CalculateValues();
+
+                   
         
         ThegameAI.InitAllGameAI();
         }    
@@ -265,7 +268,8 @@
 
         public double CalculateValue(float axisX, double axisY, float axisZ)
         {
-        return Math.Cos(axisX + axisY) * Math.Sin(axisX + axisZ);       
+
+         return Math.Cos(axisX + axisY) * Math.Sin(axisX + axisZ);       
         }
 
         public double CalculateValues(ref double total, double graverty, float trajectury, float angle, double speed)
@@ -276,7 +280,7 @@
 
         public double CalculateValues(ref double total, in double graverty, double force, float angle, double speed)
         {
-        allTheTotal = total+force/ Math.Sqrt(graverty*graverty)/angle*theTrajectory+speed;
+        allTheTotal = total+force / Math.Sqrt(graverty*graverty)+(angle*angle)/theTrajectory*speed;
 
         return allTheTotal; 
         }
@@ -290,9 +294,16 @@
 
         public double CalculateValueTrajValue(float axisValueX, double axisValueY, ref float trajectoryPercent, float angle)
         {
-        theTrajectory = trajectoryPercent/angle;
+        theTrajectory =Convert.ToInt32((trajectoryPercent/angle)*axisValueX*axisValueY);
 
-        return theTrajectory;
+        return CalculateValue(theTrajectory,axisValueX,Convert.ToUInt64(axisValueY),theTrajectory*trajectoryPercent,angle,Convert.ToSingle(angle));
+        }
+
+        private double  CalculateValue(in float angle, float axisValueX, float axisValueY, float trajectoryPerc,float  gravityForce, float theAnglValue)
+        {
+        theTrajectory = axisValueX * axisValueY - trajectoryPerc * theAnglValue/gravityForce;
+
+        return Math.Cos(theTrajectory)*(Math.Sin(angle)*trajectoryPerc); 
         }
         }
         private void OnDwgNdpLoad(object sender, EventArgs e)

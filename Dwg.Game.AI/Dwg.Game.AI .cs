@@ -53,6 +53,7 @@ TDwgGameAI DwgGameAI = new TDwgGameAI();
 finally
   {
   DatAI.InitSetUpRndNumAI(ref theCounters, TheRandomValue);
+  
   DatAI.SetUpDic(DatAI.TheKeyValuePairs);
 
   DatAI.InitGameDatAI();
