@@ -41,12 +41,11 @@
         Thread AllThreads02 = new Thread(new ThreadStart(TDwgNdpGameThreads.ThreadProc2));
 
         TDwgNdpGamesData AllThreads03 = new TDwgNdpGamesData(AllThreads01);
-
-      
-        try
+      try
         {
-        TDwgGameAI dwgGameAI = new TDwgGameAI(AllThreads02);
-         
+        TDwgGameAI dwgGameAI1 = new TDwgGameAI(AllThreads02);
+
+
         AllThreads03.InitAllData();                                                       
         
         AllThreads01.Start();
@@ -54,11 +53,10 @@
         }
       finally
         {
-        
-
         AllThreads01.Abort(); 
         AllThreads02.Abort();
         }
+       
         IniThreadsStart02(); 
         }
         private void IniThreadsStart02()
@@ -68,7 +66,8 @@
         TDwgNdpGameAttrib             dwgNdpAttrib = new TDwgNdpGameAttrib            ();
 
         TDwgNdpGamesData.TDwgGameDats dwgGameDats = new TDwgNdpGamesData.TDwgGameDats ();
-       try                                                                                           
+       
+      try                                                                                           
         {
 
         pLayersChar.TdwgGameDatsSet = dwgGameDats;
@@ -83,7 +82,7 @@
         }
 
         [TDwgNdpGameAttrib]
-        public class TDwgNdpPLayersChar : TDwgNdpGamesData, IDwgNdpPerson
+        public class TDwgNdpPLayersChar : TDwgNdpGamesData, IDwgNdpPerson, IDwgNdpCaricDirections
         {
         private IDwgNdpPerson person;
 
@@ -91,12 +90,15 @@
         private float theAxisY = TDwgNdpGameConVal.C_AxisY;
         private float theAxisZ = TDwgNdpGameConVal.C_AxisZ;
 
+        private IDwgNdpPerson[] ndpChaPeopleArr;
+
         private double allTheTotal;
         private float theTrajectory;
 
-        public TDwgNdpPLayersChar() 
+        public TDwgNdpPLayersChar()
         {
         DwgNdpersonInit();
+        InitPeopleArr();
         }
         private void DwgNdpersonInit()
         {
@@ -104,30 +106,41 @@
 
         TDwgNdpGameAttrib GameAttrib = new TDwgNdpGameAttrib ();
 
-        
        try
         {
         person = new TDwgNdpPLayersChar(GameAttrib.TheElementalFlagsSet, GameAttrib.TheFlagsGFSet);
+
+       
         if (GameAttrib.Match(GameAttrib.TheElementalFlagsSet))
         {
         GameAttrib.TheGameDirectionsSet = GameDirections.West;
         GameAttrib.ThekeyFlagsSet       = TheKeysFlags.MoonMetalKeys;
         }
         theAxisX = person.CalculateValues();
-        
+        allTheTotal = person.CalculateValueTrajValue(theAxisX, theAxisY, ref theTrajectory,ItemTrajectory);            
         }
        finally
         {
         person = new TDwgNdpPLayersChar(person, GameAttrib.ThekeyFlagsSet);
 
         theAxisY = person.CalculateValues();
-
-                   
-        
+        allTheTotal = person.CalculateValueTrajValue(theAxisX, theAxisY, ref theTrajectory,ItemTrajectory);
         ThegameAI.InitAllGameAI();
-        }    
-        }
         
+        }
+        }
+        protected void InitPeopleArr()
+        {
+        
+        try
+        {
+        
+        }
+       finally
+        {
+              
+        }
+        }
         public TDwgNdpPLayersChar(IDwgNdpPerson dwgNdpPerson, TheKeysFlags theKeysFlags):this(dwgNdpPerson.TheNatCharPersonElem,dwgNdpPerson.TheNatCharPersonElemGF)
         {
         AllTheKeysSet = dwgNdpPerson.TheGamesKeys;
@@ -202,6 +215,14 @@
         return theTrajectory;
         }
         }
+
+         public IDwgNdpPerson[] IDwgNdpCarDirArr
+         {
+       get
+         {
+         return ndpChaPeopleArr;
+         }
+         }
 
         public TDwgNdpPLayersChar(NatureElementsFlags elementsFlags,NatElementsFlagsGF natElementsFlagsGF) 
         {
@@ -294,7 +315,7 @@
 
         public double CalculateValueTrajValue(float axisValueX, double axisValueY, ref float trajectoryPercent, float angle)
         {
-        theTrajectory =Convert.ToInt32((trajectoryPercent/angle)*axisValueX*axisValueY);
+        theTrajectory = TheAxisValueY*TheAxisValueZ/trajectoryPercent/angle; 
 
         return CalculateValue(theTrajectory,axisValueX,Convert.ToUInt64(axisValueY),theTrajectory*trajectoryPercent,angle,Convert.ToSingle(angle));
         }
@@ -302,10 +323,82 @@
         private double  CalculateValue(in float angle, float axisValueX, float axisValueY, float trajectoryPerc,float  gravityForce, float theAnglValue)
         {
         theTrajectory = axisValueX * axisValueY - trajectoryPerc * theAnglValue/gravityForce;
-
+        
         return Math.Cos(theTrajectory)*(Math.Sin(angle)*trajectoryPerc); 
         }
+
+        public void SetTheSumsOfAxis(float axisValueX, float axisValueY, float axisValueZ)
+        {
+        allTheTotal = Math.Sin(axisValueX) * Math.Cos(axisValueY)+Math.Tan(axisValueZ);  
         }
+        
+        public double CalculateValueTrajValue(double axisValueX, double axisValueY, in float trajectoryPercent, ref float angle, float disttrav = 0)
+        {
+        allTheTotal = angle + axisValueX * axisValueY / trajectoryPercent + (trajectoryPercent * trajectoryPercent) / disttrav;
+
+        return Math.Atan(allTheTotal * allTheTotal) + trajectoryPercent-disttrav;  
+        }
+
+        public float CalculateTrajectory()
+        {
+        throw new NotImplementedException();
+        }
+
+        public float CalculateTrajectory(double axisX, double axisY)
+        {
+
+        throw new NotImplementedException();
+        }
+
+        public void InitCharicDirections()
+        {
+        throw new NotImplementedException();
+        }
+
+        public double CalculateTrajectoryAxisX()
+        {
+        return CalculateValueTrajValue(TheAxisValueX, TheAxisValueY, Convert.ToSingle(ItemTrajectory));
+        }
+
+        private double CalculateValueTrajValue(float theAxisValueX, float theAxisValueY, float itemTraj)
+        {
+        allTheTotal = (TheAxisValueX * TheAxisValueX) + (TheAxisValueY * theAxisValueY) /itemTraj;
+
+        return Math.PI*Math.Sqrt(allTheTotal) ;  
+        }
+
+        public double CalculateTrajectoryAxisY()
+        {
+        throw new NotImplementedException();
+        }
+
+        public double CalculateTrajectoryAxisZ()
+        {
+        throw new NotImplementedException();
+        }
+
+        public double CalculateTrajectoryAxisX(float axisX)
+        {
+        throw new NotImplementedException();
+        }
+
+        public double CalculateTrajectoryAxisY(float axisY)
+        {
+        throw new NotImplementedException();
+        }
+
+        public double CalculateTrajectoryAxisZ(float axisZ)
+        {
+        throw new NotImplementedException();
+        }
+
+        public IDwgNdpCaricDirections[] CharictsDir(IDwgNdpCaricDirections ndpCaricDirections)
+        {
+
+        throw new NotImplementedException();
+        }
+       
+       }
         private void OnDwgNdpLoad(object sender, EventArgs e)
         {
         KeyPreview = true;
@@ -381,7 +474,7 @@
         }
         }
 
-       
-        }
-        }
+
+    }
+}
         

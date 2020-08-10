@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using System.Timers;
     using Dwg.Game.AI;
+    using Dwg.Ndp.Char.Counters;
 
     [Flags]
     public  enum NatureElementsFlags:int
@@ -37,10 +38,13 @@
     NorthEast=4,SouthEaast=4,
     SouthWest=5,NoDirection=-1
     }
+    
     public class TDwgNdpGamesData
+    
     {
+    
     private TDwgGameDats dwgGameDats;
-
+   
     private static  NatureElementsFlags elements        = NatureElementsFlags.NoElemFlagsValue;
     private static  NatElementsFlagsGF  elementsGF      = NatElementsFlagsGF.NoElemGF;
     private static  TheKeysFlags        theKeys         = TheKeysFlags.NoKeys;
@@ -65,7 +69,8 @@
     protected void SetAllDataValues()
     {
     dwgGameDats = new TDwgGameDats();
-  try
+   
+    try
     {
     dwgGameDats.TheNatFlagsSet        = NatureElementsFlags.EarthElem;
     dwgGameDats.NatElementsFlagsSetGF = NatElementsFlagsGF.EarthElemGF;
@@ -287,7 +292,7 @@
     {
   get => thelemArr;
   set => thelemArr = value;
-    }
+    }                                                                                   
     
     //Internal Getter TheElementsGetGF
     internal NatElementsFlagsGF TheElementsGetGF
@@ -322,7 +327,7 @@
 
     protected override NatureElementsFlags GetNameElements(TDwgGameDats theData)
     {
-
+                
     return base.GetNameElements(theData);
     }
 

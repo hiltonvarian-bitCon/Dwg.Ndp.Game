@@ -20,9 +20,9 @@ namespace Dwg.Ndp.Char.Counters
 
     private static string[] theVsCh;
 
-    public TGameCharictorsPersonCounters(string fnameCh, string lnameCh, string[] valstrCh)
+    public TGameCharictorsPersonCounters(string fnameCh, string lnameCh, string[] valstrChar)
     {
-    theVsCh = valstrCh;
+    theVsCh = valstrChar;
     }
     public string[] TheValuStrCh
     {
@@ -59,11 +59,11 @@ namespace Dwg.Ndp.Char.Counters
     }
     }
     
-    public class TgamePersonsChar : IEnumerator
+    public sealed  class TgamePersonsEnumChar : IEnumerator
     {
     public TGameCharictorsPersonCounters[] _personCounters;
     private  Int32 position = -1;
-    public TgamePersonsChar(TGameCharictorsPersonCounters[]personsChars)
+    public TgamePersonsEnumChar(TGameCharictorsPersonCounters[]personsChars)
     {
     _personCounters = personsChars;
     }

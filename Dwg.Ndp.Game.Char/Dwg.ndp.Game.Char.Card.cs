@@ -5,7 +5,8 @@
     using System.Threading.Tasks;
     using System.Windows.Forms;
     using System.Threading;
-    using System.Drawing; 
+    using System.Drawing;
+
     namespace Dwg.Ndp.Game.Char
     {
     using Dwg.Game.AI;
@@ -151,8 +152,10 @@
    do
     {
     TDwgNdpCharCardInfo ndpCharCard = new TDwgNdpCharCardInfo(charictorsCardItems);
-  try
+
+   try
     {
+    
     ndpCharCard.CharictorsItems[0]  = new  TDCharictorsTheItems(charictorsCardItems.Length);
     ndpCharCard.CharictorsItems[1]  = new  TDCharictorsTheItems(charictorsCardItems.Length);
     ndpCharCard.CharictorsItems[2]  = new  TDCharictorsTheItems(charictorsCardItems.Length);
@@ -161,7 +164,9 @@
     ndpCharCard.CharictorsItems[5]  = new  TDCharictorsTheItems(charictorsCardItems.Length);
     ndpCharCard.CharictorsItems[6]  = new  TDCharictorsTheItems(charictorsCardItems.Length);
     ndpCharCard.CharictorsItems[7]  = new  TDCharictorsTheItems(charictorsCardItems.Length);
-    ndpCharCard.CharictorsItems[8]  = new TDCharictorsTheItems (charictorsCardItems.Length);
+    ndpCharCard.CharictorsItems[8]  = new  TDCharictorsTheItems(charictorsCardItems.Length);
+    ndpCharCard.CharictorsItems[9]  = new  TDCharictorsTheItems(charictorsCardItems.Length);
+    ndpCharCard.CharictorsItems[10] = new  TDCharictorsTheItems(charictorsCardItems.Length);
     {
     ndpCharCard.CharictorsItems[0].TheNameItems = "Iron Sword";
     ndpCharCard.CharictorsItems[1].TheNameItems = "Metal Sword";
@@ -172,8 +177,11 @@
     ndpCharCard.CharictorsItems[6].TheNameItems = "Nickle Sword";
     ndpCharCard.CharictorsItems[7].TheNameItems = "Steel sword";   
     ndpCharCard.CharictorsItems[8].TheNameItems = "Star Metal Sword";
+    ndpCharCard.CharictorsItems[9].TheNameItems = "Star Metal Darc Sword";
+    ndpCharCard.CharictorsItems[10].TheNameItems = "Darc Metal Sword";
 
     charCounter2++;
+   
     }
     }
    finally
@@ -192,11 +200,11 @@
     protected void InitArraysVal(TDCharictorsTheItems[] tDCharictors,Int32 valcount)
     {
     theItems = new TDCharictorsTheItems(charCounter1);
+
     for (Int32 CharLoop01 = 0; CharLoop01 < tDCharictors.Length; CharLoop01++)
     {
     charCounter1 = valcount++;
-
-    InitArraysVal(InitArraysVals(tDCharictors,valcount,theItems));
+     InitArraysVal(InitArraysVals(tDCharictors,valcount,theItems));
     }     
     }
 
@@ -229,7 +237,7 @@
     
     
     public  class TDCharictorsTheItems
-    {
+        {
     
     public TDCharictorsTheItems() :this(TheTotalVal=TDwgNdpGameConVal.C_TheAmountWepons)
     {
@@ -385,7 +393,7 @@
     {
     for (int ThreadLoop01 = 0; ThreadLoop01 < 3000; ThreadLoop01++)
     {
-    Thread.Sleep(400);
+    Thread.Sleep(4000);
     }
     }
     }

@@ -174,7 +174,7 @@ set => theCounters = value;
 get => rndNums;
 set => rndNums = value;
    }
-  public Dictionary<byte, TDwgGameAI> TheKeyValuePairs
+  public Dictionary<byte, TDwgGameAI> TheKeyValuePairs                                                                                                  
   {                                                                            
 get => keyValuePairs; 
 set => keyValuePairs = value;

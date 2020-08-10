@@ -32,7 +32,7 @@ namespace Dwg.Ndp.Attrib
      finally
         {
         }
-        }
+         }
         public TDwgNdpGameAttrib(NatureElementsFlags natureElements)
         {
         elementsFlags = natureElements;

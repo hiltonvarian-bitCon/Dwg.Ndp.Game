@@ -16,6 +16,7 @@
     public const float C_AxisZ = 0.233F;
 
     public const  int C_TheAmountWepons = 300;
+    public const int C_AmountPlayers     = 8; 
 
     public const int C_Width  = 321;
     public const int C_Height = 691;
