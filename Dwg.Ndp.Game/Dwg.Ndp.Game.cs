@@ -69,7 +69,7 @@
        
       try                                                                                           
         {
-
+       
         pLayersChar.TdwgGameDatsSet = dwgGameDats;
         pLayersChar.TdwgGameDatsSet.AllTheKeysSet = TheKeysFlags.GoldKey;
          
@@ -85,10 +85,10 @@
         public class TDwgNdpPLayersChar : TDwgNdpGamesData, IDwgNdpPerson, IDwgNdpCaricDirections
         {
         private IDwgNdpPerson person;
-
-        private float theAxisX = TDwgNdpGameConVal.C_AxisX;
-        private float theAxisY = TDwgNdpGameConVal.C_AxisY;
-        private float theAxisZ = TDwgNdpGameConVal.C_AxisZ;
+        private float  theAxisX      = TDwgNdpGameConVal.C_AxisX;
+        private float  theAxisY      = TDwgNdpGameConVal.C_AxisY;
+        private float  theAxisZ      = TDwgNdpGameConVal.C_AxisZ;
+        private double theartGravity = TDwgNdpGameConVal.C_EarthGravity;
 
         private IDwgNdpPerson[] ndpChaPeopleArr;
 
@@ -109,8 +109,8 @@
        try
         {
         person = new TDwgNdpPLayersChar(GameAttrib.TheElementalFlagsSet, GameAttrib.TheFlagsGFSet);
-
-       
+        
+        theTrajectory=1.40F; 
         if (GameAttrib.Match(GameAttrib.TheElementalFlagsSet))
         {
         GameAttrib.TheGameDirectionsSet = GameDirections.West;
@@ -122,7 +122,7 @@
        finally
         {
         person = new TDwgNdpPLayersChar(person, GameAttrib.ThekeyFlagsSet);
-
+         
         theAxisY = person.CalculateValues();
         allTheTotal = person.CalculateValueTrajValue(theAxisX, theAxisY, ref theTrajectory,ItemTrajectory);
         ThegameAI.InitAllGameAI();
@@ -131,7 +131,7 @@
         }
         protected void InitPeopleArr()
         {
-        
+                 
         try
         {
         
@@ -142,7 +142,7 @@
         }
         }
         public TDwgNdpPLayersChar(IDwgNdpPerson dwgNdpPerson, TheKeysFlags theKeysFlags):this(dwgNdpPerson.TheNatCharPersonElem,dwgNdpPerson.TheNatCharPersonElemGF)
-        {
+        { 
         AllTheKeysSet = dwgNdpPerson.TheGamesKeys;
         TheNatFlagsSet = dwgNdpPerson.TheNatCharPersonElem; 
         }
@@ -224,6 +224,13 @@
          }
          }
 
+         public double TheEarthsGravity
+         {
+       get
+         {
+         return theartGravity;
+         }
+         }
         public TDwgNdpPLayersChar(NatureElementsFlags elementsFlags,NatElementsFlagsGF natElementsFlagsGF) 
         {
          
@@ -259,11 +266,13 @@
 
         public float CalculateValues()
         {
+
         return  CalculateValues(theAxisX*theAxisX)+(theAxisY*theAxisY);
         }
 
         public float CalculateValues(float value)
         {
+
         return  value;    
         }
         
@@ -279,7 +288,7 @@
         }
         protected void  SetTheSumOfAxis(float axisValueX,float axisValueY,float axisValueZ)
         {
-         theAxisZ = axisValueZ;
+        theAxisZ = axisValueZ;
         }
         public void SetTheSumOfAxis(float axisValueX, float axisValueY)
         {
@@ -323,8 +332,8 @@
         private double  CalculateValue(in float angle, float axisValueX, float axisValueY, float trajectoryPerc,float  gravityForce, float theAnglValue)
         {
         theTrajectory = axisValueX * axisValueY - trajectoryPerc * theAnglValue/gravityForce;
-        
-        return Math.Cos(theTrajectory)*(Math.Sin(angle)*trajectoryPerc); 
+
+        return Math.Cos(theTrajectory) * (Math.Sin(angle) * trajectoryPerc) - Math.PI;
         }
 
         public void SetTheSumsOfAxis(float axisValueX, float axisValueY, float axisValueZ)
@@ -341,6 +350,7 @@
 
         public float CalculateTrajectory()
         {
+
         throw new NotImplementedException();
         }
 
@@ -397,8 +407,17 @@
 
         throw new NotImplementedException();
         }
-       
-       }
+
+        public void SetTheGravityValue(double grValue)
+        {
+        theartGravity = grValue;
+        }
+
+        public void SetTheGravityValue(double grValue, double strength)
+        {
+        throw new NotImplementedException();
+        }
+        }
         private void OnDwgNdpLoad(object sender, EventArgs e)
         {
         KeyPreview = true;
@@ -473,8 +492,6 @@
         ndpCharCard.Close();
         }
         }
-
-
-    }
-}
+        }
+         }
         

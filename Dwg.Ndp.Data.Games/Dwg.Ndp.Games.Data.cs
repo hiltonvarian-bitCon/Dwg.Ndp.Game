@@ -49,7 +49,8 @@
     private static  NatElementsFlagsGF  elementsGF      = NatElementsFlagsGF.NoElemGF;
     private static  TheKeysFlags        theKeys         = TheKeysFlags.NoKeys;
     private static  GameDirections      gameDirections  = GameDirections.NoDirection;
-    private static  Thread              gameThreadsValue;
+
+      private static  Thread              gameThreadsValue;
 
     private  void SetAllFlags(TDwgNdpGamesData dwgNdpGame, NatureElementsFlags theNatFlagsSet, NatElementsFlagsGF natElementsFlagsSetGF)
     {
@@ -69,8 +70,7 @@
     protected void SetAllDataValues()
     {
     dwgGameDats = new TDwgGameDats();
-   
-    try
+  try
     {
     dwgGameDats.TheNatFlagsSet        = NatureElementsFlags.EarthElem;
     dwgGameDats.NatElementsFlagsSetGF = NatElementsFlagsGF.EarthElemGF;
@@ -83,7 +83,7 @@
     }
     
     }
-    private string[] thelemArr = { "Earth Elemental", "Air Elemental", "Fire Elemental", "Water Elemental", "Darc Elemntal" };
+    private string[] thelemNatArr = { "Earth Elemental", "Air Elemental", "Fire Elemental", "Water Elemental", "Darc Elemntal" };
 
 
     public  void SetAllFlags(TDwgGameDats theval, NatureElementsFlags nature, NatElementsFlagsGF flagsGF ,in  NatureElementsFlags allTheFlags)
@@ -93,6 +93,7 @@
 
     TheNatFlagsSet = GetNameElements(theval);
     }
+    private string[] theElemNatGF = {"Earth Gaudian Force","Air Gaudian Force","Fire Gaudian Force","Water Gaudian Force","Darc Gaudian Force" };
 
     public void SetAllFlags(TDwgGameDats theVal,NatureElementsFlags nature,NatElementsFlagsGF flagsGF,GameDirections directions,in NatureElementsFlags allTheFlags)
     {
@@ -103,9 +104,9 @@
     }
     private ref NatureElementsFlags GetNameElements(string[]value,NatureElementsFlags elementsFlags)
     {
-    thelemArr = value;  elements = elementsFlags;
+    thelemNatArr = value;  elements = elementsFlags;
 
-    return ref elements;
+    return ref elements; 
     }
 
     protected  virtual  NatureElementsFlags GetNameElements(TDwgGameDats theData)
@@ -190,7 +191,7 @@
      case TheKeysFlags.GoldKey:
           theKeys = TheKeysFlags.GoldKey;
      break;
-    default:
+    default:                                                                                            
       gameDats.AllTheKeysSet = TheKeysFlags.NoKeys;
     break;
     }
@@ -259,9 +260,11 @@
   get => gameDirections;
   set => gameDirections = value;
     }
+    
+
     public TDwgNdpGamesData(NatureElementsFlags natureElements):this(gameThreadsValue)
     {
-    
+           
     }
      public TDwgNdpGamesData(Thread threads)
     {
@@ -290,11 +293,16 @@
 
     public string[] ElementalArrGet
     {
-  get => thelemArr;
-  set => thelemArr = value;
-    }                                                                                   
-    
-    //Internal Getter TheElementsGetGF
+  get => thelemNatArr;
+  set => thelemNatArr = value;
+    }
+    public string[] TheElementsNatGF
+    {
+  get => theElemNatGF;
+  set => theElemNatGF = value;
+    }
+            //Internal Getter TheElementsGetGF
+
     internal NatElementsFlagsGF TheElementsGetGF
     {
   get => elementsGF;
@@ -327,12 +335,16 @@
 
     protected override NatureElementsFlags GetNameElements(TDwgGameDats theData)
     {
-                
+    for (Int32 LoopElem1 = 0; LoopElem1 < theData.ElementalArrGet.Rank;  LoopElem1++)
+    {
+    
+    }            
     return base.GetNameElements(theData);
     }
 
     protected override NatElementsFlagsGF GetElementsFlagsGF(TDwgGameDats gameDats)
     {
+
     return base.GetElementsFlagsGF(gameDats);
     }
 
@@ -345,6 +357,7 @@
 
     protected override GameDirections TheGameDirections(TDwgGameDats dwgGameDats)
     {
+
     return base.TheGameDirections(dwgGameDats);
     }
     }

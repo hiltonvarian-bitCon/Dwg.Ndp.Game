@@ -155,8 +155,8 @@
 
    try
     {
-    
-    ndpCharCard.CharictorsItems[0]  = new  TDCharictorsTheItems(charictorsCardItems.Length);
+
+    ndpCharCard.CharictorsItems[0]  = new TDCharictorsTheItems (charictorsCardItems.Length);
     ndpCharCard.CharictorsItems[1]  = new  TDCharictorsTheItems(charictorsCardItems.Length);
     ndpCharCard.CharictorsItems[2]  = new  TDCharictorsTheItems(charictorsCardItems.Length);
     ndpCharCard.CharictorsItems[3]  = new  TDCharictorsTheItems(charictorsCardItems.Length);
@@ -168,16 +168,16 @@
     ndpCharCard.CharictorsItems[9]  = new  TDCharictorsTheItems(charictorsCardItems.Length);
     ndpCharCard.CharictorsItems[10] = new  TDCharictorsTheItems(charictorsCardItems.Length);
     {
-    ndpCharCard.CharictorsItems[0].TheNameItems = "Iron Sword";
-    ndpCharCard.CharictorsItems[1].TheNameItems = "Metal Sword";
-    ndpCharCard.CharictorsItems[2].TheNameItems = "Rusterd Sword";
-    ndpCharCard.CharictorsItems[3].TheNameItems = "Gold Sword";
-    ndpCharCard.CharictorsItems[4].TheNameItems = "Silver Sword";
-    ndpCharCard.CharictorsItems[5].TheNameItems = "Copper Sword";
-    ndpCharCard.CharictorsItems[6].TheNameItems = "Nickle Sword";
-    ndpCharCard.CharictorsItems[7].TheNameItems = "Steel sword";   
-    ndpCharCard.CharictorsItems[8].TheNameItems = "Star Metal Sword";
-    ndpCharCard.CharictorsItems[9].TheNameItems = "Star Metal Darc Sword";
+    ndpCharCard.CharictorsItems[0].TheNameItems =  "Iron Sword";
+    ndpCharCard.CharictorsItems[1].TheNameItems =  "Metal Sword";
+    ndpCharCard.CharictorsItems[2].TheNameItems =  "Rusterd Sword";
+    ndpCharCard.CharictorsItems[3].TheNameItems =  "Gold Sword";
+    ndpCharCard.CharictorsItems[4].TheNameItems =  "Silver Sword";
+    ndpCharCard.CharictorsItems[5].TheNameItems =  "Copper Sword";
+    ndpCharCard.CharictorsItems[6].TheNameItems =  "Nickle Sword";
+    ndpCharCard.CharictorsItems[7].TheNameItems =  "Steel sword";   
+    ndpCharCard.CharictorsItems[8].TheNameItems =  "Star Metal Sword";
+    ndpCharCard.CharictorsItems[9].TheNameItems =  "Star Metal Darc Sword";
     ndpCharCard.CharictorsItems[10].TheNameItems = "Darc Metal Sword";
 
     charCounter2++;
@@ -200,11 +200,15 @@
     protected void InitArraysVal(TDCharictorsTheItems[] tDCharictors,Int32 valcount)
     {
     theItems = new TDCharictorsTheItems(charCounter1);
-
+    
     for (Int32 CharLoop01 = 0; CharLoop01 < tDCharictors.Length; CharLoop01++)
     {
     charCounter1 = valcount++;
-     InitArraysVal(InitArraysVals(tDCharictors,valcount,theItems));
+
+    InitArraysVal(InitArraysVals(tDCharictors,valcount,theItems));
+
+    theItems.TheTotalValues = charCounter1;
+    
     }     
     }
 
@@ -237,8 +241,8 @@
     
     
     public  class TDCharictorsTheItems
-        {
-    
+    {
+     
     public TDCharictorsTheItems() :this(TheTotalVal=TDwgNdpGameConVal.C_TheAmountWepons)
     {
    //default Constructor
@@ -249,7 +253,7 @@
     TheTotalVal = value;
     }
     private string namewepons = TDwgNdpGameConVal.C_StringsName;
-    private string nameItems = TDwgNdpGameConVal.C_StringsName;
+    private string nameItems  = TDwgNdpGameConVal.C_StringsName;
     private string nameSpells = TDwgNdpGameConVal.C_StringsName;
 
     public Int32 TheTotalValues
@@ -281,7 +285,6 @@
   get => theTotalVal;
   set => theTotalVal = value;
     }
-    
 
     private static Int32  theTotalVal=TDwgNdpGameConVal.C_TheAmountWepons;
     }

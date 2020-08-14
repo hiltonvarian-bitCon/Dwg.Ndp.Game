@@ -15,6 +15,8 @@
      void SetTheSumOfAxis(float axisValueX, double axisValueY);
      void SetTheSumOfAxis(float axisValueX, float axisValueY);
      void SetTheSumsOfAxis(float axisValueX, float axisValueY, float axisValueZ);
+     void SetTheGravityValue(double grValue);
+     void SetTheGravityValue(double grValue, double strength);
      float CalculateValues();
      float CalculateTrajectory();
      float CalculateTrajectory(double axisX, double axisY);
@@ -40,6 +42,7 @@
      float  TheAxisValueY                        { get;}
      float  TheAxisValueZ                        { get;}
      double  TheTotal                            { get;}
+     double TheEarthsGravity                     { get;}
      float  ItemTrajectory                       { get;}
     }
 
