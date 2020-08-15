@@ -25,7 +25,14 @@ namespace Dwg.Game.AI
                            ,6,12,23,20,-20,-7,1,10,11,6,7,9,2,4,0,0,0, 
                           };
 
- 
+ public Int32 GetFibValue(Int32 nanValue)
+ {
+ if(nanValue<2)
+ {
+ return 1;
+ }
+ return GetFibValue(nanValue * 2);
+ }
  private static Random randomValue = new Random();
 
  private static Thread  theThreads;

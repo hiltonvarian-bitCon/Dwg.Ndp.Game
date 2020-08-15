@@ -6,6 +6,8 @@
     using System.Windows.Forms;
     using System.Threading;
     using System.Drawing;
+    using System.IO;
+
 
     namespace Dwg.Ndp.Game.Char
     {
@@ -200,7 +202,7 @@
     protected void InitArraysVal(TDCharictorsTheItems[] tDCharictors,Int32 valcount)
     {
     theItems = new TDCharictorsTheItems(charCounter1);
-    
+   
     for (Int32 CharLoop01 = 0; CharLoop01 < tDCharictors.Length; CharLoop01++)
     {
     charCounter1 = valcount++;
@@ -208,7 +210,7 @@
     InitArraysVal(InitArraysVals(tDCharictors,valcount,theItems));
 
     theItems.TheTotalValues = charCounter1;
-    
+
     }     
     }
 
