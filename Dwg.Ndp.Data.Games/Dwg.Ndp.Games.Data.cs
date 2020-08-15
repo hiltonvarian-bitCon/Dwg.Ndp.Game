@@ -50,7 +50,7 @@
     private static  TheKeysFlags        theKeys         = TheKeysFlags.NoKeys;
     private static  GameDirections      gameDirections  = GameDirections.NoDirection;
 
-      private static  Thread              gameThreadsValue;
+    private static  Thread              gameThreadsValue;
 
     private  void SetAllFlags(TDwgNdpGamesData dwgNdpGame, NatureElementsFlags theNatFlagsSet, NatElementsFlagsGF natElementsFlagsSetGF)
     {

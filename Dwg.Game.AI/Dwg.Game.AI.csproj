@@ -47,6 +47,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Dwg.Ndp.Char.Counters\Dwg.Ndp.Char.Counters.csproj">
+      <Project>{0439615c-94dc-4a83-af11-a4d922f1e6b0}</Project>
+      <Name>Dwg.Ndp.Char.Counters</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dwg.Ndp.Game.Con\Dwg.Ndp.Game.Con.csproj">
       <Project>{8f48a589-4bde-4a5a-9bfc-435727903215}</Project>
       <Name>Dwg.Ndp.Game.Con</Name>

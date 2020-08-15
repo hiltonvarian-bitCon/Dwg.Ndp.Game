@@ -25,14 +25,16 @@ namespace Dwg.Ndp.Attrib
         }
         private void InitAsemblyNameAttrib()
         {
+        TDwgNdpAttributs NdpAttributsdwg = new TDwgNdpAttributs();
        try
         {
-        keysFlags = TheKeysFlags.RusterdKey;
+        TheElementalFlagsSet = NatureElementsFlags.AirElem;
         }
      finally
         {
+        NdpAttributsdwg.TheElamNature(); 
         }
-         }
+        }
         public TDwgNdpGameAttrib(NatureElementsFlags natureElements)
         {
         elementsFlags = natureElements;
@@ -78,11 +80,11 @@ namespace Dwg.Ndp.Attrib
 
         return base.Match(obj);
         }
-        public class TDwgNdpAttributs
+        public class TDwgNdpAttributs                                        
         {
         [TDwgNdpGameAttrib(NatureElementsFlags.AirElem)]
-        public void TheElamNature() { }
-
+        public void TheElamNature(){}
+        
         [TDwgNdpGameAttrib(NatElementsFlagsGF.AirElemGF)]
         public void TheElemNatGF() { }
 
@@ -95,21 +97,24 @@ namespace Dwg.Ndp.Attrib
         [TDwgNdpGameAttrib(GameDirections.North)]
         public void TheGameKeys() { }
      }
+
      [AttributeUsage(AttributeTargets.Constructor|AttributeTargets.Method)]
-     public  class TDwcharAtribute:TDwgNdpGameAttrib
+     public class TDwcharAtribute:TDwgNdpGameAttrib
      {
+
      [TDwgNdpGameAttrib]
      public void TheCharAttributes()
      {
-     //dwfault constructure
+     //default Method
      }
 
      [TDwgNdpGameAttrib(NatureElementsFlags.NoElemFlagsValue)]
      public TDwcharAtribute()
      {
-      //default constructor
+     //default constructor
      }
-      public NatureElementsFlags ThNatElementalFlagsGet
+    
+     public NatureElementsFlags ThNatElementalFlagsGet
       {
     get
       {
@@ -129,8 +134,10 @@ namespace Dwg.Ndp.Attrib
      {
      return TheGameDirectionsSet;
      }
-     } 
-    public TDwcharAtribute(NatureElementsFlags elementsFlags):base(elementsFlags)
+     }
+
+     [TDwcharAtribute(NatureElementsFlags.AirElem)]
+     public TDwcharAtribute(NatureElementsFlags elementsFlags) : base(elementsFlags)
      {
      TheElementalFlagsSet = elementsFlags;
      }

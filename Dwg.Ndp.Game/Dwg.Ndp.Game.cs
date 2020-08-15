@@ -19,7 +19,7 @@
     using Dwg.Ndp.Attrib;
     using Dwg.Ndp.Game.Con;
     using Dwg.Ndp.Char.Counters;
-
+   
     public partial class TDwgNdpGame : Form
     {
         private IDwgNdpPerson thperson = null;
@@ -39,25 +39,24 @@
         Thread AllThreads01 = new Thread(new ThreadStart(TDwgNdpGameThreads.ThreadProc1));
 
         Thread AllThreads02 = new Thread(new ThreadStart(TDwgNdpGameThreads.ThreadProc2));
-
-        TDwgNdpGamesData AllThreads03 = new TDwgNdpGamesData(AllThreads01);
-      try
+       try
         {
         TDwgGameAI dwgGameAI1 = new TDwgGameAI(AllThreads02);
 
+        TDwgNdpGamesData AllThreads03 = new TDwgNdpGamesData(AllThreads01);
+        AllThreads03.InitAllData();
 
-        AllThreads03.InitAllData();                                                       
-        
         AllThreads01.Start();
         AllThreads02.Start();
         }
       finally
         {
-        AllThreads01.Abort(); 
+        AllThreads01.Abort();
         AllThreads02.Abort();
+
         }
-       
-        IniThreadsStart02(); 
+
+       IniThreadsStart02(); 
         }
         private void IniThreadsStart02()
         {
@@ -90,7 +89,9 @@
         private float  theAxisZ      = TDwgNdpGameConVal.C_AxisZ;
         private double theartGravity = TDwgNdpGameConVal.C_EarthGravity;
 
+        #pragma warning disable CS0649 // Field 'TDwgNdpGame.TDwgNdpPLayersChar.ndpChaPeopleArr' is never assigned to, and will always have its default value null
         private IDwgNdpPerson[] ndpChaPeopleArr;
+        #pragma warning restore CS0649 // Field 'TDwgNdpGame.TDwgNdpPLayersChar.ndpChaPeopleArr' is never assigned to, and will always have its default value null
 
         private double allTheTotal;
         private float theTrajectory;
@@ -102,10 +103,11 @@
         }
         private void DwgNdpersonInit()
         {
-        TDwgGameAI       ThegameAI  = new TDwgGameAI         ();
+        TDwgGameAI        ThegameAI  = new TDwgGameAI         ();
 
-        TDwgNdpGameAttrib GameAttrib = new TDwgNdpGameAttrib ();
+        TDwgNdpGameAttrib GameAttrib = new TDwgNdpGameAttrib  ();
 
+        TDwcharAtribute   Dwchar     = new TDwcharAtribute    ();
        try
         {
         person = new TDwgNdpPLayersChar(GameAttrib.TheElementalFlagsSet, GameAttrib.TheFlagsGFSet);
@@ -131,15 +133,7 @@
         }
         protected void InitPeopleArr()
         {
-                 
-        try
-        {
-        
-        }
-       finally
-        {
-              
-        }
+
         }
         public TDwgNdpPLayersChar(IDwgNdpPerson dwgNdpPerson, TheKeysFlags theKeysFlags):this(dwgNdpPerson.TheNatCharPersonElem,dwgNdpPerson.TheNatCharPersonElemGF)
         { 
@@ -356,7 +350,6 @@
 
         public float CalculateTrajectory(double axisX, double axisY)
         {
-
         throw new NotImplementedException();
         }
 
@@ -379,12 +372,13 @@
 
         public double CalculateTrajectoryAxisY()
         {
-        throw new NotImplementedException();
+        return CalculateTrajectoryAxisY(theAxisY);
         }
 
         public double CalculateTrajectoryAxisZ()
         {
-        throw new NotImplementedException();
+
+        return CalculateTrajectoryAxisZ(theAxisZ);
         }
 
         public double CalculateTrajectoryAxisX(float axisX)
@@ -399,7 +393,7 @@
 
         public double CalculateTrajectoryAxisZ(float axisZ)
         {
-        throw new NotImplementedException();
+        return axisZ;
         }
 
         public IDwgNdpCaricDirections[] CharictsDir(IDwgNdpCaricDirections ndpCaricDirections)
