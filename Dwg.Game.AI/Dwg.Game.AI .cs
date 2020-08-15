@@ -10,7 +10,7 @@ namespace Dwg.Game.AI
  {
  public class TDwgGameAI
  {
-
+ private Int32 fibValusNums;
  private Int32[] gameAI = {0,0,0,-0,1-1,45,-78,35,-68,54,78,12,
                           -12,34,12,-5,5,89,4,4,23,23,-23,-23,12
                           ,89,6,100,300,500,700,34,0,34,-34,47,22
@@ -25,13 +25,22 @@ namespace Dwg.Game.AI
                            ,6,12,23,20,-20,-7,1,10,11,6,7,9,2,4,0,0,0, 
                           };
 
- public Int32 GetFibValue(Int32 nanValue)
+ public  virtual void  SetUpFibNums()
  {
- if(nanValue<2)
+ 
+ SetupFibNums(GetFibValue(fibValusNums));
+ }
+ public void SetupFibNums(Int32 fibValueNum)
+ {
+ fibValusNums = fibValueNum;
+ }
+ private  Int32 GetFibValue(Int32 fibConValue)
+ {
+ if(fibConValue<2)
  {
  return 1;
  }
- return GetFibValue(nanValue * 2);
+ return GetFibValue(fibConValue * 2);
  }
  private static Random randomValue = new Random();
 
@@ -45,46 +54,47 @@ namespace Dwg.Game.AI
  public void InitAllGameAI()
  {
  TDwgGameDatAI GameDatAI = new TDwgGameDatAI();
-
- TDwgGameDatAI DatAI = new TDwgGameDatAI(gameAI);
-try
- {
-TDwgGameAI DwgGameAI = new TDwgGameAI();
- for (Int32 GameAILoop = 0; GameAILoop < gameAI.LongLength; GameAILoop++)
- {
- theCounters++;
- gameAI[GameAILoop]           =    randomValue.Next() * 1;
- DwgGameAI.gameAI[GameAILoop] =    gameAI[GameAILoop];
- }
- }
-finally
+ try
   {
+  TDwgGameAI DwgGameAI = new TDwgGameAI();
+  for (Int32 GameAILoop = 0; GameAILoop < gameAI.LongLength; GameAILoop++)
+  {
+  theCounters++;
+
+  gameAI[GameAILoop] = randomValue.Next() * 1;
+  DwgGameAI.gameAI[GameAILoop] = gameAI[GameAILoop];
+  }
+  }
+ finally
+  {
+  TDwgGameDatAI DatAI = new TDwgGameDatAI(gameAI);
   DatAI.InitSetUpRndNumAI(ref theCounters, TheRandomValue);
-  
+
   DatAI.SetUpDic(DatAI.TheKeyValuePairs);
 
   DatAI.InitGameDatAI();
   DatAI.InitAllArr();
+  DatAI.SetUpFibNums();
   }
   }
   public void InitAllArr()
   {
   theGameArrAI= new Int32[gameAI.LongLength];
 try
- {
+  {
   theGameArrAI[0] = TheRandomValue.Next()*1;
   theGameArrAI[1] = TheRandomValue.Next()*2;
   theGameArrAI[2] = TheRandomValue.Next()*3;
   }                                                                                               
 finally
   {
-   
   InitAllArr(theGameArrAI);
   }
   }
-  protected void InitAllArr(Int32[] val)
+  protected void InitAllArr(Int32[] valArray)
   {
-  theGameArrAI = val; 
+  theGameArrAI = valArray;
+  
   }
   public virtual void InitGameDatAI()
   {
@@ -104,7 +114,7 @@ finally
   public virtual void  SetUpDic(Dictionary<byte,TDwgGameAI> valuePairs)
   {
              
-  }
+  }                                                                                          
   public TDwgGameAI():this(theThreads)
   {
   //default Constructor
@@ -140,6 +150,11 @@ set => theCounters = value;
  get => theGameArrAI;
  set => theGameArrAI = value;
   }
+  public Int32 TheFibValuNums
+  {
+get => fibValusNums;
+set => fibValusNums = value;
+ }
 
   public TDwgGameAI(Thread thread)
   {
@@ -157,11 +172,17 @@ set => theCounters = value;
 
   InitSetUpRndNumAI(randomn);
   }
+  public override void SetUpFibNums()
+  {
+
+  base.SetUpFibNums();
+  }
   public override void InitGameDatAI()
   {
   
   base.InitGameDatAI();
   }
+
   private  Dictionary<byte, TDwgGameAI> keyValuePairs = new Dictionary<byte, TDwgGameAI>(); 
 
   public void InitSetUpRndNumAI(ref Int32 rndCou,Random random)
