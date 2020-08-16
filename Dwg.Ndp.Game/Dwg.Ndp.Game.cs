@@ -80,7 +80,6 @@
         }
         }
 
-        [TDwgNdpGameAttrib]
         public class TDwgNdpPLayersChar : TDwgNdpGamesData, IDwgNdpPerson, IDwgNdpCaricDirections
         {
         private IDwgNdpPerson person;
@@ -172,7 +171,7 @@
         public float TheAxisValueX
         {
       get
-        {
+        {                                                                                                            
         return theAxisX;
         }
         }

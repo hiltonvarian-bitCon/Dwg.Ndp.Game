@@ -11,7 +11,7 @@ namespace Dwg.Ndp.Attrib
     using Dwg.Ndp.Person;
     using Dwg.Ndp.Data.Games;
     using Dwg.Ndp.Game.Char;
-    
+   
     public class TDwgNdpGameAttrib : Attribute
     {
         protected NatureElementsFlags elementsFlags;
@@ -80,6 +80,7 @@ namespace Dwg.Ndp.Attrib
 
         return base.Match(obj);
         }
+        
         public class TDwgNdpAttributs                                        
         {
         [TDwgNdpGameAttrib(NatureElementsFlags.AirElem)]
@@ -89,17 +90,17 @@ namespace Dwg.Ndp.Attrib
         public void TheElemNatGF() { }
 
         [TDwgNdpGameAttrib(TheKeysFlags.CopperKey)]
-        public void TheGameKeys() { }                                                                                                                 
+        public void TheGameKeys() { }
 
         [TDwgNdpGameAttrib]
         public void InitallAtributes() { }
         }
         [TDwgNdpGameAttrib(GameDirections.North)]
-        public void TheGameKeys() { }
+        public void TheGameDirections() { }
      }
 
-     [AttributeUsage(AttributeTargets.Constructor|AttributeTargets.Method)]
-     public class TDwcharAtribute:TDwgNdpGameAttrib
+    [AttributeUsage(AttributeTargets.Constructor | AttributeTargets.Method)]
+    public class TDwcharAtribute:TDwgNdpGameAttrib
      {
 
      [TDwgNdpGameAttrib]
@@ -108,7 +109,7 @@ namespace Dwg.Ndp.Attrib
      //default Method
      }
 
-     [TDwgNdpGameAttrib(NatureElementsFlags.NoElemFlagsValue)]
+     [TDwgNdpGameAttrib(NatureElementsFlags.AirElem)]
      public TDwcharAtribute()
      {
      //default constructor
@@ -136,7 +137,7 @@ namespace Dwg.Ndp.Attrib
      }
      }
 
-     [TDwcharAtribute(NatureElementsFlags.AirElem)]
+     
      public TDwcharAtribute(NatureElementsFlags elementsFlags) : base(elementsFlags)
      {
      TheElementalFlagsSet = elementsFlags;

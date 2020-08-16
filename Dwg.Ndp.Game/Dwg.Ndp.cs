@@ -11,7 +11,7 @@ namespace Dwg.Ndp.Game
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        [MTAThread]
+        [STAThread]
         static void Main()
     {
             Application.EnableVisualStyles();
