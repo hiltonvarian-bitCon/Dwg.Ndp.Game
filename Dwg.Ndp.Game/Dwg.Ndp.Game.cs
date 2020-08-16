@@ -44,6 +44,7 @@
         TDwgGameAI dwgGameAI1 = new TDwgGameAI(AllThreads02);
 
         TDwgNdpGamesData AllThreads03 = new TDwgNdpGamesData(AllThreads01);
+
         AllThreads03.InitAllData();
 
         AllThreads01.Start();
@@ -53,11 +54,11 @@
         {
         AllThreads01.Abort();
         AllThreads02.Abort();
-
         }
 
-       IniThreadsStart02(); 
+        IniThreadsStart02(); 
         }
+
         private void IniThreadsStart02()
         {
         TDwgNdpPLayersChar            pLayersChar  = new TDwgNdpPLayersChar           ();
@@ -68,7 +69,7 @@
        
       try                                                                                           
         {
-       
+        
         pLayersChar.TdwgGameDatsSet = dwgGameDats;
         pLayersChar.TdwgGameDatsSet.AllTheKeysSet = TheKeysFlags.GoldKey;
          
@@ -83,6 +84,7 @@
         public class TDwgNdpPLayersChar : TDwgNdpGamesData, IDwgNdpPerson, IDwgNdpCaricDirections
         {
         private IDwgNdpPerson person;
+
         private float  theAxisX      = TDwgNdpGameConVal.C_AxisX;
         private float  theAxisY      = TDwgNdpGameConVal.C_AxisY;
         private float  theAxisZ      = TDwgNdpGameConVal.C_AxisZ;
@@ -246,7 +248,7 @@
        
         }
 
-        public void InitSetAllPersons(NatureElementsFlags natureElementsFlags, in string[] vsArr)
+        public  void InitSetAllPersons(NatureElementsFlags natureElementsFlags, in string[] vsArr)
         {
         
         throw new NotImplementedException();
@@ -279,7 +281,7 @@
         {
         theAxisX = axisValueX;         
         }
-        protected void  SetTheSumOfAxis(float axisValueX,float axisValueY,float axisValueZ)
+        protected  void  SetTheSumOfAxis(float axisValueX,float axisValueY,float axisValueZ)
         {
         theAxisZ = axisValueZ;
         }
@@ -426,11 +428,16 @@
         private        readonly Int32   loopcoun1  = -1;
         private        readonly  Int32  loopCount2  = 0;
 
+        public TDwgNdpGameThreads(Thread thread, Int32 count1,Int32 count2 )
+        {
+        loopcoun1 = count1; loopCount2 = count2;
+       
+        }
         public static void ThreadProc1()
         {
         for (int ThreadLoop01 = 0; ThreadLoop01 < 1000; ThreadLoop01++)
         {
-        
+       
         Thread.Sleep(2000);
         }
         
@@ -458,6 +465,7 @@
         return  loopCount2;
         }
         }
+        
         }
         private void OnFormClick(object sender, EventArgs e)
         {

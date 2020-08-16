@@ -5,9 +5,10 @@
     using System.Threading.Tasks;
     using System.Windows.Forms;
     using System.Threading;
+ 
     using System.Drawing;
     using System.IO;
-
+    using System.Reflection.Emit; 
 
     namespace Dwg.Ndp.Game.Char
     {
@@ -110,7 +111,7 @@
   get => karmaPoints;
   set => karmaPoints = value;
     }
-    public TDwgNdpCharCardInfo(TDCharictorsTheItems[] tDCharictors)
+    public  TDwgNdpCharCardInfo(TDCharictorsTheItems[] tDCharictors)
     {
     charictorsCardItems = tDCharictors;
     }
@@ -193,7 +194,7 @@
     charCounter1++;
     
     InitArraysVal(charictorsCardItems,charCounter1);
-    
+  
     }
     }
     while (charCounter1<TDwgNdpGameConVal.C_TheAmountWepons);
@@ -214,7 +215,7 @@
     }     
     }
 
-    protected void InitCharForClientSize()
+     protected void InitCharForClientSize()
     {
     ClientSize = new System.Drawing.Size(TDwgNdpGameConVal.C_Width, TDwgNdpGameConVal.C_Height);
    try
@@ -230,18 +231,18 @@
     SetUpSize(TheScreenHeights, TheScreenWidths, ClientSize);
     }
     }
-    protected void InitArraysVal(TDCharictorsTheItems[] tDCharictorsCardItems)
+    protected   void  InitArraysVal(TDCharictorsTheItems[] tDCharictorsCardItems)
     {
     CharictorsItems = tDCharictorsCardItems;
     }
 
-    protected TDCharictorsTheItems[] InitArraysVals(TDCharictorsTheItems[] tDCharictorsCardItems,Int32 valcount,TDCharictorsTheItems charictorsTheItems)
+    protected  TDCharictorsTheItems[] InitArraysVals(TDCharictorsTheItems[] tDCharictorsCardItems,Int32 valcount,TDCharictorsTheItems charictorsTheItems)
     {
 
     return tDCharictorsCardItems;
     }
-    
-    
+
+    [Serializable]
     public  class TDCharictorsTheItems
     {
      
