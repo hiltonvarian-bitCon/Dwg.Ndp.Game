@@ -5,18 +5,19 @@
     using System.Threading.Tasks;
     using System.Windows.Forms;
     using System.Threading;
- 
     using System.Drawing;
     using System.IO;
     using System.Reflection.Emit; 
+    using System.Runtime.Serialization;
 
-    namespace Dwg.Ndp.Game.Char
+namespace Dwg.Ndp.Game.Char
     {
     using Dwg.Game.AI;
     using Dwg.Ndp.Game.Con;
     using Dwg.Ndp.Char.Counters;
-                                 
-        public class TDwgNdpCharCardInfo : Form
+   
+
+    public class TDwgNdpCharCardInfo : Form
     {
 
         private float hitpoints       = TDwgNdpGameConVal.C_Hitpoints;
@@ -194,7 +195,7 @@
     charCounter1++;
     
     InitArraysVal(charictorsCardItems,charCounter1);
-  
+    
     }
     }
     while (charCounter1<TDwgNdpGameConVal.C_TheAmountWepons);
@@ -245,7 +246,7 @@
     [Serializable]
     public  class TDCharictorsTheItems
     {
-     
+    
     public TDCharictorsTheItems() :this(TheTotalVal=TDwgNdpGameConVal.C_TheAmountWepons)
     {
    //default Constructor
@@ -345,11 +346,13 @@
   get => charCounter1;
   set => charCounter1 = value;
     }
+
     internal Int32 CharCounterTwoGet
     {
   get => charCounter2;
   set => charCounter2 = value;
     }
+
     public Int32[,] TheCharictorsArr2D
     {
   get => TDCharictorsArr2D;
@@ -372,7 +375,6 @@
   get => theItems;
   set => theItems = value;
     }
-    
 
     public  class TDwgNdpGameCharCardThread
     {

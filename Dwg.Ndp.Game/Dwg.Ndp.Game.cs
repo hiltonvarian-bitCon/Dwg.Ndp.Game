@@ -36,51 +36,68 @@
         }
         private void InitThreadsStarts()
         {
+        
         Thread AllThreads01 = new Thread(new ThreadStart(TDwgNdpGameThreads.ThreadProc1));
 
         Thread AllThreads02 = new Thread(new ThreadStart(TDwgNdpGameThreads.ThreadProc2));
        try
         {
-        TDwgGameAI dwgGameAI1 = new TDwgGameAI(AllThreads02);
+        TDwgGameAI DwgGameAI1 = DwgGameAllthreads(AllThreads02);
 
         TDwgNdpGamesData AllThreads03 = new TDwgNdpGamesData(AllThreads01);
+
+        DwgGameAI1.Thread = AllThreads01;
 
         AllThreads03.InitAllData();
 
         AllThreads01.Start();
+
         AllThreads02.Start();
         }
-      finally
+       finally
         {
         AllThreads01.Abort();
         AllThreads02.Abort();
         }
-
         IniThreadsStart02(); 
+        }
+
+        private  TDwgGameAI DwgGameAllthreads(Thread AllThreads2)
+        {
+        return new TDwgGameAI(AllThreads2);
         }
 
         private void IniThreadsStart02()
         {
-        TDwgNdpPLayersChar            pLayersChar  = new TDwgNdpPLayersChar           ();
+        TDwgNdpPLayersChar            PLayersChar  = new TDwgNdpPLayersChar            ();
 
-        TDwgNdpGameAttrib             dwgNdpAttrib = new TDwgNdpGameAttrib            ();
-
-        TDwgNdpGamesData.TDwgGameDats dwgGameDats = new TDwgNdpGamesData.TDwgGameDats ();
-       
-      try                                                                                           
-        {
+        TDwgNdpGameAttrib             DwgNdpAttrib = new TDwgNdpGameAttrib             ();
         
-        pLayersChar.TdwgGameDatsSet = dwgGameDats;
-        pLayersChar.TdwgGameDatsSet.AllTheKeysSet = TheKeysFlags.GoldKey;
-         
+        TDwgNdpGamesData.TDwgGameDats DwgGameDats = new TDwgNdpGamesData.TDwgGameDats  ();
+       try
+        {
+        GetDataElems GetTheDataElems = new GetDataElems(DwgGameDats.GetDataElems);
+        if (GetTheDataElems.Method.MemberType == MemberTypes.Method)
+        {
+        PLayersChar.TdwgGameDatsSet = DwgGameDats;
+        }
+        PLayersChar.TdwgGameDatsSet.AllTheKeysSet = TheKeysFlags.GoldKey;
+
+        GetDataElems TheDatElems = DwgGameDats.GetDataElems;
+
+        PLayersChar.TdwgGameDatsSet.TheNatFlagsSet = TheDatElems(PLayersChar.TdwgGameDatsSet);
         }
        finally
         {
-        TDwcharAtribute dwcharAtribute=new TDwcharAtribute(dwgNdpAttrib.TheElementalFlagsSet);
-        pLayersChar.TheGameThreadSet.Abort();            
+        TDwcharAtribute DwcharAtribute = new TDwcharAtribute(DwgNdpAttrib.TheElementalFlagsSet)
+        {
+        ThekeyFlagsSet = PLayersChar.TdwgGameDatsSet.AllTheKeysSet
+        };
+        PLayersChar.TheGameThreadSet.Abort();
+        
         }
         }
-
+       
         public class TDwgNdpPLayersChar : TDwgNdpGamesData, IDwgNdpPerson, IDwgNdpCaricDirections
         {
         private IDwgNdpPerson person;

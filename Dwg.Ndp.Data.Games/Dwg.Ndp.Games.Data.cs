@@ -8,6 +8,7 @@
     using Dwg.Game.AI;
     using Dwg.Ndp.Char.Counters;
 
+   
     [Flags]
     public  enum NatureElementsFlags:int
     {
@@ -38,11 +39,11 @@
     NorthEast=4,SouthEaast=4,
     SouthWest=5,NoDirection=-1
     }
-    
+    public delegate NatureElementsFlags GetDataElems(TDwgNdpGamesData dwgNdp);
+
+    [Serializable]
     public class TDwgNdpGamesData
-    
     {
-    
     private TDwgGameDats dwgGameDats;
    
     private static  NatureElementsFlags elements        = NatureElementsFlags.NoElemFlagsValue;
@@ -59,9 +60,9 @@
 
     public TDwgNdpGamesData():this(elements)
     {
-    //Default Constructor
+    //Default Constructor                         
     }
-
+     
     public void InitAllData()
     {
     SetAllDataValues();
@@ -138,6 +139,12 @@
     }
     return theData.TheNatElementsGetFlags;
     }
+   
+    public NatureElementsFlags GetDataElems(TDwgNdpGamesData dwgNdp)
+    {
+
+     return dwgNdp.TheNatFlagsSet;
+    }
     protected virtual  NatElementsFlagsGF  GetElementsFlagsGF(TDwgGameDats gameDats)
     {
     if (gameDats==null)
@@ -167,7 +174,6 @@
     }
     return gameDats.TheElementsGetGF;
     }
-
     protected virtual  TheKeysFlags GetTheKeysFlags(TDwgGameDats gameDats)
     {
     if (gameDats == null)
@@ -197,6 +203,7 @@
     }
     return gameDats.TheGameKeysGet;
     }
+
     protected virtual GameDirections TheGameDirections(TDwgGameDats dwgGameDats)
     {
     if (dwgGameDats == null)
@@ -226,7 +233,7 @@
     }
     return dwgGameDats.GameDirectionsGet;
     }
-
+   
     public NatureElementsFlags TheNatFlagsSet
     {
   get => elements;
@@ -270,9 +277,12 @@
     {
     gameThreadsValue = threads;
     }
+
+
+
+    [Serializable]
     public class TDwgGameDats: TDwgNdpGamesData
     {
-
     public TDwgGameDats():this(elements)
     {
     //Default Value
@@ -326,7 +336,7 @@
     {
     elements = theNatureElements;
     }
-
+    
     public TDwgGameDats(Thread thread)
     {
     gameThreadsValue = thread;
