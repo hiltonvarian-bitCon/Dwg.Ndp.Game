@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using System.Timers;
 
-     using Dwg.Ndp.Data.Games;
+    using Dwg.Ndp.Data.Games;
 
      public interface IDwgNdpPerson
      {
