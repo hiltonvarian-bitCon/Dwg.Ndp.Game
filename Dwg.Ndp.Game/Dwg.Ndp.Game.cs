@@ -136,7 +136,7 @@
         GameAttrib.ThekeyFlagsSet       = TheKeysFlags.MoonMetalKeys;
         }
         theAxisX = person.CalculateValues();
-        allTheTotal = person.CalculateValueTrajValue(theAxisX, theAxisY, ref theTrajectory,ItemTrajectory);            
+        allTheTotal = person.CalculateValueTrajValue( theAxisX, theAxisY, ref theTrajectory,ItemTrajectory);            
         }
        finally
         {
