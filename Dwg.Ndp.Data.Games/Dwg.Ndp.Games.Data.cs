@@ -109,14 +109,16 @@
 
     return ref elements; 
     }
-
+   
     protected  virtual  NatureElementsFlags GetNameElements(TDwgGameDats theData)
     {
     if (theData == null)
     {
     throw new ArgumentNullException(nameof(theData));
     }
-    switch (theData.TheNatFlagsSet)
+ else
+   theData.TheNatElementsGetFlags = GetDataElems(theData);
+   switch (theData.TheNatFlagsSet)
     {
     case NatureElementsFlags.EarthElem:
          elements = NatureElementsFlags.EarthElem;
@@ -142,8 +144,7 @@
    
     public NatureElementsFlags GetDataElems(TDwgNdpGamesData dwgNdp)
     {
-
-     return dwgNdp.TheNatFlagsSet;
+    return dwgNdp.TheNatFlagsSet;
     }
     protected virtual  NatElementsFlagsGF  GetElementsFlagsGF(TDwgGameDats gameDats)
     {

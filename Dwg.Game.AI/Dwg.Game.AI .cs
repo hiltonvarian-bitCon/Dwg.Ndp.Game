@@ -24,8 +24,8 @@ namespace Dwg.Game.AI
                           ,100,34,23,8,12,19,0-19,20,23,56,7,9,12,3,3
                            ,6,12,23,20,-20,-7,1,10,11,6,7,9,2,4,0,0,0, 
                           };
-
-  public  virtual void  SetUpFibNums()
+ private readonly Int32 gameValueCountAI;
+ public  virtual void  SetUpFibNums()
  {
  
  SetupFibNums(GetFibValue(fibValusNums));
@@ -113,6 +113,7 @@ finally
  
   public virtual void  SetUpDic(Dictionary<byte,TDwgGameAI> valuePairs)
   {
+
   }                                                                                          
   public TDwgGameAI():this(theThreads)
   {
@@ -154,11 +155,24 @@ set => theCounters = value;
 get => fibValusNums;
 set => fibValusNums = value;
  }
+ public Int32 GameValueAI
+ {
+get
+ {
+ return gameValueCountAI;
+ }
+ }
 
-  public TDwgGameAI(Thread thread)
-  {
-  theThreads = thread;
-  }
+ public TDwgGameAI(Thread thread)
+ {
+ theThreads = thread;
+ }
+
+ public TDwgGameAI(Int32 valueAi, Int32[] aiArr)
+ {
+ gameValueCountAI = valueAi; gameAI = aiArr;
+ }
+
   public class TDwgGameDatAI:TDwgGameAI
   {
   private Int32 rndNums = 0;
@@ -218,9 +232,9 @@ set => keyValuePairs = value;
   }
   protected void SetUpDic(Dictionary<byte,TDwgGameAI> valuePairs, Int32[] VsArr)
   {
-  TheGameSetAI[0] = VsArr[0];  
-
+  TheGameSetAI[0] = VsArr[0];
   }
   }
   }
+  
   }

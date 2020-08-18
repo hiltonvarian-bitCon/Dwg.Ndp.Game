@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8440D030-02FA-4CB5-86A6-692A8467D11A}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>Dwg.Ndp.Game</RootNamespace>
-    <AssemblyName>Dwg.Ndp.Game</AssemblyName>
+    <ProjectGuid>{3A559898-2103-424C-A34F-936C7010D503}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Dwg.Game.World</RootNamespace>
+    <AssemblyName>Dwg.Game.World</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -25,7 +24,6 @@
     <LangVersion>7.2</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -41,54 +39,16 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dwg.Ndp.Game.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dwg.Ndp.Game.Designer.cs">
-      <DependentUpon>Dwg.Ndp.Game.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dwg.Ndp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Dwg.Ndp.Game.resx">
-      <DependentUpon>Dwg.Ndp.Game.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dwg.Game.AI\Dwg.Game.AI.csproj">
       <Project>{87465786-5b71-4ee9-abad-106e2d830b53}</Project>
       <Name>Dwg.Game.AI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Dwg.Game.World.\Dwg.Game.World.csproj">
-      <Project>{3a559898-2103-424c-a34f-936c7010d503}</Project>
-      <Name>Dwg.Game.World</Name>
     </ProjectReference>
     <ProjectReference Include="..\Dwg.Ndp.Attrib\Dwg.Ndp.Attrib.csproj">
       <Project>{fdc253e7-51cc-4f36-884b-8486722e9092}</Project>
@@ -99,12 +59,8 @@
       <Name>Dwg.Ndp.Char.Counters</Name>
     </ProjectReference>
     <ProjectReference Include="..\Dwg.Ndp.Data.Games\Dwg.Ndp.Data.Games.csproj">
-      <Project>{9CFC9B8B-CA0B-4569-9C69-F600C7564BEC}</Project>
+      <Project>{9cfc9b8b-ca0b-4569-9c69-f600c7564bec}</Project>
       <Name>Dwg.Ndp.Data.Games</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Dwg.Ndp.Game.Char\Dwg.Ndp.Game.Char.csproj">
-      <Project>{1ecd5096-339e-43d2-9d0f-294decaefbff}</Project>
-      <Name>Dwg.Ndp.Game.Char</Name>
     </ProjectReference>
     <ProjectReference Include="..\Dwg.Ndp.Game.Con\Dwg.Ndp.Game.Con.csproj">
       <Project>{8f48a589-4bde-4a5a-9bfc-435727903215}</Project>

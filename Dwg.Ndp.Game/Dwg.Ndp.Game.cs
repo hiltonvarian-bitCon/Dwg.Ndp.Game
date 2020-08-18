@@ -19,11 +19,12 @@
     using Dwg.Ndp.Attrib;
     using Dwg.Ndp.Game.Con;
     using Dwg.Ndp.Char.Counters;
-   
+    
+
     public partial class TDwgNdpGame : Form
     {
         private IDwgNdpPerson thperson = null;
-
+       
         public IDwgNdpPerson Thperson
         {
       get => thperson;
@@ -42,13 +43,13 @@
         Thread AllThreads02 = new Thread(new ThreadStart(TDwgNdpGameThreads.ThreadProc2));
        try
         {
-        TDwgGameAI DwgGameAI1 = DwgGameAllthreads(AllThreads02);
+        TDwgNdpGamesData DwgNdpGameData = new TDwgNdpGamesData(AllThreads01);
 
-        TDwgNdpGamesData AllThreads03 = new TDwgNdpGamesData(AllThreads01);
+        TDwgGameAI DwgGameAI1 = DwgGameAllthreads(AllThreads02);
 
         DwgGameAI1.Thread = AllThreads01;
 
-        AllThreads03.InitAllData();
+        DwgNdpGameData.InitAllData();
 
         AllThreads01.Start();
 
@@ -100,17 +101,15 @@
        
         public class TDwgNdpPLayersChar : TDwgNdpGamesData, IDwgNdpPerson, IDwgNdpCaricDirections
         {
-        private IDwgNdpPerson person;
+        private IDwgNdpPerson person=null ;
 
         private float  theAxisX      = TDwgNdpGameConVal.C_AxisX;
         private float  theAxisY      = TDwgNdpGameConVal.C_AxisY;
         private float  theAxisZ      = TDwgNdpGameConVal.C_AxisZ;
         private double theartGravity = TDwgNdpGameConVal.C_EarthGravity;
 
-        #pragma warning disable CS0649 // Field 'TDwgNdpGame.TDwgNdpPLayersChar.ndpChaPeopleArr' is never assigned to, and will always have its default value null
-        private IDwgNdpPerson[] ndpChaPeopleArr;
-        #pragma warning restore CS0649 // Field 'TDwgNdpGame.TDwgNdpPLayersChar.ndpChaPeopleArr' is never assigned to, and will always have its default value null
-
+        private IDwgNdpPerson[] ndpChaPeopleAr;
+        
         private double allTheTotal;
         private float theTrajectory;
 
@@ -121,15 +120,15 @@
         }
         private void DwgNdpersonInit()
         {
-        TDwgGameAI        ThegameAI  = new TDwgGameAI         ();
+        TDwgGameAI        ThegameAI  = new TDwgGameAI           ();
 
-        TDwgNdpGameAttrib GameAttrib = new TDwgNdpGameAttrib  ();
+        TDwgNdpGameAttrib GameAttrib = new TDwgNdpGameAttrib    ();
 
-        TDwcharAtribute   Dwchar     = new TDwcharAtribute    ();
+        TDwcharAtribute   DwcharAttrib     = new TDwcharAtribute ();
        try
         {
         person = new TDwgNdpPLayersChar(GameAttrib.TheElementalFlagsSet, GameAttrib.TheFlagsGFSet);
-        
+      
         theTrajectory=1.40F; 
         if (GameAttrib.Match(GameAttrib.TheElementalFlagsSet))
         {
@@ -151,7 +150,8 @@
         }
         protected void InitPeopleArr()
         {
-
+        ndpChaPeopleAr = new TDwgNdpPLayersChar[TDwgNdpGameConVal.C_AmountPlayers];
+        
         }
         public TDwgNdpPLayersChar(IDwgNdpPerson dwgNdpPerson, TheKeysFlags theKeysFlags):this(dwgNdpPerson.TheNatCharPersonElem,dwgNdpPerson.TheNatCharPersonElemGF)
         { 
@@ -232,7 +232,7 @@
          {
        get
          {
-         return ndpChaPeopleArr;
+         return ndpChaPeopleAr;
          }
          }
 
