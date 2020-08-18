@@ -19,10 +19,11 @@
     using Dwg.Ndp.Attrib;
     using Dwg.Ndp.Game.Con;
     using Dwg.Ndp.Char.Counters;
-    
+    using Dwg.Game.World;
 
     public partial class TDwgNdpGame : Form
     {
+        private 
         private IDwgNdpPerson thperson = null;
        
         public IDwgNdpPerson Thperson
