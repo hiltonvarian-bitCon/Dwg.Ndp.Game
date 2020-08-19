@@ -1,6 +1,6 @@
 ﻿namespace Dwg.Ndp.Game
 {
-    partial class TDwgNdpGame
+    partial class TDwgNdp
     {
         /// <summary>
         /// Required designer variable.

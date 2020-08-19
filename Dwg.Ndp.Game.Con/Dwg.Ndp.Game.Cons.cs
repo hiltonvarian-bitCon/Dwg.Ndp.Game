@@ -24,5 +24,6 @@
     public const int C_Height = 691;
 
     public const string C_StringsName = "";
+     
     }
     }

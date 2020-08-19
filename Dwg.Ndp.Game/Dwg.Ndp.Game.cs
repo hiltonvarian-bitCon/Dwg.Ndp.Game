@@ -1,29 +1,21 @@
-﻿     using System;
-     using System.Collections.Generic;
-     using System.ComponentModel;
-     using System.Data;
-     using System.Drawing;
-     using System.Linq;
-     using System.Text;
-     using System.Threading;
-     using System.Threading.Tasks;                               
-     using System.Windows.Forms;
-     using System.Reflection;
-       
-    namespace Dwg.Ndp.Game
-     {
+﻿using System;
+using System.Threading;
+using System.Windows.Forms;
+using System.Reflection;
+
+
+namespace Dwg.Ndp.Game
+{
     using Dwg.Ndp.Data.Games;
     using Dwg.Ndp.Person;
     using Dwg.Ndp.Game.Char;
     using Dwg.Game.AI;
     using Dwg.Ndp.Attrib;
     using Dwg.Ndp.Game.Con;
-    using Dwg.Ndp.Char.Counters;
-    using Dwg.Game.World;
-
-    public partial class TDwgNdpGame : Form
+    using Dwg.Game;
+    public partial class TDwgNdp : Form
     {
-        private 
+       
         private IDwgNdpPerson thperson = null;
        
         public IDwgNdpPerson Thperson
@@ -32,7 +24,7 @@
       set => thperson = value;
         }
 
-        public TDwgNdpGame()
+        public TDwgNdp()
         {
         InitializeComponent();
         }
@@ -76,7 +68,8 @@
         TDwgNdpGameAttrib             DwgNdpAttrib = new TDwgNdpGameAttrib             ();
         
         TDwgNdpGamesData.TDwgGameDats DwgGameDats = new TDwgNdpGamesData.TDwgGameDats  ();
-       try
+
+      try
         {
         GetDataElems GetTheDataElems = new GetDataElems(DwgGameDats.GetDataElems);
         if (GetTheDataElems.Method.MemberType == MemberTypes.Method)
