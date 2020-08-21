@@ -4,32 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8440D030-02FA-4CB5-86A6-692A8467D11A}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>Dwg.Ndp.Game</RootNamespace>
-    <AssemblyName>Dwg.Ndp.Game</AssemblyName>
+    <ProjectGuid>{E13BC8CF-7994-44E4-AD87-5B74EDB58EF6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Dwg.Ndp.Mod</RootNamespace>
+    <AssemblyName>Dwg.Ndp.Mod</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -40,7 +24,6 @@
     <LangVersion>7.2</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -49,9 +32,6 @@
     <WarningLevel>4</WarningLevel>
     <LangVersion>7.2</LangVersion>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject>Dwg.Ndp.Game.TDwgNdpGameEngin</StartupObject>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -59,45 +39,12 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dwg.Ndp.Game.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dwg.Ndp.Game.Designer.cs">
-      <DependentUpon>Dwg.Ndp.Game.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dwg.Ndp.cs" />
+    <Compile Include="Dwg.Games.World.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Dwg.Ndp.Game.resx">
-      <DependentUpon>Dwg.Ndp.Game.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dwg.Game.AI\Dwg.Game.AI.csproj">
@@ -113,7 +60,7 @@
       <Name>Dwg.Ndp.Char.Counters</Name>
     </ProjectReference>
     <ProjectReference Include="..\Dwg.Ndp.Data.Games\Dwg.Ndp.Data.Games.csproj">
-      <Project>{9CFC9B8B-CA0B-4569-9C69-F600C7564BEC}</Project>
+      <Project>{9cfc9b8b-ca0b-4569-9c69-f600c7564bec}</Project>
       <Name>Dwg.Ndp.Data.Games</Name>
     </ProjectReference>
     <ProjectReference Include="..\Dwg.Ndp.Game.Char\Dwg.Ndp.Game.Char.csproj">
@@ -125,29 +72,13 @@
       <Name>Dwg.Ndp.Game.Con</Name>
     </ProjectReference>
     <ProjectReference Include="..\Dwg.Ndp.Mod.Atrtrib\Dwg.Ndp.Mod.Atrtrib.csproj">
-      <Project>{EE83E6B2-8E6F-46F4-AA57-E3BF1FE36807}</Project>
+      <Project>{ee83e6b2-8e6f-46f4-aa57-e3bf1fe36807}</Project>
       <Name>Dwg.Ndp.Mod.Atrtrib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Dwg.Ndp.Mod\Dwg.Ndp.Mod.csproj">
-      <Project>{e13bc8cf-7994-44e4-ad87-5b74edb58ef6}</Project>
-      <Name>Dwg.Ndp.Mod</Name>
     </ProjectReference>
     <ProjectReference Include="..\Dwg.Ndp.Person\Dwg.Ndp.Person.csproj">
       <Project>{52d8c37c-fcb4-4a2d-b6e0-ba0f8c5d0f87}</Project>
       <Name>Dwg.Ndp.Person</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
-      <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

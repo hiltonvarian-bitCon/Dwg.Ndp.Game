@@ -6,7 +6,8 @@
     using System.Timers;
 
     using Dwg.Ndp.Data.Games;
-
+    using Dwg.Ndp.Char.Counters;
+   
      public interface IDwgNdpPerson
      {
      void InitSetAllPersons();

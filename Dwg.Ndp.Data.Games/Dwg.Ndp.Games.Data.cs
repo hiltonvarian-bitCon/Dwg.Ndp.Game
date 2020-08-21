@@ -13,7 +13,8 @@
     public  enum NatureElementsFlags:int
     {
     EarthElem=0,AirElem=1,FireElem=2,
-    WaterElem =3,DarcElem=4,NoElemFlagsValue=-1
+    WaterElem =3,DarcElem=4,
+    NoElemFlagsValue =-1
     }
 
    [Flags]
@@ -44,7 +45,7 @@
     [Serializable]
     public class TDwgNdpGamesData
     {
-    private TDwgGameDats dwgGameDats;
+    private TDwgGameDats DwgGameDats;
    
     private static  NatureElementsFlags elements        = NatureElementsFlags.NoElemFlagsValue;
     private static  NatElementsFlagsGF  elementsGF      = NatElementsFlagsGF.NoElemGF;
@@ -55,7 +56,7 @@
 
     private  void SetAllFlags(TDwgNdpGamesData dwgNdpGame, NatureElementsFlags theNatFlagsSet, NatElementsFlagsGF natElementsFlagsSetGF)
     {
-    dwgGameDats.SetAllFlags(dwgGameDats, theNatFlagsSet, natElementsFlagsSetGF, theNatFlagsSet);
+    DwgGameDats.SetAllFlags(DwgGameDats, theNatFlagsSet, natElementsFlagsSetGF, theNatFlagsSet);
     }
 
     public TDwgNdpGamesData():this(elements)
@@ -70,17 +71,17 @@
 
     protected void SetAllDataValues()
     {
-    dwgGameDats = new TDwgGameDats();
+    DwgGameDats = new TDwgGameDats();
   try
     {
-    dwgGameDats.TheNatFlagsSet        = NatureElementsFlags.EarthElem;
-    dwgGameDats.NatElementsFlagsSetGF = NatElementsFlagsGF.EarthElemGF;
-    dwgGameDats.TheGameDirectionSet   = GameDirections.North;
+    DwgGameDats.TheNatFlagsSet        = NatureElementsFlags.EarthElem;
+    DwgGameDats.NatElementsFlagsSetGF = NatElementsFlagsGF.EarthElemGF;
+    DwgGameDats.TheGameDirectionSet   = GameDirections.North;
      }
   finally
     {
-    dwgGameDats.SetAllFlags(dwgGameDats,dwgGameDats.TheNatFlagsSet,dwgGameDats.NatElementsFlagsSetGF,dwgGameDats.TheNatFlagsSet  );
-    dwgGameDats.SetAllFlags(dwgGameDats, dwgGameDats.TheNatFlagsSet, dwgGameDats.NatElementsFlagsSetGF, dwgGameDats.TheGameDirectionSet, dwgGameDats.TheNatFlagsSet); 
+    DwgGameDats.SetAllFlags(DwgGameDats,DwgGameDats.TheNatFlagsSet,DwgGameDats.NatElementsFlagsSetGF,DwgGameDats.TheNatFlagsSet  );
+    DwgGameDats.SetAllFlags(DwgGameDats, DwgGameDats.TheNatFlagsSet, DwgGameDats.NatElementsFlagsSetGF, DwgGameDats.TheGameDirectionSet, DwgGameDats.TheNatFlagsSet); 
     }
     
     }
@@ -259,8 +260,8 @@
    }
    public TDwgGameDats TdwgGameDatsSet
    {
-  get => dwgGameDats;
-  set => dwgGameDats = value;
+  get => DwgGameDats;
+  set => DwgGameDats = value;
     }
 
    public GameDirections TheGameDirectionSet

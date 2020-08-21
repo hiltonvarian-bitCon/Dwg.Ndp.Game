@@ -6,13 +6,14 @@ using System.Reflection;
 
 namespace Dwg.Ndp.Game
 {
+   
     using Dwg.Ndp.Data.Games;
     using Dwg.Ndp.Person;
     using Dwg.Ndp.Game.Char;
     using Dwg.Game.AI;
     using Dwg.Ndp.Attrib;
     using Dwg.Ndp.Game.Con;
-    using Dwg.Game;
+    using Dwg.Ndp.Mod;
     public partial class TDwgNdp : Form
     {
        
@@ -48,7 +49,7 @@ namespace Dwg.Ndp.Game
 
         AllThreads02.Start();
         }
-       finally
+       finally                                  
         {
         AllThreads01.Abort();
         AllThreads02.Abort();
@@ -63,12 +64,13 @@ namespace Dwg.Ndp.Game
 
         private void IniThreadsStart02()
         {
-        TDwgNdpPLayersChar            PLayersChar  = new TDwgNdpPLayersChar            ();
+        TDwgNdpPLayersChar             PLayersChar  = new TDwgNdpPLayersChar                ();
 
-        TDwgNdpGameAttrib             DwgNdpAttrib = new TDwgNdpGameAttrib             ();
+        TDwgNdpGameAttrib               DwgNdpAttrib = new TDwgNdpGameAttrib                ();
         
-        TDwgNdpGamesData.TDwgGameDats DwgGameDats = new TDwgNdpGamesData.TDwgGameDats  ();
+        TDwgNdpGamesData.TDwgGameDats   DwgGameDats = new TDwgNdpGamesData.TDwgGameDats     ();
 
+        TDwgGameWorldMod.TGameWorldModOne DwgModOne = new TDwgGameWorldMod.TGameWorldModOne ();
       try
         {
         GetDataElems GetTheDataElems = new GetDataElems(DwgGameDats.GetDataElems);
@@ -77,17 +79,21 @@ namespace Dwg.Ndp.Game
         PLayersChar.TdwgGameDatsSet = DwgGameDats;
         }
         PLayersChar.TdwgGameDatsSet.AllTheKeysSet = TheKeysFlags.GoldKey;
-
+                
         GetDataElems TheDatElems = DwgGameDats.GetDataElems;
 
         PLayersChar.TdwgGameDatsSet.TheNatFlagsSet = TheDatElems(PLayersChar.TdwgGameDatsSet);
+
+        DwgModOne.InitGameWorld();
         }
        finally
         {
-        TDwcharAtribute DwcharAtribute = new TDwcharAtribute(DwgNdpAttrib.TheElementalFlagsSet)
+        TDwcharAtribute DwcharAtribute = new  TDwcharAtribute(DwgNdpAttrib.TheElementalFlagsSet)
         {
         ThekeyFlagsSet = PLayersChar.TdwgGameDatsSet.AllTheKeysSet
+        
         };
+        
         PLayersChar.TheGameThreadSet.Abort();
         
         }

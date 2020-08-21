@@ -11,14 +11,15 @@ namespace Dwg.Ndp.Attrib
     using Dwg.Ndp.Person;
     using Dwg.Ndp.Data.Games;
     using Dwg.Ndp.Game.Char;
+    using Dwg.Ndp.Mod.Atrtrib;
 
-   
     public class TDwgNdpGameAttrib : Attribute
     {
         protected NatureElementsFlags elementsFlags;
         protected NatElementsFlagsGF FlagsGF;
         protected TheKeysFlags keysFlags;
         protected GameDirections directions;
+        protected GameRealms theRealms;
 
         public TDwgNdpGameAttrib()
         {
@@ -30,6 +31,7 @@ namespace Dwg.Ndp.Attrib
        try
         {
         TheElementalFlagsSet = NatureElementsFlags.AirElem;
+        TheFlagsGFSet       = NatElementsFlagsGF.AirElemGF;
         }
      finally
         {
@@ -45,16 +47,24 @@ namespace Dwg.Ndp.Attrib
    get => elementsFlags;
    set => elementsFlags = value;
         }
+
         public NatElementsFlagsGF TheFlagsGFSet
    
         {
-   get => FlagsGF;
-   set => FlagsGF = value;
+    get => FlagsGF;
+    set => FlagsGF = value;
         }
+
         public TheKeysFlags ThekeyFlagsSet
         {
-   get => keysFlags;
-   set => keysFlags = value;
+    get => keysFlags;
+    set => keysFlags = value;
+        }
+
+        public GameRealms TheRealmsFlagsSet
+        {
+    get =>   theRealms;
+    set =>   theRealms = value;
         }
 
         public   TDwgNdpGameAttrib(NatElementsFlagsGF theflagsGF)
@@ -66,6 +76,7 @@ namespace Dwg.Ndp.Attrib
         {
         keysFlags = theKeys;
         }
+
         public GameDirections TheGameDirectionsSet
         {
    get => directions;
@@ -76,6 +87,12 @@ namespace Dwg.Ndp.Attrib
         {
         directions = thegameDir;
         }
+
+        public TDwgNdpGameAttrib(GameRealms realms)
+        {
+        theRealms = realms;
+        }
+
         public override bool Match(object obj)
         {
 
@@ -86,24 +103,27 @@ namespace Dwg.Ndp.Attrib
         public class TDwgNdpAttributs                                        
         {
         [TDwgNdpGameAttrib(NatureElementsFlags.AirElem)]
-        public void TheElamNature()
-        {                                                     
-        }
+        public void TheElamNature() { }
         
         [TDwgNdpGameAttrib(NatElementsFlagsGF.AirElemGF)]
         public void TheElemNatGF(){ }
 
         [TDwgNdpGameAttrib(TheKeysFlags.CopperKey)]
         public void TheGameKeys() {}
-        
+
+
         [TDwgNdpGameAttrib]
-        public void InitallAtributes() { }
+        public void InitallAtributes()  { }
         }
+
         [TDwgNdpGameAttrib(GameDirections.North)]
-        public void TheGameDirections() { }
-     }
+        public void TheGameDirections()  { }
+
+        [TDwgNdpGameAttrib(GameRealms.LightWorld)]
+        public void TheGamesRealms()     { }
+    }
      
-    [AttributeUsage(AttributeTargets.Constructor | AttributeTargets.Method)]
+     [AttributeUsage(AttributeTargets.Constructor | AttributeTargets.Method)]
      public sealed class TDwcharAtribute:TDwgNdpGameAttrib
      {
 
@@ -118,7 +138,9 @@ namespace Dwg.Ndp.Attrib
      {
      //default constructor
      }
-    
+     [TDwgNdpGameAttrib(GameRealms.LightWorld)]
+     public void AllGameRealms()
+     {}
      public NatureElementsFlags ThNatElementalFlagsGet
      {
     get
@@ -133,18 +155,29 @@ namespace Dwg.Ndp.Attrib
       return TheFlagsGFSet;
       }
       }
-     public GameDirections ThGameDirectionsFlagsGet
-     {
-   get
-     {
-     return TheGameDirectionsSet;
-     }
-     }
+      public GameDirections ThGameDirectionsFlagsGet
+      {
+    get
+      {
+      return TheGameDirectionsSet;
+      }
+      }
+      public GameRealms TheGameRelamsFlagsGet
+      {
+    get
+      {
+      return theRealms;
+      }
+      }
 
-     
      public TDwcharAtribute(NatureElementsFlags elementsFlags) : base(elementsFlags)
      {
      TheElementalFlagsSet = elementsFlags;
+     }
+
+     public TDwcharAtribute(GameRealms gameRealms)
+     {
+     theRealms= gameRealms;
      }
      }
      }

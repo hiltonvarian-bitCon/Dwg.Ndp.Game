@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9CFC9B8B-CA0B-4569-9C69-F600C7564BEC}</ProjectGuid>
+    <ProjectGuid>{EE83E6B2-8E6F-46F4-AA57-E3BF1FE36807}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Dwg.Ndp.Data.Games</RootNamespace>
-    <AssemblyName>Dwg.Ndp.Data.Games</AssemblyName>
+    <RootNamespace>Dwg.Ndp.Mod.Atrtrib</RootNamespace>
+    <AssemblyName>Dwg.Ndp.Mod.Atrtrib</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -21,7 +21,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <LangVersion>7.2</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,12 +29,10 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <LangVersion>7.2</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,26 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dwg.Ndp.Games.Data.cs" />
+    <Compile Include="Dwg.Ndp.Mod.Atrib.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Dwg.Game.AI\Dwg.Game.AI.csproj">
-      <Project>{87465786-5b71-4ee9-abad-106e2d830b53}</Project>
-      <Name>Dwg.Game.AI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Dwg.Ndp.Char.Counters\Dwg.Ndp.Char.Counters.csproj">
-      <Project>{0439615c-94dc-4a83-af11-a4d922f1e6b0}</Project>
-      <Name>Dwg.Ndp.Char.Counters</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Dwg.Ndp.Game.Con\Dwg.Ndp.Game.Con.csproj">
-      <Project>{8f48a589-4bde-4a5a-9bfc-435727903215}</Project>
-      <Name>Dwg.Ndp.Game.Con</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Dwg.Ndp.Mod.Atrtrib\Dwg.Ndp.Mod.Atrtrib.csproj">
-      <Project>{ee83e6b2-8e6f-46f4-aa57-e3bf1fe36807}</Project>
-      <Name>Dwg.Ndp.Mod.Atrtrib</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
