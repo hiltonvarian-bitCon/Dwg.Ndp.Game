@@ -43,6 +43,7 @@ namespace Dwg.Ndp.Game
 
         DwgGameAI1.Thread = AllThreads01;
 
+        DwgGameAI1.Thread = AllThreads02;
         DwgNdpGameData.InitAllData();
 
         AllThreads01.Start();
@@ -119,7 +120,7 @@ namespace Dwg.Ndp.Game
         InitPeopleArr();
         }
         private void DwgNdpersonInit()
-        {
+        {                                                                   
         TDwgGameAI        ThegameAI  = new TDwgGameAI           ();
 
         TDwgNdpGameAttrib GameAttrib = new TDwgNdpGameAttrib    ();
@@ -362,7 +363,7 @@ namespace Dwg.Ndp.Game
 
         public float CalculateTrajectory()
         {
-
+     
         throw new NotImplementedException();
         }
 
@@ -401,12 +402,13 @@ namespace Dwg.Ndp.Game
 
         public double CalculateTrajectoryAxisX(float axisX)
         {
-        throw new NotImplementedException();
+        return CalculateTrajectoryAxisY(axisX);
         }
 
         public double CalculateTrajectoryAxisY(float axisY)
         {
-        throw new NotImplementedException();
+
+        return CalculateTrajectoryAxisZ(axisY);
         }
 
         public double CalculateTrajectoryAxisZ(float axisZ)

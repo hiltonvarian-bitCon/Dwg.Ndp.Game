@@ -31,7 +31,7 @@ namespace Dwg.Ndp.Attrib
        try
         {
         TheElementalFlagsSet = NatureElementsFlags.AirElem;
-        TheFlagsGFSet       = NatElementsFlagsGF.AirElemGF;
+        TheFlagsGFSet        = NatElementsFlagsGF.AirElemGF;
         }
      finally
         {
@@ -99,7 +99,7 @@ namespace Dwg.Ndp.Attrib
         return base.Match(obj);
         }
 
-       
+        [Serializable]
         public class TDwgNdpAttributs                                        
         {
         [TDwgNdpGameAttrib(NatureElementsFlags.AirElem)]
