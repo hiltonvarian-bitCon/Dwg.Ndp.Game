@@ -28,7 +28,7 @@ namespace Dwg.Ndp.Mod.Atrtrib
     }
    finally
     {
-     
+    dwgNdpMod.TheNameWorlds();  
     }
     }
 
@@ -42,8 +42,8 @@ namespace Dwg.Ndp.Mod.Atrtrib
   get => realmsnumber;
   set => realmsnumber = value;
     }
-  public string TheNameStr
-  {
+    public string TheNameStr
+    {
 get => namestr;
 set => namestr = value;
     }
@@ -81,6 +81,7 @@ set => namestr = value;
 
     [TDwgNdpModAtibu(GameRealms.UpperWorld,0)] 
     public void TheRealmNumbers() { }
+
     [TDwgNdpModAtibu(GameRealms.UpperWorld,"upper world",0)]
     public void TheNameWorlds() { }                  
     }

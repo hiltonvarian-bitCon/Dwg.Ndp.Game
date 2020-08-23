@@ -140,7 +140,11 @@ namespace Dwg.Ndp.Attrib
      }
      [TDwgNdpGameAttrib(GameRealms.LightWorld)]
      public void AllGameRealms()
-     {}
+     {
+     
+
+                
+     }
      public NatureElementsFlags ThNatElementalFlagsGet
      {
     get
