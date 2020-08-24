@@ -11,7 +11,8 @@ namespace Dwg.Ndp.Mod.Atrtrib
     {
     UpperWorld = 0,  LowerWorld = 1,
     LightWorld = 2,  DarcWorld =  3,
-    SpiritWorld = 4, EmptyWorld =-1
+    SpiritWorld = 4,MiddleWorld  =5,
+    EmptyWorld =-1
     }
     public class TDwgNdpModAtibu:Attribute
     {
@@ -73,7 +74,7 @@ set => namestr = value;
     public  class TDwNdpModWorldOneAtribu
     {
     [TDwgNdpModAtibu(GameRealms.UpperWorld)]
-    public void GameWorldUpper() { }
+    public void GameWorldUpper(){}
     }
 
     [TDwgNdpModAtibu(GameRealms.LowerWorld)]

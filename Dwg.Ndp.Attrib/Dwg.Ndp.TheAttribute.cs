@@ -28,6 +28,7 @@ namespace Dwg.Ndp.Attrib
         private void InitAsemblyNameAttrib()
         {
         TDwgNdpAttributs NdpAttributsdwg = new TDwgNdpAttributs();
+        Td
        try
         {
         TheElementalFlagsSet = NatureElementsFlags.AirElem;
