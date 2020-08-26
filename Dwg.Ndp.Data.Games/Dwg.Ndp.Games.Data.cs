@@ -349,7 +349,7 @@
     {
     for (Int32 LoopElem1 = 0; LoopElem1 < theData.ElementalArrGet.Rank;  LoopElem1++)
     {
-    
+                    ElementalArrGet[LoopElem1].GetEnumerator();
     }            
     return base.GetNameElements(theData);
     }

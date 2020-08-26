@@ -16,9 +16,10 @@
     public const  float  C_AxisZ                 = 0.233F;
 
     public const double C_EarthGravity           = 9.796D;
-    public const int  C_GameWorldsCount = 90;
-    public const  int C_TheAmountWepons = 300;
-    public const  int C_AmountPlayers     = 8; 
+    public const int    C_GameWorldsCount        = 90;
+    public const int    C_TheAmountWepons        = 300;
+    public const int    C_AmountPlayers          = 8;
+    public const int    C_DifferantRealms       = 6;
 
     public const int C_Width  = 321;
     public const int C_Height = 691;

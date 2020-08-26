@@ -24,23 +24,26 @@ namespace Dwg.Game.AI
                           ,100,34,23,8,12,19,0-19,20,23,56,7,9,12,3,3
                            ,6,12,23,20,-20,-7,1,10,11,6,7,9,2,4,0,0,0, 
                           };
- private readonly Int32 gameValueCountAI;
+ 
+ private   readonly Int32 gameValueCountAI;
+ private   readonly ArraySegment<Int32> arrSeg;
+
  public  virtual void  SetUpFibNums()
  {
- 
- SetupFibNums(GetFibValue(fibValusNums));
+ SetupFibNums(GetFibValue(fibValusNums,1));
+                                                               
  }
   public void SetupFibNums(Int32 fibValueNum)
  {
  fibValusNums = fibValueNum;
  }
- private  Int32 GetFibValue(Int32 fibConValue)
+ public  Int32 GetFibValue(Int32 fibConValue,Int32 count)
  {
  if(fibConValue<2)
  {
  return 1;
  }
- return GetFibValue(fibConValue * 2);
+ return GetFibValue(fibConValue * 2,count);
  }
  private static Random randomValue = new Random();
 
@@ -85,21 +88,24 @@ try
   theGameArrAI[0] = TheRandomValue.Next()*1;
   theGameArrAI[1] = TheRandomValue.Next()*2;
   theGameArrAI[2] = TheRandomValue.Next()*3;
+
+  InitAllArr(theGameArrAI);
   }                                                                                               
 finally
   {
-  InitAllArr(theGameArrAI);
+  ArraySegment<Int32> tharr = new ArraySegment<Int32>(theGameArrAI);
+  InitAllArr(theGameArrAI, tharr);
   }
   }
   protected void InitAllArr(Int32[] valArray)
   {
   theGameArrAI = valArray;
-  
   }
   public virtual void InitGameDatAI()
   {
   dwgGameDatAI = new TDwgGameDatAI(TheRandomValue);
- try
+  
+  try
   {
   dwgGameDatAI.TheGameSetAI[0] = randomValue.Next() * 1;
   dwgGameDatAI.TheKeyValuePairs.Add(0, dwgGameDatAI);
@@ -118,6 +124,11 @@ finally
   public TDwgGameAI():this(theThreads)
   {
   //default Constructor
+  }
+  protected void InitAllArr(Int32[] valArray,ArraySegment<Int32> arSeg)
+  {
+  TheGamseArrAI = valArray;
+  
   }
   public Int32 [] TheGameSetAI
   {
@@ -162,17 +173,27 @@ get
  return gameValueCountAI;
  }
  }
+ public ArraySegment<Int32>TheArrSeg 
+ {
+get
+ {
+ return arrSeg;
+ }
+ }
 
  public TDwgGameAI(Thread thread)
  {
  theThreads = thread;
  }
-
- public TDwgGameAI(Int32 valueAi, Int32[] aiArr)
+ public TDwgGameAI(Int32 valueAi, Int32[] aiArr):this(valueAi,aiArr,new ArraySegment<Int32>(aiArr))
  {
- gameValueCountAI = valueAi; gameAI = aiArr;
+ gameValueCountAI = valueAi;
+ gameAI           = aiArr;
  }
-
+  public  TDwgGameAI(Int32 valueAI, Int32[]aiArr,ArraySegment<Int32> arVs)
+  {
+  arrSeg = arVs;
+  }
   public class TDwgGameDatAI:TDwgGameAI
   {
   private Int32 rndNums = 0;

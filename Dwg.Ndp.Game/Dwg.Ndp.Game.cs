@@ -14,6 +14,8 @@ namespace Dwg.Ndp.Game
     using Dwg.Ndp.Attrib;
     using Dwg.Ndp.Game.Con;
     using Dwg.Ndp.Mod;
+    using Dwg.Ndp.Mod.Atrtrib;
+
     public partial class TDwgNdp : Form
     {
        
@@ -29,7 +31,7 @@ namespace Dwg.Ndp.Game
         {
         InitializeComponent();
         }
-        private void InitThreadsStarts()
+        private void InitThreadsStarts() 
         {
         
         Thread AllThreads01 = new Thread(new ThreadStart(TDwgNdpGameThreads.ThreadProc1));
@@ -72,7 +74,7 @@ namespace Dwg.Ndp.Game
         TDwgNdpGamesData.TDwgGameDats   DwgGameDats = new TDwgNdpGamesData.TDwgGameDats     ();
 
         TDwgGameWorldMod.TGameWorldModOne DwgModOne = new TDwgGameWorldMod.TGameWorldModOne ();
-      try
+       try
         {
         GetDataElems GetTheDataElems = new GetDataElems(DwgGameDats.GetDataElems);
         if (GetTheDataElems.Method.MemberType == MemberTypes.Method)
@@ -80,23 +82,24 @@ namespace Dwg.Ndp.Game
         PLayersChar.TdwgGameDatsSet = DwgGameDats;
         }
         PLayersChar.TdwgGameDatsSet.AllTheKeysSet = TheKeysFlags.GoldKey;
-                
+
         GetDataElems TheDatElems = DwgGameDats.GetDataElems;
 
         PLayersChar.TdwgGameDatsSet.TheNatFlagsSet = TheDatElems(PLayersChar.TdwgGameDatsSet);
 
         DwgModOne.InitGameWorld();
+
+        TDwgNdpModAtibu ModAtibu = new TDwgNdpModAtibu(DwgNdpAttrib.TheRealmsFlagsSet, 0);
+        ModAtibu.InitModAsembly();                          
         }
        finally
         {
-        TDwcharAtribute DwcharAtribute = new  TDwcharAtribute(DwgNdpAttrib.TheElementalFlagsSet)
+        TDwcharAtribute DwcharAtribute = new TDwcharAtribute(DwgNdpAttrib.TheElementalFlagsSet)
         {
         ThekeyFlagsSet = PLayersChar.TdwgGameDatsSet.AllTheKeysSet
-        
+
         };
-        
         PLayersChar.TheGameThreadSet.Abort();
-        
         }
         }
        
@@ -114,10 +117,10 @@ namespace Dwg.Ndp.Game
         private double allTheTotal;
         private float theTrajectory;
 
+        private Int32 retValue;                                                                                                                                                                                                          
         public TDwgNdpPLayersChar()
         {
         DwgNdpersonInit();
-        InitPeopleArr();
         }
         private void DwgNdpersonInit()
         {                                                                   
@@ -126,16 +129,19 @@ namespace Dwg.Ndp.Game
         TDwgNdpGameAttrib GameAttrib = new TDwgNdpGameAttrib    ();
 
         TDwcharAtribute   DwcharAttrib     = new TDwcharAtribute ();
+
+        TDwgGameWorldMod   WorldMod = new TDwgGameWorldMod       ();
        try
         {
         person = new TDwgNdpPLayersChar(GameAttrib.TheElementalFlagsSet, GameAttrib.TheFlagsGFSet);
       
-        theTrajectory=1.40F; 
+        theTrajectory=1.40F;
         if (GameAttrib.Match(GameAttrib.TheElementalFlagsSet))
         {
         GameAttrib.TheGameDirectionsSet = GameDirections.West;
         GameAttrib.ThekeyFlagsSet       = TheKeysFlags.MoonMetalKeys;
         }
+       
         theAxisX = person.CalculateValues();
         allTheTotal = person.CalculateValueTrajValue( theAxisX, theAxisY, ref theTrajectory,ItemTrajectory);            
         }
@@ -143,16 +149,28 @@ namespace Dwg.Ndp.Game
         {
         person = new TDwgNdpPLayersChar(person, GameAttrib.ThekeyFlagsSet);
          
-        theAxisY = person.CalculateValues();
+        theAxisY = person.CalculateValues(); theAxisZ = person.CalculateTrajectory();
+
         allTheTotal = person.CalculateValueTrajValue(theAxisX, theAxisY, ref theTrajectory,ItemTrajectory);
+        InitPeopleArr(ThegameAI);
+
         ThegameAI.InitAllGameAI();
-        
         }
         }
-        protected void InitPeopleArr()
+        protected void InitPeopleArr(TDwgGameAI gameAI)
         {
+        TDwgGameAI DwgGameAI = new TDwgGameAI(gameAI.GameValueAI, gameAI.TheGameSetAI, gameAI.TheArrSeg);
+        try
+        {
+        DwgGameAI.TheFibValuNums = 100;
+
         ndpChaPeopleAr = new TDwgNdpPLayersChar[TDwgNdpGameConVal.C_AmountPlayers];
-        
+        }
+      finally
+        {
+        retValue = DwgGameAI.GetFibValue(DwgGameAI.TheFibValuNums, 1);             
+            
+        }
         }
         public TDwgNdpPLayersChar(IDwgNdpPerson dwgNdpPerson, TheKeysFlags theKeysFlags):this(dwgNdpPerson.TheNatCharPersonElem,dwgNdpPerson.TheNatCharPersonElemGF)
         { 
@@ -244,6 +262,14 @@ namespace Dwg.Ndp.Game
          return theartGravity;
          }
          }
+         public Int32 RetValue1
+         {
+        get
+         {
+         return retValue;
+         }
+         }
+
         public TDwgNdpPLayersChar(NatureElementsFlags elementsFlags,NatElementsFlagsGF natElementsFlagsGF) 
         {
          
@@ -312,7 +338,7 @@ namespace Dwg.Ndp.Game
         public double CalculateValue(float axisX, double axisY, float axisZ)
         {
 
-         return Math.Cos(axisX + axisY) * Math.Sin(axisX + axisZ);       
+        return Math.Cos(axisX + axisY) * Math.Sin(axisX + axisZ);       
         }
 
         public double CalculateValues(ref double total, double graverty, float trajectury, float angle, double speed)
@@ -363,13 +389,14 @@ namespace Dwg.Ndp.Game
 
         public float CalculateTrajectory()
         {
-     
-        throw new NotImplementedException();
+
+        return CalculateTrajectory(theAxisX, TheAxisValueY);
         }
 
         public float CalculateTrajectory(double axisX, double axisY)
         {
-        throw new NotImplementedException();
+
+        return Convert.ToSingle(axisX*axisY/Math.Log(allTheTotal));
         }
 
         public void InitCharicDirections()
@@ -513,5 +540,5 @@ namespace Dwg.Ndp.Game
         }
         }
         }
-         }
+        }
         
