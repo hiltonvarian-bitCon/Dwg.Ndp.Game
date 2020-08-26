@@ -74,6 +74,7 @@ namespace Dwg.Ndp.Game
         TDwgNdpGamesData.TDwgGameDats   DwgGameDats = new TDwgNdpGamesData.TDwgGameDats     ();
 
         TDwgGameWorldMod.TGameWorldModOne DwgModOne = new TDwgGameWorldMod.TGameWorldModOne ();
+
        try
         {
         GetDataElems GetTheDataElems = new GetDataElems(DwgGameDats.GetDataElems);
@@ -97,7 +98,6 @@ namespace Dwg.Ndp.Game
         TDwcharAtribute DwcharAtribute = new TDwcharAtribute(DwgNdpAttrib.TheElementalFlagsSet)
         {
         ThekeyFlagsSet = PLayersChar.TdwgGameDatsSet.AllTheKeysSet
-
         };
         PLayersChar.TheGameThreadSet.Abort();
         }
@@ -111,31 +111,32 @@ namespace Dwg.Ndp.Game
         private float  theAxisY      = TDwgNdpGameConVal.C_AxisY;
         private float  theAxisZ      = TDwgNdpGameConVal.C_AxisZ;
         private double theartGravity = TDwgNdpGameConVal.C_EarthGravity;
-
-        private IDwgNdpPerson[] ndpChaPeopleAr;
-        
+       
         private double allTheTotal;
         private float theTrajectory;
 
-        private Int32 retValue;                                                                                                                                                                                                          
+        private IDwgNdpPerson[] ndpChaPeopleAr;
+        private IDwgNdpCaricDirections[] dwgNdpsArr;
+
+         private Int32 retValue;                                                                                                                                                                                                          
         public TDwgNdpPLayersChar()
         {
         DwgNdpersonInit();
         }
         private void DwgNdpersonInit()
         {                                                                   
-        TDwgGameAI        ThegameAI  = new TDwgGameAI           ();
+        TDwgGameAI        ThegameAI       = new TDwgGameAI               ();
 
-        TDwgNdpGameAttrib GameAttrib = new TDwgNdpGameAttrib    ();
+        TDwgNdpGameAttrib GameAttrib       = new TDwgNdpGameAttrib       ();
 
-        TDwcharAtribute   DwcharAttrib     = new TDwcharAtribute ();
+        TDwcharAtribute   DwcharAttrib     = new TDwcharAtribute         ();
 
-        TDwgGameWorldMod   WorldMod = new TDwgGameWorldMod       ();
+        TDwgGameWorldMod  WorldMod         = new TDwgGameWorldMod        ();
        try
         {
         person = new TDwgNdpPLayersChar(GameAttrib.TheElementalFlagsSet, GameAttrib.TheFlagsGFSet);
       
-        theTrajectory=1.40F;
+        theTrajectory=1.40F; WorldMod.TheGameWorldNum = 0;
         if (GameAttrib.Match(GameAttrib.TheElementalFlagsSet))
         {
         GameAttrib.TheGameDirectionsSet = GameDirections.West;
@@ -160,16 +161,16 @@ namespace Dwg.Ndp.Game
         protected void InitPeopleArr(TDwgGameAI gameAI)
         {
         TDwgGameAI DwgGameAI = new TDwgGameAI(gameAI.GameValueAI, gameAI.TheGameSetAI, gameAI.TheArrSeg);
-        try
+       try
         {
-        DwgGameAI.TheFibValuNums = 100;
+        DwgGameAI.TheFibValuNums = 100; 
 
         ndpChaPeopleAr = new TDwgNdpPLayersChar[TDwgNdpGameConVal.C_AmountPlayers];
         }
       finally
         {
-        retValue = DwgGameAI.GetFibValue(DwgGameAI.TheFibValuNums, 1);             
-            
+        retValue = DwgGameAI.GetFibValue(DwgGameAI.TheFibValuNums, 1);
+                   
         }
         }
         public TDwgNdpPLayersChar(IDwgNdpPerson dwgNdpPerson, TheKeysFlags theKeysFlags):this(dwgNdpPerson.TheNatCharPersonElem,dwgNdpPerson.TheNatCharPersonElemGF)
@@ -270,9 +271,18 @@ namespace Dwg.Ndp.Game
          }
          }
 
+         public IDwgNdpCaricDirections[] IDwgNdpCaricDirecAr
+         {
+       get
+         {
+         return dwgNdpsArr;
+         }
+         }
+
         public TDwgNdpPLayersChar(NatureElementsFlags elementsFlags,NatElementsFlagsGF natElementsFlagsGF) 
         {
-         
+        elementsFlags = TheNatCharPersonElem;
+       
         }
 
         public NatElementsFlagsGF InitAllPerson(NatureElementsFlags nature, NatElementsFlagsGF elementsFlagsGF)
@@ -289,23 +299,20 @@ namespace Dwg.Ndp.Game
 
         public void InitSetAllPersons()
         {
-       
+        
         }
 
         public  void InitSetAllPersons(NatureElementsFlags natureElementsFlags, in string[] vsArr)
         {
-        
-        throw new NotImplementedException();
+
+        InitSetAllPersons(natureElementsFlags, vsArr);
         }
 
         public void InitSetAllPersons(NatureElementsFlags nature, string[] ArrFlagVs)
         {
-        throw new NotImplementedException();
         }
-
         public float CalculateValues()
         {
-
         return  CalculateValues(theAxisX*theAxisX)+(theAxisY*theAxisY);
         }
 
@@ -401,7 +408,25 @@ namespace Dwg.Ndp.Game
 
         public void InitCharicDirections()
         {
-        throw new NotImplementedException();
+         switch (TheGameDirectionSet)
+         {
+         case GameDirections.North:
+              
+         break;
+         case GameDirections.South:
+         break;
+         case GameDirections.West:
+         break;
+         case GameDirections.East:
+         break;
+         case GameDirections.NorthEast:
+         break;
+         case GameDirections.SouthWest:
+         break;
+         default:
+         break;
+
+        }
         }
 
         public double CalculateTrajectoryAxisX()
@@ -445,7 +470,7 @@ namespace Dwg.Ndp.Game
 
         public IDwgNdpCaricDirections[] CharictsDir(IDwgNdpCaricDirections ndpCaricDirections)
         {
-
+        
         throw new NotImplementedException();
         }
 
@@ -455,6 +480,11 @@ namespace Dwg.Ndp.Game
         }
 
         public void SetTheGravityValue(double grValue, double strength)
+        {
+        theartGravity = grValue * strength;
+        }
+
+        public TDwgNdpGamesData[] CharictsDir(IDwgNdpCaricDirections ndpCaricDirections, TDwgNdpGamesData dwgNdp)
         {
         throw new NotImplementedException();
         }
@@ -481,7 +511,7 @@ namespace Dwg.Ndp.Game
         }
         public static void ThreadProc1()
         {
-        for (int ThreadLoop01 = 0; ThreadLoop01 < 1000; ThreadLoop01++)
+        for (Int32 ThreadLoop01 = 0; ThreadLoop01 < 1000; ThreadLoop01++)
         {
        
         Thread.Sleep(2000);
@@ -498,7 +528,7 @@ namespace Dwg.Ndp.Game
         public static void  ThreadProc2()
         {
 
-        for (int ThreadLoop02 = 0; ThreadLoop02 < 2000; ThreadLoop02++)
+        for (Int32 ThreadLoop02 = 0; ThreadLoop02 < 2000; ThreadLoop02++)
         {
         
         Thread.Sleep(3000);

@@ -33,18 +33,19 @@
      NatureElementsFlags InitAllPersons(NatureElementsFlags nature,NatElementsFlagsGF elementsFlagsGF);
      NatElementsFlagsGF InitAllPerson(NatureElementsFlags nature, NatElementsFlagsGF elementsFlagsGF);
      IDwgNdpCaricDirections[] CharictsDir(IDwgNdpCaricDirections ndpCaricDirections);
+     TDwgNdpGamesData[] CharictsDir(IDwgNdpCaricDirections ndpCaricDirections, TDwgNdpGamesData dwgNdp);
      //Game Propertie values
+     NatureElementsFlags TheNatCharPersonElem     { get;}
+     NatElementsFlagsGF TheNatCharPersonElemGF    { get;}
+     TheKeysFlags TheGamesKeys                    { get;}
+     IDwgNdpCaricDirections[] IDwgNdpCaricDirecAr { get; }
 
-     NatureElementsFlags TheNatCharPersonElem    { get;}
-     NatElementsFlagsGF TheNatCharPersonElemGF   { get;}
-     TheKeysFlags TheGamesKeys                   { get;}
-
-     float  TheAxisValueX                        { get;}
-     float  TheAxisValueY                        { get;}
-     float  TheAxisValueZ                        { get;}
-     double  TheTotal                            { get;}
-     double TheEarthsGravity                     { get;}
-     float  ItemTrajectory                       { get;}
+     float  TheAxisValueX                         { get;}
+     float  TheAxisValueY                         { get;}
+     float  TheAxisValueZ                         { get;}
+     double  TheTotal                             { get;}
+     double TheEarthsGravity                      { get;}
+     float  ItemTrajectory                        { get;}
     }
 
      public interface IDwgNdpCaricDirections:IDwgNdpPerson

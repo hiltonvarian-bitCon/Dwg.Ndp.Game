@@ -145,6 +145,7 @@
    
     public NatureElementsFlags GetDataElems(TDwgNdpGamesData dwgNdp)
     {
+
     return dwgNdp.TheNatFlagsSet;
     }
     protected virtual  NatElementsFlagsGF  GetElementsFlagsGF(TDwgGameDats gameDats)

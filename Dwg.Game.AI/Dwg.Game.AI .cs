@@ -24,10 +24,11 @@ namespace Dwg.Game.AI
                           ,100,34,23,8,12,19,0-19,20,23,56,7,9,12,3,3
                            ,6,12,23,20,-20,-7,1,10,11,6,7,9,2,4,0,0,0, 
                           };
+ private Dictionary<byte, TDwgGameAI> thevaluePairs;
  
  private   readonly Int32 gameValueCountAI;
  private   readonly ArraySegment<Int32> arrSeg;
-
+ 
  public  virtual void  SetUpFibNums()
  {
  SetupFibNums(GetFibValue(fibValusNums,1));
@@ -73,7 +74,7 @@ namespace Dwg.Game.AI
   TDwgGameDatAI DatAI = new TDwgGameDatAI(gameAI);
   DatAI.InitSetUpRndNumAI(ref theCounters, TheRandomValue);
 
-  DatAI.SetUpDic(DatAI.TheKeyValuePairs);
+  DatAI.SetUpDic(DatAI.AllTheyValuePairs);
 
   DatAI.InitGameDatAI();
   DatAI.InitAllArr();
@@ -82,8 +83,10 @@ namespace Dwg.Game.AI
   }
   public void InitAllArr()
   {
-  theGameArrAI= new Int32[gameAI.LongLength];
-try
+  theGameArrAI  = new Int32[gameAI.LongLength];
+
+  thevaluePairs = new Dictionary<byte, TDwgGameAI>(theGameArrAI.Length);
+ try
   {
   theGameArrAI[0] = TheRandomValue.Next()*1;
   theGameArrAI[1] = TheRandomValue.Next()*2;
@@ -104,11 +107,10 @@ finally
   public virtual void InitGameDatAI()
   {
   dwgGameDatAI = new TDwgGameDatAI(TheRandomValue);
-  
-  try
+ try
   {
   dwgGameDatAI.TheGameSetAI[0] = randomValue.Next() * 1;
-  dwgGameDatAI.TheKeyValuePairs.Add(0, dwgGameDatAI);
+
   }
  finally
   {
@@ -119,7 +121,7 @@ finally
  
   public virtual void  SetUpDic(Dictionary<byte,TDwgGameAI> valuePairs)
   {
-
+  thevaluePairs = valuePairs;
   }                                                                                          
   public TDwgGameAI():this(theThreads)
   {
@@ -151,7 +153,7 @@ set => randomValue = value;
 get => dwgGameDatAI;
 set => dwgGameDatAI = value;
   }
-  public int TheCountersValue
+  public Int32 TheCountersValue
   {
 get => theCounters;
 set => theCounters = value;
@@ -181,6 +183,14 @@ get
  }
  }
 
+  public Dictionary<byte, TDwgGameAI> ThevaluePairs
+  {
+ get
+  {
+  return thevaluePairs;
+  }
+  }
+
  public TDwgGameAI(Thread thread)
  {
  theThreads = thread;
@@ -197,7 +207,8 @@ get
   public class TDwgGameDatAI:TDwgGameAI
   {
   private Int32 rndNums = 0;
-  public TDwgGameDatAI():this(TDwgGameAI.TheRandomValue)
+
+   public TDwgGameDatAI():this(TDwgGameAI.TheRandomValue)
   {
   //defaul constrctor  
   }
@@ -236,15 +247,18 @@ get
 get => rndNums;
 set => rndNums = value;
    }
-  public Dictionary<byte, TDwgGameAI> TheKeyValuePairs                                                                                                  
+  public Dictionary<byte, TDwgGameAI> AllTheyValuePairs                                                                                                  
   {                                                                            
 get => keyValuePairs; 
 set => keyValuePairs = value;
   }
-
    public override void SetUpDic(Dictionary<byte, TDwgGameAI> valuePairs)
    {
-   
+  
+   foreach (KeyValuePair<byte,TDwgGameAI> theItem in valuePairs )
+   {
+    
+   }
    base.SetUpDic(valuePairs);
    }
    public TDwgGameDatAI(Int32[] VsArr)

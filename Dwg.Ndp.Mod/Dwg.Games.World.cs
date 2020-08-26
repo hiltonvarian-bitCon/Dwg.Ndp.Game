@@ -22,18 +22,21 @@
     TheNamLabelworlds = "TheUpperWorlds";
     InitGameWorldMod(TheGameWorldNum, TheNamLabelworlds);
     }
+
     private void InitGameWorldMod(Int32 numIndex,string namRealms)
     {
     namworldslable = namRealms;
     gameWorldNum   = numIndex;
     }
+
     public string TheNamLabelworlds
     {
   get => namworldslable;
   set => namworldslable = value;
     }
-   public Int32 TheGameWorldNum
-   {
+
+    public Int32 TheGameWorldNum
+    {
   get => gameWorldNum;
   set => gameWorldNum = value;
     }
@@ -54,6 +57,7 @@
     }
     public override void InitGameWorld()
     {
+
     base.InitGameWorld();
     }
     }
