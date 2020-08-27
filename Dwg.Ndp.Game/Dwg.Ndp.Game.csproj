@@ -101,6 +101,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Dwg.Client.Game.Browser\Dwg.Client.Game.Browser.csproj">
+      <Project>{f1eeab4e-8925-4621-bed1-990847e038ab}</Project>
+      <Name>Dwg.Client.Game.Browser</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dwg.Game.AI\Dwg.Game.AI.csproj">
       <Project>{87465786-5b71-4ee9-abad-106e2d830b53}</Project>
       <Name>Dwg.Game.AI</Name>

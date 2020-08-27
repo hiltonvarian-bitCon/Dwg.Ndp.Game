@@ -33,9 +33,13 @@ namespace Dwg.Client.Game.Browser
             this.Tag = "The_Web_Browse";
             this.Load += new System.EventHandler(this.OnGameBrowserLoad);
             this.ResumeLayout(false);
-
+        
         }
-        public object TheBroserTag
+        public TDwgClientGameBrowser(object browsweb)
+        {
+        Tag = browsweb;
+        }
+        public object TheBrowserTag
         {
       get
         {
@@ -44,7 +48,7 @@ namespace Dwg.Client.Game.Browser
         }
         private void OnGameBrowserLoad(object sender, EventArgs e)
         {
-           
+        
         }
         }
         }
