@@ -67,17 +67,20 @@ namespace Dwg.Ndp.Game
 
         private void IniThreadsStart02()
         {
-        TDwgNdpPLayersChar             PLayersChar  = new TDwgNdpPLayersChar                ();
+        TDwgNdpPLayersChar                PLayersChar  = new TDwgNdpPLayersChar              ();
 
-        TDwgNdpGameAttrib               DwgNdpAttrib = new TDwgNdpGameAttrib                ();
+        TDwgNdpGameAttrib                 DwgNdpAttrib = new TDwgNdpGameAttrib                ();
         
-        TDwgNdpGamesData.TDwgGameDats   DwgGameDats = new TDwgNdpGamesData.TDwgGameDats     ();
+        TDwgNdpGamesData.TDwgGameDats     DwgGameDats = new TDwgNdpGamesData.TDwgGameDats     ();
 
-        TDwgGameWorldMod.TGameWorldModOne DwgModOne = new TDwgGameWorldMod.TGameWorldModOne ();
+        TDwgGameWorldMod.TGameWorldModOne DwgModOne = new TDwgGameWorldMod.TGameWorldModOne    ();
 
        try
         {
-        GetDataElems GetTheDataElems = new GetDataElems(DwgGameDats.GetDataElems);
+        GetDataElems GetTheDataElems  = new GetDataElems   (DwgGameDats.GetDataElems);
+
+        GetDataElemsGF GetDataElemsGF = new GetDataElemsGF (DwgGameDats.GetDataElemsGF);
+
         if (GetTheDataElems.Method.MemberType == MemberTypes.Method)
         {
         PLayersChar.TdwgGameDatsSet = DwgGameDats;
@@ -91,12 +94,18 @@ namespace Dwg.Ndp.Game
         DwgModOne.InitGameWorld();
 
         TDwgNdpModAtibu ModAtibu = new TDwgNdpModAtibu(DwgNdpAttrib.TheRealmsFlagsSet, 0);
+
+        GetDataElemsGF TheDatElemsGF = DwgGameDats.GetDataElemsGF;
+              
+        PLayersChar.TdwgGameDatsSet.NatElementsFlagsSetGF =TheDatElemsGF(DwgGameDats);
+
         ModAtibu.InitModAsembly();                          
         }
        finally
         {
         TDwcharAtribute DwcharAtribute = new TDwcharAtribute(DwgNdpAttrib.TheElementalFlagsSet)
         {
+      
         ThekeyFlagsSet = PLayersChar.TdwgGameDatsSet.AllTheKeysSet
         };
         PLayersChar.TheGameThreadSet.Abort();
@@ -116,7 +125,7 @@ namespace Dwg.Ndp.Game
         private float theTrajectory;
 
         private IDwgNdpPerson[]          ndpChaPeopleAr;
-        private IDwgNdpCaricDirections[] dwgNdpsArr;
+       private IDwgNdpCaricDirections[] dwgNdpsArr;
         
          private Int32 retValue;                                                                                                                                                                                                          
         public TDwgNdpPLayersChar()
@@ -161,7 +170,9 @@ namespace Dwg.Ndp.Game
         protected void InitPeopleArr(TDwgGameAI gameAI)
         {
         TDwgGameAI DwgGameAI = new TDwgGameAI(gameAI.GameValueAI, gameAI.TheGameSetAI, gameAI.TheArrSeg);
-       try
+
+         dwgNdpsArr = new TDwgNdpPLayersChar[TDwgNdpGameConVal.C_AmountPlayers];
+        try
         {
         DwgGameAI.TheFibValuNums = 100; 
 
@@ -169,6 +180,7 @@ namespace Dwg.Ndp.Game
         }
       finally
         {
+        ndpChaPeopleAr[0] = new TDwgNdpPLayersChar(TheNatCharPersonElem, TheNatCharPersonElemGF);
         retValue = DwgGameAI.GetFibValue(DwgGameAI.TheFibValuNums, 1);
         }
         }

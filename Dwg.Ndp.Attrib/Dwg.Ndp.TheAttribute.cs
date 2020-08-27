@@ -43,6 +43,7 @@ namespace Dwg.Ndp.Attrib
         {
         elementsFlags = natureElements;
         }
+
         public NatureElementsFlags TheElementalFlagsSet
         {
    get => elementsFlags;
@@ -141,11 +142,7 @@ namespace Dwg.Ndp.Attrib
      }
      [TDwgNdpGameAttrib(GameRealms.LightWorld)]
      public void AllGameRealms()
-     {
-     
-
-                
-     }
+     {}
      public NatureElementsFlags ThNatElementalFlagsGet
      {
     get

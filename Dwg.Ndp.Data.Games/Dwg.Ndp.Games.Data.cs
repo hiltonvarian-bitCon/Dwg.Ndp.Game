@@ -40,7 +40,20 @@
     NorthEast=4,SouthEaast=4,
     SouthWest=5,NoDirection=-1
     }
-    public delegate NatureElementsFlags GetDataElems(TDwgNdpGamesData dwgNdp);
+    
+    /// <summary>
+    /// A Deligate to set up Data Elements and return an Elemental Value
+    /// </summary>
+    /// <param name="dwgNdp"></param>
+    /// <returns> A warrior Elements of Nature</returns>
+    public delegate NatureElementsFlags GetDataElems  (TDwgNdpGamesData dwgNdp);
+    
+    /// <summary>
+    ///  returns Data Elements and return a Elemental Gaudian force Name
+    /// </summary>
+    /// <param name="dwgNdp"></param>
+    /// <returns> The name of a Gaudian force Being</returns>
+    public delegate NatElementsFlagsGF GetDataElemsGF(TDwgNdpGamesData dwgNdp);
 
     [Serializable]
     public class TDwgNdpGamesData
@@ -83,7 +96,6 @@
     DwgGameDats.SetAllFlags(DwgGameDats,DwgGameDats.TheNatFlagsSet,DwgGameDats.NatElementsFlagsSetGF,DwgGameDats.TheNatFlagsSet  );
     DwgGameDats.SetAllFlags(DwgGameDats, DwgGameDats.TheNatFlagsSet, DwgGameDats.NatElementsFlagsSetGF, DwgGameDats.TheGameDirectionSet, DwgGameDats.TheNatFlagsSet); 
     }
-    
     }
     private string[] thelemNatArr = { "Earth Elemental", "Air Elemental", "Fire Elemental", "Water Elemental", "Darc Elemntal" };
 
@@ -104,6 +116,7 @@
 
     TheGameDirectionSet = TheGameDirections(theVal); 
     }
+
     private ref NatureElementsFlags GetNameElements(string[]value,NatureElementsFlags elementsFlags)
     {
     thelemNatArr = value;  elements = elementsFlags;
@@ -140,6 +153,11 @@
      theData.TheNatElementsGetFlags = NatureElementsFlags.NoElemFlagsValue;
    break;
     }
+    GetDataElems NaturEL = GetDataElems;
+    if (theData.TheNatElementsGetFlags != NaturEL(theData))
+    {
+    return NaturEL(theData);
+    }
     return theData.TheNatElementsGetFlags;
     }
    
@@ -148,6 +166,12 @@
 
     return dwgNdp.TheNatFlagsSet;
     }
+    public NatElementsFlagsGF GetDataElemsGF(TDwgNdpGamesData gamesData)
+    {
+
+    return gamesData.NatElementsFlagsSetGF;
+    }
+
     protected virtual  NatElementsFlagsGF  GetElementsFlagsGF(TDwgGameDats gameDats)
     {
     if (gameDats==null)
@@ -172,10 +196,18 @@
          elementsGF = NatElementsFlagsGF.DarcElemGF; 
     break;
     default:
-     gameDats.NatElementsFlagsSetGF = NatElementsFlagsGF.NoElemGF;
+      gameDats.NatElementsFlagsSetGF = NatElementsFlagsGF.NoElemGF;
     break; 
     }
+    GetDataElemsGF TheGF = GetDataElemsGF;
+    if (gameDats.NatElementsFlagsSetGF != TheGF(gameDats))
+    {
+    return TheGF(gameDats);
+    }
+   else
+    { 
     return gameDats.TheElementsGetGF;
+    }
     }
     protected virtual  TheKeysFlags GetTheKeysFlags(TDwgGameDats gameDats)
     {
@@ -335,7 +367,8 @@
     {
     elements = theNatureElements;
     }
-    
+
+
     public TDwgGameDats(Thread thread)
     {
     gameThreadsValue = thread;

@@ -97,6 +97,7 @@ namespace Dwg.Game.AI
 finally
   {
   ArraySegment<Int32> tharr = new ArraySegment<Int32>(theGameArrAI);
+  
   InitAllArr(theGameArrAI, tharr);
   }
   }
@@ -104,13 +105,13 @@ finally
   {
   theGameArrAI = valArray;
   }
+
   public virtual void InitGameDatAI()
   {
   dwgGameDatAI = new TDwgGameDatAI(TheRandomValue);
  try
   {
-  dwgGameDatAI.TheGameSetAI[0] = randomValue.Next() * 1;
-
+  dwgGameDatAI.TheGameSetAI [0]  = randomValue.Next() * 1;
   }
  finally
   {
@@ -271,5 +272,4 @@ set => keyValuePairs = value;
   }
   }
   }
-  
   }
