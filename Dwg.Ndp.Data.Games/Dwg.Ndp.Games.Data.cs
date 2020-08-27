@@ -270,11 +270,9 @@
   get => gameDirections;
   set => gameDirections = value;
     }
-    
-
     public TDwgNdpGamesData(NatureElementsFlags natureElements):this(gameThreadsValue)
     {
-           
+    TheNatFlagsSet = natureElements;
     }
      public TDwgNdpGamesData(Thread threads)
     {

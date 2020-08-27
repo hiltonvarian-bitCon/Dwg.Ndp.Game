@@ -115,9 +115,9 @@ namespace Dwg.Ndp.Game
         private double allTheTotal;
         private float theTrajectory;
 
-        private IDwgNdpPerson[] ndpChaPeopleAr;
+        private IDwgNdpPerson[]          ndpChaPeopleAr;
         private IDwgNdpCaricDirections[] dwgNdpsArr;
-
+        
          private Int32 retValue;                                                                                                                                                                                                          
         public TDwgNdpPLayersChar()
         {
@@ -170,7 +170,6 @@ namespace Dwg.Ndp.Game
       finally
         {
         retValue = DwgGameAI.GetFibValue(DwgGameAI.TheFibValuNums, 1);
-                   
         }
         }
         public TDwgNdpPLayersChar(IDwgNdpPerson dwgNdpPerson, TheKeysFlags theKeysFlags):this(dwgNdpPerson.TheNatCharPersonElem,dwgNdpPerson.TheNatCharPersonElemGF)
@@ -469,7 +468,14 @@ namespace Dwg.Ndp.Game
 
         public IDwgNdpCaricDirections[] CharictsDir(IDwgNdpCaricDirections ndpCaricDirections)
         {
-        throw new NotImplementedException();
+
+        return CharictsDir(ndpCaricDirections, new TDwgNdpGamesData(NatureElementsFlags.FireElem), ndpCaricDirections);
+        }
+
+        private IDwgNdpCaricDirections[] CharictsDir(IDwgNdpCaricDirections ndpCaricDirections1, TDwgNdpGamesData dwgNdpGamesData, IDwgNdpCaricDirections ndpCaricDirections2)
+        {
+
+        return ndpChaPeopleAr[0].IDwgNdpCaricDirecAr;
         }
 
         public void SetTheGravityValue(double grValue)
@@ -484,6 +490,7 @@ namespace Dwg.Ndp.Game
 
         public TDwgNdpGamesData[] CharictsDir(IDwgNdpCaricDirections ndpCaricDirections, TDwgNdpGamesData dwgNdp)
         {
+        
         throw new NotImplementedException();
         }
         }
