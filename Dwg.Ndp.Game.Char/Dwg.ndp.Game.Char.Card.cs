@@ -365,7 +365,7 @@ namespace Dwg.Ndp.Game.Char
   set => theHeights = value;
     }
 
-    public int TheScreenWidths
+    public Int32 TheScreenWidths
     {
   get => theWidths;
   set => theWidths = value;

@@ -53,7 +53,7 @@
     private static  GameDirections      gameDirections  = GameDirections.NoDirection;
 
     private static  Thread              gameThreadsValue;
-
+   
     private  void SetAllFlags(TDwgNdpGamesData dwgNdpGame, NatureElementsFlags theNatFlagsSet, NatElementsFlagsGF natElementsFlagsSetGF)
     {
     DwgGameDats.SetAllFlags(DwgGameDats, theNatFlagsSet, natElementsFlagsSetGF, theNatFlagsSet);
@@ -281,8 +281,6 @@
     gameThreadsValue = threads;
     }
 
-
-
     [Serializable]
     public class TDwgGameDats: TDwgNdpGamesData
     {
@@ -314,7 +312,7 @@
   get => theElemNatGF;
   set => theElemNatGF = value;
     }
-            //Internal Getter TheElementsGetGF
+   //Internal Getter TheElementsGetGF
 
     internal NatElementsFlagsGF TheElementsGetGF
     {
@@ -350,7 +348,7 @@
     {
     for (Int32 LoopElem1 = 0; LoopElem1 < theData.ElementalArrGet.Rank;  LoopElem1++)
     {
-                    ElementalArrGet[LoopElem1].GetEnumerator();
+    ElementalArrGet[LoopElem1].GetEnumerator();
     }            
     return base.GetNameElements(theData);
     }

@@ -411,7 +411,6 @@ namespace Dwg.Ndp.Game
          switch (TheGameDirectionSet)
          {
          case GameDirections.North:
-              
          break;
          case GameDirections.South:
          break;
@@ -470,7 +469,6 @@ namespace Dwg.Ndp.Game
 
         public IDwgNdpCaricDirections[] CharictsDir(IDwgNdpCaricDirections ndpCaricDirections)
         {
-        
         throw new NotImplementedException();
         }
 
