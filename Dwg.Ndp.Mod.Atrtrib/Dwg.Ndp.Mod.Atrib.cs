@@ -29,7 +29,7 @@ namespace Dwg.Ndp.Mod.Atrtrib
     }
    finally
     {
-    dwgNdpMod.TheNameWorlds();  
+    dwgNdpMod.TheNameWorldsUpper(realms, namestr, realmsnumber);  
     }
     }
 
@@ -74,16 +74,25 @@ set => namestr = value;
     public  class TDwNdpModWorldOneAtribu
     {
     [TDwgNdpModAtibu(GameRealms.UpperWorld)]
-    public void GameWorldUpper(){}
+    public void GameWorldUpper() {}
     }
 
     [TDwgNdpModAtibu(GameRealms.LowerWorld)]
-    public void GameWorldLower() { }
+    public void GameWorldLower()  { }
 
-    [TDwgNdpModAtibu(GameRealms.UpperWorld,0)] 
-    public void TheRealmNumbers() { }
+
+    [TDwgNdpModAtibu(GameRealms.DarcWorld)] 
+    public void GameWorldDarc()    { }
+
+    [TDwgNdpModAtibu(GameRealms.SpiritWorld)]
+    public void GameWorldSpirit() { }
 
     [TDwgNdpModAtibu(GameRealms.UpperWorld,"upper world",0)]
-    public void TheNameWorlds() { }                  
+    public void TheNameWorldsUpper(GameRealms realms,string worlNstr,Int32 worlnum)
+    {
+    TheGameRealms = realms;
+    TheNameStr = worlNstr;
+    TheRealmsNumbers = worlnum;
+    }                  
     }
     }
